@@ -1,7 +1,7 @@
 # Roadmap — Projeto Ágon
 
 > Documento vivo. Registra o contexto do projeto, as decisões tomadas e o plano de evolução.
-> Última atualização: 22/10/2026.
+> Última atualização: 27/10/2026.
 
 ## Sumário
 
@@ -211,7 +211,7 @@ erDiagram
 | `sports` | `id`, `slug` (football, basketball, nfl, tennis, f1, volleyball), `name` |
 | `competitions` | `id`, `sport_id`, `name`, `country`, `type` (league, cup, tournament, race_series), `gender` |
 | `seasons` | `id`, `competition_id`, `label` (ex.: "2026", "2025/26"), `start_date`, `end_date` |
-| `teams` | `id`, `sport_id`, `name`, `short_name`, `country`, `is_national_team`, `logo_url` |
+| `teams` | `id`, `sport_id`, `name`, `short_name`, `country`, `is_national_team`, `logo_url`, `primary_color` |
 | `players` | `id`, `sport_id`, `name`, `nationality`, `birth_date`, `position`, `photo_url` |
 | `team_players` | `team_id`, `player_id`, `season_id`, `shirt_number` (elenco por temporada) |
 
@@ -219,7 +219,7 @@ erDiagram
 
 | Tabela | Colunas principais |
 |---|---|
-| `events` | `id`, `sport_id`, `season_id`, `start_time` (UTC), `status` (scheduled, live, final, postponed, canceled), `round`, `venue`, `extra` JSONB |
+| `events` | `id`, `sport_id`, `season_id`, `start_time` (UTC), `status` (scheduled, live, final, postponed, canceled), `round`, `venue_name`, `venue_city`, `extra` JSONB (lances do jogo), `details_synced_at` (quando o detalhe do jogo encerrado foi coletado) |
 | `event_participants` | `id`, `event_id`, `team_id` (nulo em esportes individuais), `player_id` (nulo em esportes coletivos), `side` (home, away ou nulo), `position` (colocação, para F1), `score`, `is_winner`, `stats` JSONB (estatísticas do time ou atleta no evento) |
 | `player_event_stats` | `event_id`, `player_id`, `team_id`, `stats` JSONB (gols, rebotes, aces, voltas...) |
 
@@ -287,11 +287,14 @@ Projeto_Agon/
 
 ### v1 — Fundação (futebol)
 Objetivo: validar o fluxo completo **coleta → banco → API → tela** com um esporte.
-- [x] Docker Compose com PostgreSQL, `api`, `worker` e `frontend` (esqueleto criado; falta validar com `docker compose up`).
-- [ ] Modelos e migrações do banco (Alembic).
-- [ ] Adapter ESPN para futebol.
-- [ ] Jobs de calendário e pós-jogo, com retry, upsert idempotente e `sync_runs`.
-- [ ] Rotas: agenda por data, detalhe do jogo, jogos por time, competições.
+
+Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESPN ✅ · 4 jobs ✅ · 5 API ✅ · 6 frontend ⏳ · 7 acesso remoto e fechamento ⏳.
+
+- [x] Docker Compose com PostgreSQL, `api`, `worker` e `frontend`.
+- [x] Modelos e migrações do banco (Alembic).
+- [x] Adapter ESPN para futebol.
+- [x] Jobs de calendário e pós-jogo, com retry, upsert idempotente e `sync_runs`.
+- [x] Rotas: agenda por data, detalhe do jogo, jogos por time, competições.
 - [ ] Telas: agenda, detalhe do jogo com estatísticas, página do time.
 - [x] Chave de API e credenciais em `.env` fora do Git (`.env.example` + `.gitignore`).
 - [ ] Acesso remoto via Tailscale (sem expor o túnel publicamente).
@@ -356,10 +359,13 @@ Objetivo: validar o fluxo completo **coleta → banco → API → tela** com um 
 |---|---|---|
 | ESPN pode mudar ou bloquear a API sem aviso | Risco | Adapter isolado + fallback para API-Sports |
 | Termos de uso da ESPN | Risco | Manter uso pessoal e privado |
-| Cobertura de vôlei e NBB não confirmada | Pendência | Testar API-Sports na v0 |
+| Cobertura de vôlei e NBB não confirmada | Pendência | Testar API-Sports (roteiro em [V0_EXPLORACAO.md](V0_EXPLORACAO.md#4-api-sports-vôlei-e-nbb)); bloqueia só a v1.2 |
 | Olimpíadas sem fonte grátis | Pendência | Reavaliar perto de 2028 |
 | Rate limits reais da Jolpica e da API-Sports | Pendência | Confirmar na documentação oficial antes da v1.1 |
 | Túnel exposto sem autenticação na v1 | Risco | Usar Tailscale até a v4 |
+| JSON bruto da ESPN ~4x maior que o estimado (~394 KB por jogo) | Risco | Monitorar o tamanho de `raw_payloads`; se crescer demais, descartar `commentary` ou limpar payloads antigos |
+| Países das competições (`competitions.country`) não vêm da ESPN | Pendência | Preencher manualmente ou por tabela fixa, se a interface precisar |
+| `round` (rodada) não vem no `scoreboard` da ESPN | Pendência | Avaliar o endpoint de calendário da liga antes da tela de competição |
 
 ## Referências
 

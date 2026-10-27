@@ -73,7 +73,7 @@ Decididos com base no que foi observado. O diagrama e as tabelas da seção 6 do
 | Mudança | Motivo |
 |---|---|
 | `events.status` mapeado de `status.type.state` (`pre`/`in`/`post`) | Campo estável da ESPN |
-| `events.extra` guarda `details` e `keyEvents` do jogo na v1 | Os lances só serão lidos pela tela do jogo; tabela própria fica para quando houver consulta transversal (ex.: artilharia) |
+| `events.extra` guarda os lances (`details` do scoreboard, `keyEvents` do summary) na v1 | Os lances só serão lidos pela tela do jogo; tabela própria fica para quando houver consulta transversal (ex.: artilharia) |
 | `events.venue` passa a ser `venue_name` + `venue_city` (texto) | A ESPN já entrega nome e cidade; uma tabela `venues` não se justifica ainda |
 | `teams` ganha `primary_color` | A ESPN devolve `color` do time; útil para a interface |
 | `event_participants.stats` guarda objeto `{nome: valor}` | A lista original é achatada na normalização |

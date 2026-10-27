@@ -15,6 +15,14 @@ services:
       timeout: 3s
       retries: 10
 
+  migrate:
+    build: ./backend
+    command: alembic upgrade head
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+
   api:
     build: ./backend
     command: uvicorn app.main_api:app --host 0.0.0.0 --port 8000 --reload
@@ -24,8 +32,8 @@ services:
     ports:
       - "${API_PORT:-8000}:8000"
     depends_on:
-      db:
-        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
   worker:
     build: ./backend
@@ -34,8 +42,8 @@ services:
     volumes:
       - ./backend:/srv
     depends_on:
-      db:
-        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
   frontend:
     build: ./frontend

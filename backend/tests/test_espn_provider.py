@@ -50,6 +50,22 @@ def test_parse_scoreboard():
     assert len(gols) == 3
     assert gols[0]["minuto"] == "4'"
     assert gols[0]["jogadores"] == ["Rodrigo Castillo"]
+    assert gols[0]["lado"] == "home"
+    assert [g["lado"] for g in gols] == ["home", "away", "away"]
+
+
+def test_jogo_agendado_nao_tem_placar():
+    payload = load("espn_scoreboard_bra1.json")
+    ev = payload["events"][0]
+    ev["status"]["type"] = {"name": "STATUS_SCHEDULED", "state": "pre"}
+    for comp in ev["competitions"][0]["competitors"]:
+        comp["score"] = "0"
+        comp["winner"] = False
+
+    jogo = parse_scoreboard(payload, "soccer")[0]
+    assert jogo.status == "scheduled"
+    assert [p.score for p in jogo.participants] == [None, None]
+    assert [p.is_winner for p in jogo.participants] == [None, None]
 
 
 def test_parse_scoreboard_sem_jogos():
@@ -74,6 +90,7 @@ def test_parse_summary():
     assert away.stats
 
     assert len(ev.extra["lances"]) == 28
+    assert {lance["lado"] for lance in ev.extra["lances"]} == {"home", "away", None}
     assert len(detail.player_stats) > 20
 
     castillo = next(p for p in detail.player_stats if p.player_name == "Rodrigo Castillo")

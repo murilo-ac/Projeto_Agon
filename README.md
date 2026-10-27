@@ -2,7 +2,7 @@
 
 Hub centralizado para acompanhar vários esportes num só lugar: calendário de partidas, resultados e estatísticas de jogos e jogadores. Placar ao vivo e notícias estão previstos para versões futuras.
 
-> **Status:** v1 em andamento (fases 0 e 1 concluídas: exploração e infraestrutura).
+> **Status:** v1 em andamento. Coleta, banco e API prontos; faltam as telas (fase 6) e o acesso remoto (fase 7).
 
 ## Esportes
 
@@ -39,5 +39,25 @@ docker compose up --build
 ```
 
 - Frontend: <http://localhost:5173>
-- API: <http://localhost:8000/api/health> (documentação em `/docs`)
+- API: <http://localhost:8000/api/health> (documentação interativa em <http://localhost:8000/docs>)
+
+As migrações do banco são aplicadas automaticamente pelo serviço `migrate` a cada subida. O worker coleta os dados da ESPN sozinho ao iniciar e depois em ciclos (calendário às 5h; pós-jogo a cada 20 min). O histórico das execuções fica na tabela `sync_runs`.
+
+### Rotas da API
+
+| Rota | O que devolve |
+|---|---|
+| `GET /api/competitions?sport=football` | Competições conhecidas |
+| `GET /api/events?date=2026-10-18&tz=America/Sao_Paulo&competition_id=&sport=` | Agenda do dia |
+| `GET /api/events/{id}` | Detalhe do jogo: placar, estatísticas, lances e jogadores |
+| `GET /api/teams/{id}` | Dados do time |
+| `GET /api/teams/{id}/events?status=final&order=desc&limit=20` | Jogos do time |
+
+### Testes
+
+```
+docker compose exec api pytest
+```
+
+Os testes usam um banco separado (`agon_test`) criado automaticamente no mesmo PostgreSQL.
 

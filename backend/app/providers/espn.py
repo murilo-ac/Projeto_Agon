@@ -90,7 +90,7 @@ def _stats(items: list[dict[str, Any]] | None) -> dict[str, Any]:
     return {item["name"]: _to_number(item.get("displayValue")) for item in items or [] if "name" in item}
 
 
-def _lance(item: dict[str, Any]) -> dict[str, Any]:
+def _lance(item: dict[str, Any], lados: dict[str, str]) -> dict[str, Any]:
     """Lance da partida (gol, cartão, substituição...) em formato compacto."""
     players = [
         a.get("displayName")
@@ -100,7 +100,7 @@ def _lance(item: dict[str, Any]) -> dict[str, Any]:
     return {
         "tipo": item.get("type", {}).get("text"),
         "minuto": item.get("clock", {}).get("displayValue") or None,
-        "time_id": (item.get("team") or {}).get("id"),
+        "lado": lados.get(str((item.get("team") or {}).get("id"))),
         "jogadores": players,
         "gol": bool(item.get("scoringPlay")),
     }
@@ -116,10 +116,14 @@ def _competition(league: dict[str, Any], sport_path: str) -> CompetitionData:
     )
 
 
-def _participants(competitors: list[dict[str, Any]], final: bool, with_stats: bool) -> list[ParticipantData]:
+def _participants(
+    competitors: list[dict[str, Any]], status: str, with_stats: bool
+) -> list[ParticipantData]:
     result = []
     for comp in sorted(competitors, key=lambda c: c.get("order", 0)):
-        score = comp.get("score")
+        # antes do jogo a ESPN devolve "0": não é placar
+        score = comp.get("score") if status != "scheduled" else None
+        final = status == "final"
         result.append(
             ParticipantData(
                 team=_team(comp["team"]),
@@ -148,7 +152,8 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
         venue = comp.get("venue") or ev.get("venue") or {}
         extra: dict[str, Any] = {}
         if comp.get("details"):
-            extra["lances"] = [_lance(d) for d in comp["details"]]
+            lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
+            extra["lances"] = [_lance(d, lados) for d in comp["details"]]
         events.append(
             EventData(
                 external_id=str(ev["id"]),
@@ -156,7 +161,7 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
                 season_label=str(year),
                 start_time=_parse_datetime(ev["date"]),
                 status=status,
-                participants=_participants(comp.get("competitors", []), status == "final", True),
+                participants=_participants(comp.get("competitors", []), status, True),
                 venue_name=venue.get("fullName"),
                 venue_city=(venue.get("address") or {}).get("city"),
                 extra=extra,
@@ -174,7 +179,7 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
     competition = _competition(league, sport_path)
     year = (header.get("season") or {}).get("year")
 
-    participants = _participants(comp.get("competitors", []), status == "final", False)
+    participants = _participants(comp.get("competitors", []), status, False)
     box_stats = {
         t["team"]["id"]: _stats(t.get("statistics")) for t in payload.get("boxscore", {}).get("teams", [])
     }
@@ -184,7 +189,8 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
     venue = payload.get("gameInfo", {}).get("venue") or {}
     extra: dict[str, Any] = {}
     if payload.get("keyEvents"):
-        extra["lances"] = [_lance(k) for k in payload["keyEvents"]]
+        lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
+        extra["lances"] = [_lance(k, lados) for k in payload["keyEvents"]]
     event = EventData(
         external_id=str(header["id"]),
         competition=competition,
