@@ -2,7 +2,7 @@
 
 Hub centralizado para acompanhar vários esportes num só lugar: calendário de partidas, resultados e estatísticas de jogos e jogadores. Placar ao vivo e notícias estão previstos para versões futuras.
 
-> **Status:** planejamento (v0). Ainda não há código.
+> **Status:** v1 em andamento (fases 0 e 1 concluídas: exploração e infraestrutura).
 
 ## Esportes
 
@@ -29,7 +29,15 @@ APIs externas → worker → PostgreSQL → api → frontend → usuário
 ## Documentação
 
 - [Roadmap](documentacao/ROADMAP.md): objetivo, fontes de dados, stack, arquitetura, esboço do banco, versões e decisões.
+- [v0: exploração](documentacao/V0_EXPLORACAO.md): formatos reais da ESPN e ajustes no banco.
 
 ## Como rodar
 
-A definir na v1.
+```
+cp .env.example .env      # ajuste a senha do banco
+docker compose up --build
+```
+
+- Frontend: <http://localhost:5173>
+- API: <http://localhost:8000/api/health> (documentação em `/docs`)
+

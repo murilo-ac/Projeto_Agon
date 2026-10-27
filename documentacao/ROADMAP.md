@@ -281,19 +281,19 @@ Projeto_Agon/
 ## 8. Roadmap de versões
 
 ### v0 — Exploração
-- [ ] Inspecionar no navegador as respostas da ESPN (`scoreboard` e `summary`) de um jogo encerrado do Brasileirão.
+- [x] Inspecionar as respostas da ESPN (`scoreboard` e `summary`) de um jogo encerrado do Brasileirão. Ver [V0_EXPLORACAO.md](V0_EXPLORACAO.md).
 - [ ] Criar conta grátis na API-Sports e testar a cobertura de vôlei (Superliga, VNL) e NBB.
-- [ ] Ajustar o esboço do banco com base nos formatos reais.
+- [x] Ajustar o esboço do banco com base nos formatos reais (ajustes listados em [V0_EXPLORACAO.md](V0_EXPLORACAO.md#5-ajustes-no-esboço-do-banco)).
 
 ### v1 — Fundação (futebol)
 Objetivo: validar o fluxo completo **coleta → banco → API → tela** com um esporte.
-- [ ] Docker Compose com PostgreSQL, `api`, `worker` e `frontend`.
+- [x] Docker Compose com PostgreSQL, `api`, `worker` e `frontend` (esqueleto criado; falta validar com `docker compose up`).
 - [ ] Modelos e migrações do banco (Alembic).
 - [ ] Adapter ESPN para futebol.
 - [ ] Jobs de calendário e pós-jogo, com retry, upsert idempotente e `sync_runs`.
 - [ ] Rotas: agenda por data, detalhe do jogo, jogos por time, competições.
 - [ ] Telas: agenda, detalhe do jogo com estatísticas, página do time.
-- [ ] Chave de API e credenciais em `.env` fora do Git (custo zero, já na v1).
+- [x] Chave de API e credenciais em `.env` fora do Git (`.env.example` + `.gitignore`).
 - [ ] Acesso remoto via Tailscale (sem expor o túnel publicamente).
 
 ### v1.1 — Mais esportes
