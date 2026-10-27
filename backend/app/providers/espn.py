@@ -237,6 +237,9 @@ class EspnProvider:
         self._sleep = sleep
         self.requests_used = 0
 
+    def close(self) -> None:
+        self._client.close()
+
     def _request(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
         self.requests_used += 1
         try:
