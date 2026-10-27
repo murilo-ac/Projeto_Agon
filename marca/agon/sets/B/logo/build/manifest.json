@@ -1,0 +1,602 @@
+{
+  "schema": "brand-identity/logo-build@1",
+  "set": "B",
+  "type": "symbol+wordmark",
+  "font": {
+    "path": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\SofiaSansCondensed-59baa52965b38f78.ttf",
+    "role": "display",
+    "location": {
+      "wght": 800
+    },
+    "license": "OFL-1.1",
+    "family": "Sofia Sans Condensed"
+  },
+  "masters": {
+    "symbol": "master-symbol.svg",
+    "wordmark": "master-wordmark.svg",
+    "lockup-horizontal": "master-lockup-horizontal.svg",
+    "lockup-stacked": "master-lockup-stacked.svg",
+    "primary": "master-primary.svg"
+  },
+  "versions": {
+    "full-color": {
+      "svg": "full-color.svg",
+      "png": "full-color.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 4378.27
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 205.91
+        },
+        {
+          "role": "text",
+          "ids": [
+            "wordmark"
+          ],
+          "hex": "#1c1c1c",
+          "area": 18448.89
+        }
+      ]
+    },
+    "full-color-dark": {
+      "svg": "full-color-dark.svg",
+      "png": "full-color-dark.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "dark",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 4584.18
+        },
+        {
+          "role": "text",
+          "ids": [
+            "wordmark"
+          ],
+          "hex": "#f3f3f3",
+          "area": 18448.89
+        }
+      ]
+    },
+    "one-color-dark": {
+      "svg": "one-color-dark.svg",
+      "png": "one-color-dark.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao",
+            "wordmark"
+          ],
+          "hex": "#1c1c1c",
+          "area": 23033.07
+        }
+      ]
+    },
+    "one-color-light": {
+      "svg": "one-color-light.svg",
+      "png": "one-color-light.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "dark",
+      "ground": null,
+      "ground_role": null,
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao",
+            "wordmark"
+          ],
+          "hex": "#f3f3f3",
+          "area": 22612.74
+        }
+      ]
+    },
+    "on-light-background": {
+      "svg": "on-light-background.svg",
+      "png": "on-light-background.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "light",
+      "ground": "#f6f6f1",
+      "ground_role": "background",
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 4378.27
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 205.91
+        },
+        {
+          "role": "text",
+          "ids": [
+            "wordmark"
+          ],
+          "hex": "#1c1c1c",
+          "area": 18448.89
+        }
+      ]
+    },
+    "on-dark-background": {
+      "svg": "on-dark-background.svg",
+      "png": "on-dark-background.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "dark",
+      "ground": "#0f0f0f",
+      "ground_role": "background",
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 4163.84
+        },
+        {
+          "role": "text",
+          "ids": [
+            "wordmark"
+          ],
+          "hex": "#f3f3f3",
+          "area": 18448.89
+        }
+      ]
+    },
+    "on-light-primary": {
+      "svg": "on-light-primary.svg",
+      "png": "on-light-primary.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "light",
+      "ground": "#15171a",
+      "ground_role": "primary",
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao",
+            "wordmark"
+          ],
+          "hex": "#ffffff",
+          "area": 23033.07
+        }
+      ]
+    },
+    "on-light-accent": {
+      "svg": "on-light-accent.svg",
+      "png": "on-light-accent.png",
+      "size": [
+        1024,
+        505
+      ],
+      "mode": "light",
+      "ground": "#c8f031",
+      "ground_role": "accent",
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao",
+            "wordmark"
+          ],
+          "hex": "#0f0f0f",
+          "area": 23033.07
+        }
+      ]
+    },
+    "symbol-only": {
+      "svg": "symbol-only.svg",
+      "png": "symbol-only.png",
+      "size": [
+        921,
+        1024
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 2179.77
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 102.51
+        }
+      ]
+    },
+    "favicon-16": {
+      "svg": "favicon-16.svg",
+      "png": "favicon-16.png",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 2179.77
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 102.51
+        }
+      ]
+    },
+    "favicon-32": {
+      "svg": "favicon-32.svg",
+      "png": "favicon-32.png",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 2179.77
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 102.51
+        }
+      ]
+    },
+    "favicon-48": {
+      "svg": "favicon-48.svg",
+      "png": "favicon-48.png",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": false,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita"
+          ],
+          "hex": "#15171a",
+          "area": 2179.77
+        },
+        {
+          "role": "accent",
+          "ids": [
+            "campeao"
+          ],
+          "hex": "#c8f031",
+          "area": 102.51
+        }
+      ]
+    },
+    "small-16-one-color-dark": {
+      "svg": "small-16-one-color-dark.svg",
+      "png": "small-16-one-color-dark.png",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#1c1c1c",
+          "area": 2282.27
+        }
+      ]
+    },
+    "small-16-one-color-light": {
+      "svg": "small-16-one-color-light.svg",
+      "png": "small-16-one-color-light.png",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "dark",
+      "ground": "#0f0f0f",
+      "ground_role": "background",
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#f3f3f3",
+          "area": 2069.29
+        }
+      ]
+    },
+    "small-32-one-color-dark": {
+      "svg": "small-32-one-color-dark.svg",
+      "png": "small-32-one-color-dark.png",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "light",
+      "ground": null,
+      "ground_role": null,
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#1c1c1c",
+          "area": 2282.27
+        }
+      ]
+    },
+    "small-32-one-color-light": {
+      "svg": "small-32-one-color-light.svg",
+      "png": "small-32-one-color-light.png",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "dark",
+      "ground": "#0f0f0f",
+      "ground_role": "background",
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#f3f3f3",
+          "area": 2069.29
+        }
+      ]
+    },
+    "app-icon-512": {
+      "svg": "app-icon-512.svg",
+      "png": "app-icon-512.png",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "light",
+      "ground": "#15171a",
+      "ground_role": "primary",
+      "one_color": true,
+      "device": null,
+      "parts": [
+        {
+          "role": "primary",
+          "ids": [
+            "final",
+            "semi-esquerda",
+            "semi-direita",
+            "campeao"
+          ],
+          "hex": "#ffffff",
+          "area": 2282.27
+        }
+      ]
+    }
+  },
+  "small": {},
+  "sources": {
+    "symbol": {
+      "sha256": "d1faa5bbd5556a21bf94263a3b6d0dfab2d11580c744c2662c3f8b0f6f4e1f82"
+    }
+  },
+  "optics": {
+    "cap_height": 655.0,
+    "x_height": 494.0,
+    "upm": 1000,
+    "overshoot_top": 0.0122,
+    "overshoot_bottom": 0.0122,
+    "x_overshoot_top": 0.0182,
+    "stem": 19.847,
+    "crossbar": 17.557,
+    "crossbar_stem_ratio": 0.885
+  },
+  "glyphs": {
+    "wordmark": "wordmark-glyphs.json"
+  },
+  "primary": "lockup-horizontal",
+  "anchors": {
+    "symbol": 22
+  },
+  "clear_space": {
+    "unit": "cap-height",
+    "multiple": 1.0,
+    "units": 100.0
+  },
+  "grounds": [
+    {
+      "mode": "light",
+      "ground": "background",
+      "on": "full colour"
+    },
+    {
+      "mode": "dark",
+      "ground": "background",
+      "on": "full colour"
+    },
+    {
+      "mode": "light",
+      "ground": "primary",
+      "on": "onPrimary"
+    },
+    {
+      "mode": "light",
+      "ground": "accent",
+      "on": "onAccent"
+    }
+  ],
+  "favicon_source": "symbol",
+  "app_icon": {
+    "tile": "primary",
+    "mark": "onPrimary",
+    "content": 0.58,
+    "optical_lift": 0.015,
+    "source": "default"
+  }
+}

@@ -1,0 +1,542 @@
+{
+  "schema": "brand-identity/sets@1",
+  "sets": [
+    {
+      "identity": {
+        "set": {
+          "id": "A",
+          "name": "Holofote",
+          "recommended": true,
+          "mechanism": "O estádio à noite: um único holofote âmbar sobre grafite, que ilumina o campeão no símbolo e os números na tela; a tipografia é seca e tabular como um placar.",
+          "expression_move": "O âmbar do holofote é a única cor saturada de todo o sistema.",
+          "differs_by": "ESPN e ge falam alto com vermelho e verde de portal; SofaScore e FotMob usam azul e verde. O Holofote é escuro, quieto e tem um só ponto de luz."
+        },
+        "axes": {
+          "warm_cool": 1,
+          "quiet_loud": -1,
+          "classic_contemporary": 1
+        },
+        "type": {
+          "pairing_mode": "data-face",
+          "display": {
+            "family": "Geist",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              600
+            ],
+            "location": {
+              "wght": 600
+            },
+            "features": [],
+            "case": "as-is",
+            "tracking": -10,
+            "fallback": "system-ui, sans-serif",
+            "file": null
+          },
+          "text": {
+            "family": "Geist",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              400,
+              600
+            ],
+            "location": {
+              "wght": 400
+            },
+            "features": [
+              "tnum"
+            ],
+            "case": "as-is",
+            "tracking": 0,
+            "fallback": "system-ui, sans-serif",
+            "file": null
+          },
+          "mono": {
+            "family": "Geist Mono",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              500
+            ],
+            "location": {
+              "wght": 500
+            },
+            "features": [
+              "tnum"
+            ],
+            "case": "as-is",
+            "tracking": 0,
+            "fallback": "ui-monospace, monospace",
+            "file": null
+          }
+        },
+        "logo": {
+          "type": "symbol+wordmark",
+          "concept": "As linhas de um mata-mata convergem e formam o A; a final é o ápice e o acento é o campeão.",
+          "symbol": "logo/symbol.svg",
+          "wordmark": {
+            "text": "Ágon",
+            "role": "display",
+            "location": null,
+            "tracking": -10,
+            "case": "as-is"
+          },
+          "monogram": null,
+          "lockups": [
+            "horizontal",
+            "stacked"
+          ],
+          "colors": {
+            "chave": "primary",
+            "campeao": "accent",
+            "wordmark": "text"
+          },
+          "tags": [
+            "letterform"
+          ],
+          "clear_space": {
+            "unit": "cap-height",
+            "multiple": 1,
+            "inferred": true
+          },
+          "min_size": {
+            "px": 20,
+            "mm": 7
+          },
+          "misuse": [
+            {
+              "do": "stretch"
+            },
+            {
+              "do": "recolour"
+            },
+            {
+              "do": "crowd"
+            },
+            {
+              "do": "rearrange"
+            },
+            {
+              "svg": "logo/misuse-1.svg",
+              "label": "Não preencher o losango: sem o vazio, a chave some"
+            },
+            {
+              "svg": "logo/misuse-2.svg",
+              "label": "Não espelhar o acento: Á vira À"
+            }
+          ]
+        },
+        "palette_build": {
+          "strategy": null,
+          "accent": null,
+          "light_bg": "#f4f5f7",
+          "dark_bg": "#0d1015",
+          "neutral_tint": null,
+          "neutral_chroma": 0.012,
+          "extra": []
+        },
+        "card": {
+          "ground": "dark"
+        },
+        "defaults_used": [],
+        "rationale": [
+          {
+            "claim": "O símbolo é a Chave aprovada pelo cliente; a forma é idêntica nos três conjuntos.",
+            "evidence": "judgement",
+            "source": "marca/logo/BRIEF.md"
+          },
+          {
+            "claim": "Os concorrentes ocupam vermelho (ESPN), verde (ge, FotMob) e azul royal (SofaScore).",
+            "evidence": "judgement",
+            "source": "pesquisa da categoria"
+          }
+        ]
+      },
+      "palette": {
+        "schema": "brand-identity/palette@1",
+        "name": "Holofote",
+        "direction": "Grafite de estádio à noite com um único holofote âmbar.",
+        "brand": [
+          {
+            "id": "brand-1",
+            "name": "Grafite",
+            "hex": "#1c2330",
+            "source": "chosen",
+            "locked": false,
+            "usage": "símbolo, cabeçalhos, superfícies escuras"
+          },
+          {
+            "id": "brand-2",
+            "name": "Âmbar Holofote",
+            "hex": "#ffb000",
+            "source": "chosen",
+            "locked": false,
+            "usage": "o campeão no símbolo; destaques e o placar ao vivo"
+          }
+        ],
+        "feels": [
+          "noturno",
+          "focado",
+          "exato"
+        ]
+      },
+      "symbol_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g id=\"chave\" data-color=\"primary\"><path id=\"final\" d=\"M39.36 66.41 L50.00 45.13 L60.64 66.41 L73.74 66.41 L50.00 18.93 L26.26 66.41 Z\"/><path id=\"semi-esquerda\" d=\"M25.30 94.53 L32.81 79.51 L40.32 94.53 L53.43 94.53 L32.81 53.30 L12.20 94.53 Z\"/><path id=\"semi-direita\" d=\"M59.68 94.53 L67.19 79.51 L74.70 94.53 L87.80 94.53 L67.19 53.30 L46.57 94.53 Z\"/></g><path id=\"campeao\" data-color=\"accent\" d=\"M54.69 16.41 L64.06 16.41 L69.53 5.47 L60.16 5.47 Z\"/></svg>",
+      "symbol_small_svg": null,
+      "wordmark_detail_svg": null,
+      "misuse_svgs": {
+        "misuse-1": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z\"/><path data-color=\"accent\" d=\"M54.69 16.41L60.16 5.47L69.53 5.47L64.06 16.41Z\"/></svg>",
+        "misuse-2": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" fill-rule=\"evenodd\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z M39.36 66.4L50 87.67L60.64 66.4L50 45.13Z\"/><path data-color=\"accent\" d=\"M45.31 16.41L39.84 5.47L30.47 5.47L35.94 16.41Z\"/></svg>"
+      }
+    },
+    {
+      "identity": {
+        "set": {
+          "id": "B",
+          "name": "Volt",
+          "recommended": false,
+          "mechanism": "A linha de cal sobre a quadra: maiúsculas condensadas e apertadas como numeração de camisa, tinta quase preta e um verde-volt que só aparece no lance decisivo.",
+          "expression_move": "A tipografia condensada em caixa-alta, grande e dominante.",
+          "differs_by": "O único caminho barulhento: condensado e de alto contraste, sem o itálico pesado da ESPN e com um volt amarelado longe do verde de grama do ge e do FotMob."
+        },
+        "axes": {
+          "warm_cool": 2,
+          "quiet_loud": 2,
+          "classic_contemporary": 2
+        },
+        "type": {
+          "pairing_mode": "superfamily",
+          "display": {
+            "family": "Sofia Sans Condensed",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              800
+            ],
+            "location": {
+              "wght": 800
+            },
+            "features": [],
+            "case": "upper",
+            "tracking": 20,
+            "fallback": "system-ui, sans-serif",
+            "file": null
+          },
+          "text": {
+            "family": "Sofia Sans",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              400,
+              600
+            ],
+            "location": {
+              "wght": 400
+            },
+            "features": [
+              "tnum"
+            ],
+            "case": "as-is",
+            "tracking": 0,
+            "fallback": "system-ui, sans-serif",
+            "file": null
+          },
+          "mono": null
+        },
+        "logo": {
+          "type": "symbol+wordmark",
+          "concept": "As linhas de um mata-mata convergem e formam o A; a final é o ápice e o acento é o campeão.",
+          "symbol": "logo/symbol.svg",
+          "wordmark": {
+            "text": "Ágon",
+            "role": "display",
+            "location": null,
+            "tracking": 20,
+            "case": "upper"
+          },
+          "monogram": null,
+          "lockups": [
+            "horizontal",
+            "stacked"
+          ],
+          "colors": {
+            "chave": "primary",
+            "campeao": "accent",
+            "wordmark": "text"
+          },
+          "tags": [
+            "letterform"
+          ],
+          "clear_space": {
+            "unit": "cap-height",
+            "multiple": 1,
+            "inferred": true
+          },
+          "min_size": {
+            "px": 20,
+            "mm": 7
+          },
+          "misuse": [
+            {
+              "do": "stretch"
+            },
+            {
+              "do": "recolour"
+            },
+            {
+              "do": "crowd"
+            },
+            {
+              "do": "rearrange"
+            },
+            {
+              "svg": "logo/misuse-1.svg",
+              "label": "Não preencher o losango: sem o vazio, a chave some"
+            },
+            {
+              "svg": "logo/misuse-2.svg",
+              "label": "Não espelhar o acento: Á vira À"
+            }
+          ]
+        },
+        "palette_build": {
+          "strategy": null,
+          "accent": null,
+          "light_bg": "#f6f6f1",
+          "dark_bg": null,
+          "neutral_tint": null,
+          "neutral_chroma": 0.008,
+          "extra": []
+        },
+        "card": {
+          "ground": "light"
+        },
+        "defaults_used": [],
+        "rationale": [
+          {
+            "claim": "O símbolo é a Chave aprovada pelo cliente; a forma é idêntica nos três conjuntos.",
+            "evidence": "judgement",
+            "source": "marca/logo/BRIEF.md"
+          },
+          {
+            "claim": "Os concorrentes ocupam vermelho (ESPN), verde (ge, FotMob) e azul royal (SofaScore).",
+            "evidence": "judgement",
+            "source": "pesquisa da categoria"
+          }
+        ]
+      },
+      "palette": {
+        "schema": "brand-identity/palette@1",
+        "name": "Volt",
+        "direction": "Tinta quase preta sobre cal, com um volt elétrico para o lance decisivo.",
+        "brand": [
+          {
+            "id": "brand-1",
+            "name": "Tinta",
+            "hex": "#15171a",
+            "source": "chosen",
+            "locked": false,
+            "usage": "símbolo, títulos, texto"
+          },
+          {
+            "id": "brand-2",
+            "name": "Volt",
+            "hex": "#c8f031",
+            "source": "chosen",
+            "locked": false,
+            "usage": "o campeão em fundo escuro; destaques e botões com texto escuro"
+          }
+        ],
+        "feels": [
+          "elétrico",
+          "direto",
+          "atlético"
+        ]
+      },
+      "symbol_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g id=\"chave\" data-color=\"primary\"><path id=\"final\" d=\"M39.36 66.41 L50.00 45.13 L60.64 66.41 L73.74 66.41 L50.00 18.93 L26.26 66.41 Z\"/><path id=\"semi-esquerda\" d=\"M25.30 94.53 L32.81 79.51 L40.32 94.53 L53.43 94.53 L32.81 53.30 L12.20 94.53 Z\"/><path id=\"semi-direita\" d=\"M59.68 94.53 L67.19 79.51 L74.70 94.53 L87.80 94.53 L67.19 53.30 L46.57 94.53 Z\"/></g><path id=\"campeao\" data-color=\"accent\" d=\"M54.69 16.41 L64.06 16.41 L69.53 5.47 L60.16 5.47 Z\"/></svg>",
+      "symbol_small_svg": null,
+      "wordmark_detail_svg": null,
+      "misuse_svgs": {
+        "misuse-1": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z\"/><path data-color=\"accent\" d=\"M54.69 16.41L60.16 5.47L69.53 5.47L64.06 16.41Z\"/></svg>",
+        "misuse-2": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" fill-rule=\"evenodd\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z M39.36 66.4L50 87.67L60.64 66.4L50 45.13Z\"/><path data-color=\"accent\" d=\"M45.31 16.41L39.84 5.47L30.47 5.47L35.94 16.41Z\"/></svg>"
+      }
+    },
+    {
+      "identity": {
+        "set": {
+          "id": "C",
+          "name": "Ágora",
+          "recommended": false,
+          "mechanism": "A origem grega do agṓn: a fineza cortante de um Bodoni (o mesmo gume do símbolo), o azul do Egeu sobre mármore e um laranja de sinal para o resultado.",
+          "expression_move": "O contraste extremo do Bodoni no nome; o resto é silencioso.",
+          "differs_by": "Nenhum concorrente usa serifa de alto contraste com cor (The Athletic usa serifa, mas em preto e branco editorial); o azul-petróleo fica longe do azul royal do SofaScore."
+        },
+        "axes": {
+          "warm_cool": 0,
+          "quiet_loud": 0,
+          "classic_contemporary": -2
+        },
+        "type": {
+          "pairing_mode": "contrast",
+          "display": {
+            "family": "Bodoni Moda",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              600
+            ],
+            "location": {
+              "wght": 600,
+              "opsz": 96
+            },
+            "features": [],
+            "case": "as-is",
+            "tracking": 0,
+            "fallback": "Didot, Georgia, serif",
+            "file": null
+          },
+          "text": {
+            "family": "IBM Plex Sans",
+            "source": "google",
+            "license": "OFL-1.1",
+            "weights": [
+              400,
+              600
+            ],
+            "location": {
+              "wght": 400
+            },
+            "features": [
+              "tnum"
+            ],
+            "case": "as-is",
+            "tracking": 0,
+            "fallback": "system-ui, sans-serif",
+            "file": null
+          },
+          "mono": null
+        },
+        "logo": {
+          "type": "symbol+wordmark",
+          "concept": "As linhas de um mata-mata convergem e formam o A; a final é o ápice e o acento é o campeão.",
+          "symbol": "logo/symbol.svg",
+          "wordmark": {
+            "text": "Ágon",
+            "role": "display",
+            "location": {
+              "wght": 600,
+              "opsz": 24
+            },
+            "tracking": 0,
+            "case": "as-is"
+          },
+          "monogram": null,
+          "lockups": [
+            "horizontal",
+            "stacked"
+          ],
+          "colors": {
+            "chave": "primary",
+            "campeao": "accent",
+            "wordmark": "text"
+          },
+          "tags": [
+            "letterform"
+          ],
+          "clear_space": {
+            "unit": "cap-height",
+            "multiple": 1,
+            "inferred": true
+          },
+          "min_size": {
+            "px": 20,
+            "mm": 7
+          },
+          "misuse": [
+            {
+              "do": "stretch"
+            },
+            {
+              "do": "recolour"
+            },
+            {
+              "do": "crowd"
+            },
+            {
+              "do": "rearrange"
+            },
+            {
+              "svg": "logo/misuse-1.svg",
+              "label": "Não preencher o losango: sem o vazio, a chave some"
+            },
+            {
+              "svg": "logo/misuse-2.svg",
+              "label": "Não espelhar o acento: Á vira À"
+            }
+          ]
+        },
+        "palette_build": {
+          "strategy": null,
+          "accent": null,
+          "light_bg": "#f5f4f0",
+          "dark_bg": null,
+          "neutral_tint": null,
+          "neutral_chroma": null,
+          "extra": []
+        },
+        "card": {
+          "ground": "light"
+        },
+        "defaults_used": [],
+        "rationale": [
+          {
+            "claim": "O símbolo é a Chave aprovada pelo cliente; a forma é idêntica nos três conjuntos.",
+            "evidence": "judgement",
+            "source": "marca/logo/BRIEF.md"
+          },
+          {
+            "claim": "Os concorrentes ocupam vermelho (ESPN), verde (ge, FotMob) e azul royal (SofaScore).",
+            "evidence": "judgement",
+            "source": "pesquisa da categoria"
+          }
+        ]
+      },
+      "palette": {
+        "schema": "brand-identity/palette@1",
+        "name": "Ágora",
+        "direction": "Azul do Egeu sobre mármore, com um laranja de sinal para o resultado.",
+        "brand": [
+          {
+            "id": "brand-1",
+            "name": "Egeu",
+            "hex": "#0b5e75",
+            "source": "chosen",
+            "locked": false,
+            "usage": "símbolo, cabeçalhos, links"
+          },
+          {
+            "id": "brand-2",
+            "name": "Sinal",
+            "hex": "#f0602a",
+            "source": "chosen",
+            "locked": false,
+            "usage": "o campeão no símbolo; resultado e chamadas"
+          }
+        ],
+        "feels": [
+          "clássico",
+          "lúcido",
+          "afiado"
+        ]
+      },
+      "symbol_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g id=\"chave\" data-color=\"primary\"><path id=\"final\" d=\"M39.36 66.41 L50.00 45.13 L60.64 66.41 L73.74 66.41 L50.00 18.93 L26.26 66.41 Z\"/><path id=\"semi-esquerda\" d=\"M25.30 94.53 L32.81 79.51 L40.32 94.53 L53.43 94.53 L32.81 53.30 L12.20 94.53 Z\"/><path id=\"semi-direita\" d=\"M59.68 94.53 L67.19 79.51 L74.70 94.53 L87.80 94.53 L67.19 53.30 L46.57 94.53 Z\"/></g><path id=\"campeao\" data-color=\"accent\" d=\"M54.69 16.41 L64.06 16.41 L69.53 5.47 L60.16 5.47 Z\"/></svg>",
+      "symbol_small_svg": null,
+      "wordmark_detail_svg": null,
+      "misuse_svgs": {
+        "misuse-1": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z\"/><path data-color=\"accent\" d=\"M54.69 16.41L60.16 5.47L69.53 5.47L64.06 16.41Z\"/></svg>",
+        "misuse-2": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path data-color=\"primary\" fill-rule=\"evenodd\" d=\"M25.3 94.53L12.2 94.53L32.81 53.3L50 18.93L67.19 53.3L87.8 94.53L74.7 94.53L67.19 79.51L59.68 94.53L40.32 94.53L32.81 79.51Z M39.36 66.4L50 87.67L60.64 66.4L50 45.13Z\"/><path data-color=\"accent\" d=\"M45.31 16.41L39.84 5.47L30.47 5.47L35.94 16.41Z\"/></svg>"
+      }
+    }
+  ]
+}

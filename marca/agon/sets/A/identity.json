@@ -1,0 +1,412 @@
+{
+  "schema": "brand-identity/identity@1",
+  "brand": {
+    "name": "Ágon",
+    "tagline": "Todas as disputas num só lugar",
+    "languages": [
+      "pt"
+    ],
+    "doc_lang": "pt",
+    "sector": "Hub pessoal de esportes: agenda, resultados e estatísticas",
+    "numbers": true,
+    "copy": {
+      "sentence": {
+        "pt": "Flamengo 3 × 2 Atlético-MG: 58% de posse, 14 finalizações e o gol da virada aos 41 do segundo tempo."
+      },
+      "nav": [
+        "Agenda",
+        "Jogos",
+        "Times",
+        "Competições"
+      ],
+      "cta": "Ver jogos de hoje"
+    }
+  },
+  "set": {
+    "id": "A",
+    "name": "Holofote",
+    "recommended": true,
+    "mechanism": "O estádio à noite: um único holofote âmbar sobre grafite, que ilumina o campeão no símbolo e os números na tela; a tipografia é seca e tabular como um placar.",
+    "expression_move": "O âmbar do holofote é a única cor saturada de todo o sistema.",
+    "differs_by": "ESPN e ge falam alto com vermelho e verde de portal; SofaScore e FotMob usam azul e verde. O Holofote é escuro, quieto e tem um só ponto de luz."
+  },
+  "axes": {
+    "warm_cool": 1,
+    "quiet_loud": -1,
+    "classic_contemporary": 1
+  },
+  "components": {
+    "logo": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    },
+    "type": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    },
+    "palette": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    }
+  },
+  "type": {
+    "pairing_mode": "data-face",
+    "display": {
+      "family": "Geist",
+      "source": "google",
+      "license": "OFL-1.1",
+      "weights": [
+        600
+      ],
+      "location": {
+        "wght": 600
+      },
+      "features": [],
+      "case": "as-is",
+      "tracking": -10,
+      "fallback": "system-ui, sans-serif",
+      "file": null
+    },
+    "text": {
+      "family": "Geist",
+      "source": "google",
+      "license": "OFL-1.1",
+      "weights": [
+        400,
+        600
+      ],
+      "location": {
+        "wght": 400
+      },
+      "features": [
+        "tnum"
+      ],
+      "case": "as-is",
+      "tracking": 0,
+      "fallback": "system-ui, sans-serif",
+      "file": null
+    },
+    "mono": {
+      "family": "Geist Mono",
+      "source": "google",
+      "license": "OFL-1.1",
+      "weights": [
+        500
+      ],
+      "location": {
+        "wght": 500
+      },
+      "features": [
+        "tnum"
+      ],
+      "case": "as-is",
+      "tracking": 0,
+      "fallback": "ui-monospace, monospace",
+      "file": null
+    }
+  },
+  "logo": {
+    "type": "symbol+wordmark",
+    "concept": "As linhas de um mata-mata convergem e formam o A; a final é o ápice e o acento é o campeão.",
+    "symbol": "logo/symbol.svg",
+    "wordmark": {
+      "text": "Ágon",
+      "role": "display",
+      "location": null,
+      "tracking": -10,
+      "case": "as-is"
+    },
+    "monogram": null,
+    "lockups": [
+      "horizontal",
+      "stacked"
+    ],
+    "colors": {
+      "chave": "primary",
+      "campeao": "accent",
+      "wordmark": "text"
+    },
+    "tags": [
+      "letterform"
+    ],
+    "clear_space": {
+      "unit": "cap-height",
+      "multiple": 1,
+      "inferred": true
+    },
+    "min_size": {
+      "px": 20,
+      "mm": 7
+    }
+  },
+  "palette": "palette.json",
+  "defaults_used": [],
+  "rationale": [
+    {
+      "claim": "O símbolo é a Chave aprovada pelo cliente; a forma é idêntica nos três conjuntos.",
+      "evidence": "judgement",
+      "source": "marca/logo/BRIEF.md"
+    },
+    {
+      "claim": "Os concorrentes ocupam vermelho (ESPN), verde (ge, FotMob) e azul royal (SofaScore).",
+      "evidence": "judgement",
+      "source": "pesquisa da categoria"
+    }
+  ],
+  "derived": [
+    {
+      "file": "card.png",
+      "requires": [
+        "logo",
+        "type",
+        "palette"
+      ],
+      "inputs_sha256": "e5bae6f3ba8978dc1bbf214f665d29bb4248a314a170d0c95ccf9d67936f4cea"
+    }
+  ],
+  "audit": {
+    "schema": "brand-identity/audit@1",
+    "passed": true,
+    "counts": {
+      "gate": 0,
+      "warn": 7,
+      "info": 9
+    },
+    "findings": [
+      {
+        "id": "palette.contrast.light.accent-on-background",
+        "component": "palette",
+        "severity": "warn",
+        "measured": 1.68,
+        "threshold": 3.0,
+        "message": "light: accent #ffb000 on background #f4f5f7 is 1.68:1, below 3.0:1 (accent fill against the page (needs a label or border if lower); WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.light.accent",
+          "from": "#ffb000",
+          "to": "#a96b09",
+          "how": "use accent-600 (same scale)",
+          "ratio_after": 4.02
+        },
+        "roles": [
+          "light.accent",
+          "light.background"
+        ]
+      },
+      {
+        "id": "palette.contrast.light.link-on-text",
+        "component": "palette",
+        "severity": "warn",
+        "measured": 2.82,
+        "threshold": 3.0,
+        "message": "light: link #8d5606 on text #191c21 is 2.82:1, below 3.0:1 (links distinguishable from body text without underline (WCAG G183); WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.light.link",
+          "from": "#8d5606",
+          "to": "#a96b09",
+          "how": "use accent-600 (same scale)",
+          "ratio_after": 3.9
+        },
+        "roles": [
+          "light.link",
+          "light.text"
+        ]
+      },
+      {
+        "id": "palette.contrast.light.border-on-background",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.36,
+        "threshold": 3.0,
+        "message": "light: border #d2d4d9 on background #f4f5f7 is 1.36:1, below 3.0:1 (borders: dividers are exempt, input outlines need 3:1; WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.light.border",
+          "from": "#d2d4d9",
+          "to": "#8c8d92",
+          "how": "darken by OKLCH L -0.22, same hue",
+          "ratio_after": 3.04
+        },
+        "roles": [
+          "light.border",
+          "light.background"
+        ]
+      },
+      {
+        "id": "palette.contrast.dark.link-on-text",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.65,
+        "threshold": 3.0,
+        "message": "dark: link #ffb000 on text #f2f3f5 is 1.65:1, below 3.0:1 (underline links in dark mode (WCAG G183: without underline a link needs 3:1 against body text); WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.dark.link",
+          "from": "#ffb000",
+          "to": "#a96b09",
+          "how": "use accent-600 (same scale)",
+          "ratio_after": 3.95
+        },
+        "roles": [
+          "dark.link",
+          "dark.text"
+        ]
+      },
+      {
+        "id": "palette.contrast.dark.border-on-background",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.86,
+        "threshold": 3.0,
+        "message": "dark: border #3d4148 on background #0d1015 is 1.86:1, below 3.0:1 (borders: dividers are exempt, input outlines need 3:1; WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.dark.border",
+          "from": "#3d4148",
+          "to": "#707379",
+          "how": "use neutral-500 (same scale)",
+          "ratio_after": 4.01
+        },
+        "roles": [
+          "dark.border",
+          "dark.background"
+        ]
+      },
+      {
+        "id": "palette.gamut.brand-2",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "message": "#ffb000 sits at the sRGB gamut edge (100% of max chroma); vivid colours like this often fall outside CMYK process gamut: specify Lab D50 + tolerance, check with the printer, consider a spot colour",
+        "suggested_fix": null,
+        "roles": [
+          "brand-2"
+        ]
+      },
+      {
+        "id": "palette.harmony.primary-accent",
+        "component": "palette",
+        "severity": "info",
+        "measured": -0.39,
+        "threshold": -0.3,
+        "message": "Ou-Luo two-colour model scores #1c2330 + #ffb000 at -0.39 (negative = less harmonious on a grey CRT test, no context): model signal only; the pairing table in references/pairing.md takes precedence",
+        "suggested_fix": null,
+        "roles": [
+          "light.primary",
+          "light.accent"
+        ]
+      },
+      {
+        "id": "type.display+text.coverage.pt_Latn.extended",
+        "component": "type",
+        "severity": "info",
+        "measured": "73/79",
+        "threshold": "100% auxiliary + punctuation",
+        "message": "Geist lacks Portuguese auxiliary/punctuation characters: Ĕ Ĭ Ŏ ĕ ĭ ŏ",
+        "suggested_fix": "fine if the brand never writes them (loanwords, names); else another family"
+      },
+      {
+        "id": "type.display+text.web-weight",
+        "component": "type",
+        "severity": "info",
+        "measured": 26,
+        "threshold": null,
+        "message": "Geist: ~26 KB WOFF2 for the brief's characters (one variable file, all weights; estimate)",
+        "suggested_fix": null
+      },
+      {
+        "id": "type.mono.coverage.pt_Latn.extended",
+        "component": "type",
+        "severity": "info",
+        "measured": "73/79",
+        "threshold": "100% auxiliary + punctuation",
+        "message": "Geist Mono lacks Portuguese auxiliary/punctuation characters: Ĕ Ĭ Ŏ ĕ ĭ ŏ",
+        "suggested_fix": "fine if the brand never writes them (loanwords, names); else another family"
+      },
+      {
+        "id": "type.mono.web-weight",
+        "component": "type",
+        "severity": "info",
+        "measured": 29,
+        "threshold": null,
+        "message": "Geist Mono: ~29 KB WOFF2 for the brief's characters (one variable file, all weights; estimate)",
+        "suggested_fix": null
+      },
+      {
+        "id": "logo.contrast",
+        "component": "logo",
+        "severity": "warn",
+        "measured": 1.68,
+        "threshold": ">= 3.0:1 (WCAG 2.2 SC 1.4.11, practice)",
+        "message": "full-color: accent #ffb000 on #f4f5f7 is 1.68:1",
+        "suggested_fix": "use a one-colour version on this ground, or declare logo.device tile|outline",
+        "roles": [
+          "accent"
+        ]
+      },
+      {
+        "id": "logo.contrast",
+        "component": "logo",
+        "severity": "warn",
+        "measured": 1.68,
+        "threshold": ">= 3.0:1 (WCAG 2.2 SC 1.4.11, practice)",
+        "message": "on-light-background: accent #ffb000 on #f4f5f7 is 1.68:1",
+        "suggested_fix": "use a one-colour version on this ground, or declare logo.device tile|outline",
+        "roles": [
+          "accent"
+        ]
+      },
+      {
+        "id": "logo.contrast",
+        "component": "logo",
+        "severity": "warn",
+        "measured": 1.68,
+        "threshold": ">= 3.0:1 (WCAG 2.2 SC 1.4.11, practice)",
+        "message": "symbol-only: accent #ffb000 on #f4f5f7 is 1.68:1",
+        "suggested_fix": "use a one-colour version on this ground, or declare logo.device tile|outline",
+        "roles": [
+          "accent"
+        ]
+      },
+      {
+        "id": "cohesion.sets-close",
+        "component": "cohesion",
+        "severity": "warn",
+        "measured": [
+          "A–B",
+          "A–C"
+        ],
+        "threshold": "2 axes, 2 steps",
+        "message": "sets too alike on the axes: A–B, A–C differ by 2+ steps on fewer than 2 axes (heuristic)",
+        "suggested_fix": null
+      },
+      {
+        "id": "i18n.missing",
+        "component": "card",
+        "severity": "warn",
+        "measured": 39,
+        "threshold": 0,
+        "message": "no pt translation of the tool text; 39 label(s) shown in English",
+        "suggested_fix": "translate assets/i18n/en.json (keep keys and {placeholders}) to pt and save it as <work>/i18n.json with \"_lang\": \"pt\", then re-run"
+      }
+    ],
+    "defaults": {
+      "matched": []
+    }
+  },
+  "palette_build": {
+    "strategy": null,
+    "accent": null,
+    "light_bg": "#f4f5f7",
+    "dark_bg": "#0d1015",
+    "neutral_tint": null,
+    "neutral_chroma": 0.012,
+    "extra": []
+  },
+  "card": {
+    "ground": "dark"
+  }
+}

@@ -7,3 +7,11 @@ __pycache__/
 node_modules/
 dist/
 *.log
+
+# Claude Code: configurações pessoais e skills de terceiros
+.claude/settings.local.json
+.claude/skills/
+
+# Skills de design de terceiros e cache temporário da brand-identity
+design-system/design-system/skills/
+marca/agon/.cache/

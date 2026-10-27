@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ágora amostras</title>
+<style>
+  :root { --ink:#16181d; --muted:#5b6170; --line:#e3e5ea; --paper:#ffffff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+    font:14px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; }
+  main { max-width:1180px; margin:0 auto; padding:48px 40px 64px; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+    border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:32px; }
+  h1 { font-size:34px; letter-spacing:-0.02em; margin:0; }
+  h2 { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:40px 0 14px; }
+  header p { margin:6px 0 0; color:var(--muted); max-width:640px; }
+  .mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; }
+  .muted { color:var(--muted); }
+  .audit { margin:0; font-size:13px; color:var(--muted); white-space:nowrap; }
+  .brands { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:20px; }
+  .brand { margin:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; break-inside:avoid; }
+  .brand .chip { height:150px; padding:16px; display:flex; justify-content:space-between; align-items:flex-end;
+    font-weight:600; font-size:16px; }
+  .brand em { font-style:normal; font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
+  .ext-chip { display:grid; grid-template-columns:1fr 1fr; height:120px; }
+  .ext-half { padding:12px; display:flex; flex-direction:column; justify-content:space-between; font-size:12px; }
+  figcaption { display:flex; flex-direction:column; gap:3px; padding:14px 16px; font-size:12.5px; }
+  figcaption b { font-size:15px; }
+  .scale { display:grid; grid-template-columns:120px 1fr; gap:12px; align-items:stretch; margin-bottom:8px;
+    break-inside:avoid; }
+  .scale-name { font-weight:600; display:flex; flex-direction:column; justify-content:center; }
+  .scale-name small { font-weight:400; color:var(--muted); font-size:11px; }
+  .steps { display:grid; grid-template-columns:repeat(11,1fr); border-radius:10px; overflow:hidden; }
+  .step { min-height:64px; padding:8px 6px; display:flex; flex-direction:column; justify-content:space-between;
+    font-size:11px; }
+  .step b { font-size:12px; }
+  .step .mono { font-size:10px; }
+  .step.anchor { outline:3px solid var(--ink); outline-offset:-3px; }
+  .modes { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .mode { border:1px solid; border-radius:16px; padding:20px; break-inside:avoid; }
+  .mode-head { font-size:12px; letter-spacing:.12em; text-transform:uppercase; opacity:.7; margin-bottom:12px; }
+  .card { border:1px solid; border-radius:12px; padding:18px; }
+  .card h4 { margin:0 0 6px; font-size:18px; }
+  .card p { margin:0 0 14px; }
+  .card a { text-decoration:underline; }
+  .btns { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+  .btn { padding:9px 16px; border-radius:9px; font-weight:600; font-size:13px; border:1px solid transparent; }
+  .btn.ghost { background:transparent; }
+  .alt { border-radius:9px; padding:10px; display:flex; gap:8px; flex-wrap:wrap; }
+  .badge { border:1.5px solid; border-radius:999px; padding:2px 10px; font-size:12px; font-weight:600; }
+  .pairs { width:100%; border-collapse:collapse; margin-top:14px; font-size:12px; }
+  .pairs td { padding:4px 0; border-top:1px solid rgba(127,127,127,.25); }
+  .pairs td:nth-child(2) { text-align:right; padding-right:12px; }
+  .pairs td:last-child { text-align:right; width:70px; }
+  .ok { opacity:.75; }
+  .bad { color:#c4001a; font-weight:700; background:#fff; border-radius:4px; }
+  @media (max-width:760px) { main { padding:28px 16px; } .modes { grid-template-columns:1fr; }
+    .scale { grid-template-columns:1fr; } .step .mono { display:none; } header { flex-direction:column;
+    align-items:flex-start; } }
+  @media print { main { padding:0; } body { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style></head>
+<body><main>
+<header><div><h1>Ágora</h1><p>Azul do Egeu sobre mármore, com um laranja de sinal para o resultado.</p></div><p class=audit>Auditoria: <b>aprovado</b> · 0 bloqueios · 1 aviso · 4 notas</p></header>
+<h2>Cores da marca</h2>
+<section class="brands">
+<figure class="brand">
+  <div class="chip" style="background:#0b5e75;color:#ffffff"><span>Egeu</span>
+    </div>
+  <figcaption><b class=mono>#0b5e75</b><span class=mono>rgb(11 94 117)</span><span class=mono>oklch(44.8% 0.080 223.0)</span>
+    <span class=mono>Lab D50 36.3 / -16.9 / -20.0</span>
+    <span>sobre branco 7,31:1 · sobre preto 2,87:1</span><span class=muted>símbolo, cabeçalhos, links</span>
+  </figcaption>
+</figure>
+<figure class="brand">
+  <div class="chip" style="background:#f0602a;color:#111111"><span>Sinal</span>
+    </div>
+  <figcaption><b class=mono>#f0602a</b><span class=mono>rgb(240 96 42)</span><span class=mono>oklch(66.7% 0.189 39.2)</span>
+    <span class=mono>Lab D50 59.8 / 54.7 / 57.8</span>
+    <span>sobre branco 3,28:1 · sobre preto 6,41:1</span><span class=muted>o campeão no símbolo; resultado e chamadas</span>
+  </figcaption>
+</figure></section>
+<p class=muted>Sensação: clássico, lúcido, afiado</p>
+
+<h2>Escalas</h2>
+<section><div class=scale><div class=scale-name>primária<small>âncora 800</small></div><div class=steps><div class='step' style='background:#eff9fd;color:#111111'><b>50</b><span class=mono>#eff9fd</span></div><div class='step' style='background:#e3f2f8;color:#111111'><b>100</b><span class=mono>#e3f2f8</span></div><div class='step' style='background:#c3e5f2;color:#111111'><b>200</b><span class=mono>#c3e5f2</span></div><div class='step' style='background:#8ed4ee;color:#111111'><b>300</b><span class=mono>#8ed4ee</span></div><div class='step' style='background:#65bad7;color:#111111'><b>400</b><span class=mono>#65bad7</span></div><div class='step' style='background:#52a6c3;color:#111111'><b>500</b><span class=mono>#52a6c3</span></div><div class='step' style='background:#328aa6;color:#111111'><b>600</b><span class=mono>#328aa6</span></div><div class='step' style='background:#16728d;color:#ffffff'><b>700</b><span class=mono>#16728d</span></div><div class='step anchor' style='background:#0b5e75;color:#ffffff'><b>800</b><span class=mono>#0b5e75</span></div><div class='step' style='background:#054f63;color:#ffffff'><b>900</b><span class=mono>#054f63</span></div><div class='step' style='background:#162c34;color:#ffffff'><b>950</b><span class=mono>#162c34</span></div></div></div><div class=scale><div class=scale-name>neutra<small>com matiz em direção a primária</small></div><div class=steps><div class='step' style='background:#f8fbfc;color:#111111'><b>50</b><span class=mono>#f8fbfc</span></div><div class='step' style='background:#f1f4f5;color:#111111'><b>100</b><span class=mono>#f1f4f5</span></div><div class='step' style='background:#e3e7e8;color:#111111'><b>200</b><span class=mono>#e3e7e8</span></div><div class='step' style='background:#cfd5d8;color:#111111'><b>300</b><span class=mono>#cfd5d8</span></div><div class='step' style='background:#99a3a8;color:#111111'><b>400</b><span class=mono>#99a3a8</span></div><div class='step' style='background:#68767b;color:#ffffff'><b>500</b><span class=mono>#68767b</span></div><div class='step' style='background:#4a585d;color:#ffffff'><b>600</b><span class=mono>#4a585d</span></div><div class='step' style='background:#35444a;color:#ffffff'><b>700</b><span class=mono>#35444a</span></div><div class='step' style='background:#202e33;color:#ffffff'><b>800</b><span class=mono>#202e33</span></div><div class='step' style='background:#101e23;color:#ffffff'><b>900</b><span class=mono>#101e23</span></div><div class='step' style='background:#061115;color:#ffffff'><b>950</b><span class=mono>#061115</span></div></div></div><div class=scale><div class=scale-name>destaque<small>âncora 500</small></div><div class=steps><div class='step' style='background:#fff5f2;color:#111111'><b>50</b><span class=mono>#fff5f2</span></div><div class='step' style='background:#ffe9e2;color:#111111'><b>100</b><span class=mono>#ffe9e2</span></div><div class='step' style='background:#fed2c3;color:#111111'><b>200</b><span class=mono>#fed2c3</span></div><div class='step' style='background:#feaf95;color:#111111'><b>300</b><span class=mono>#feaf95</span></div><div class='step' style='background:#fd7e52;color:#111111'><b>400</b><span class=mono>#fd7e52</span></div><div class='step anchor' style='background:#f0602a;color:#111111'><b>500</b><span class=mono>#f0602a</span></div><div class='step' style='background:#cb4811;color:#ffffff'><b>600</b><span class=mono>#cb4811</span></div><div class='step' style='background:#aa3906;color:#ffffff'><b>700</b><span class=mono>#aa3906</span></div><div class='step' style='background:#8e2e04;color:#ffffff'><b>800</b><span class=mono>#8e2e04</span></div><div class='step' style='background:#782604;color:#ffffff'><b>900</b><span class=mono>#782604</span></div><div class='step' style='background:#461808;color:#ffffff'><b>950</b><span class=mono>#461808</span></div></div></div><div class=scale><div class=scale-name>sucesso<small></small></div><div class=steps><div class='step' style='background:#ecfcf5;color:#111111'><b>50</b><span class=mono>#ecfcf5</span></div><div class='step' style='background:#d6f8eb;color:#111111'><b>100</b><span class=mono>#d6f8eb</span></div><div class='step' style='background:#98f4d5;color:#111111'><b>200</b><span class=mono>#98f4d5</span></div><div class='step' style='background:#66e2bc;color:#111111'><b>300</b><span class=mono>#66e2bc</span></div><div class='step' style='background:#3fc6a0;color:#111111'><b>400</b><span class=mono>#3fc6a0</span></div><div class='step' style='background:#2bb28e;color:#111111'><b>500</b><span class=mono>#2bb28e</span></div><div class='step' style='background:#0d9373;color:#111111'><b>600</b><span class=mono>#0d9373</span></div><div class='step' style='background:#08795e;color:#ffffff'><b>700</b><span class=mono>#08795e</span></div><div class='step' style='background:#06644d;color:#ffffff'><b>800</b><span class=mono>#06644d</span></div><div class='step' style='background:#045440;color:#ffffff'><b>900</b><span class=mono>#045440</span></div><div class='step' style='background:#073025;color:#ffffff'><b>950</b><span class=mono>#073025</span></div></div></div><div class=scale><div class=scale-name>aviso<small></small></div><div class=steps><div class='step' style='background:#fff6ec;color:#111111'><b>50</b><span class=mono>#fff6ec</span></div><div class='step' style='background:#ffebd6;color:#111111'><b>100</b><span class=mono>#ffebd6</span></div><div class='step' style='background:#f9d9b4;color:#111111'><b>200</b><span class=mono>#f9d9b4</span></div><div class='step' style='background:#f3bd7f;color:#111111'><b>300</b><span class=mono>#f3bd7f</span></div><div class='step' style='background:#e59b37;color:#111111'><b>400</b><span class=mono>#e59b37</span></div><div class='step' style='background:#cf8925;color:#111111'><b>500</b><span class=mono>#cf8925</span></div><div class='step' style='background:#ad6e0a;color:#111111'><b>600</b><span class=mono>#ad6e0a</span></div><div class='step' style='background:#8f5a06;color:#ffffff'><b>700</b><span class=mono>#8f5a06</span></div><div class='step' style='background:#764a04;color:#ffffff'><b>800</b><span class=mono>#764a04</span></div><div class='step' style='background:#633d03;color:#ffffff'><b>900</b><span class=mono>#633d03</span></div><div class='step' style='background:#3a2305;color:#ffffff'><b>950</b><span class=mono>#3a2305</span></div></div></div><div class=scale><div class=scale-name>perigo<small></small></div><div class=steps><div class='step' style='background:#fff5f3;color:#111111'><b>50</b><span class=mono>#fff5f3</span></div><div class='step' style='background:#ffe9e6;color:#111111'><b>100</b><span class=mono>#ffe9e6</span></div><div class='step' style='background:#fed3cd;color:#111111'><b>200</b><span class=mono>#fed3cd</span></div><div class='step' style='background:#feb2a8;color:#111111'><b>300</b><span class=mono>#feb2a8</span></div><div class='step' style='background:#fe8477;color:#111111'><b>400</b><span class=mono>#fe8477</span></div><div class='step' style='background:#f86156;color:#111111'><b>500</b><span class=mono>#f86156</span></div><div class='step' style='background:#e0312e;color:#ffffff'><b>600</b><span class=mono>#e0312e</span></div><div class='step' style='background:#b4312b;color:#ffffff'><b>700</b><span class=mono>#b4312b</span></div><div class='step' style='background:#922c27;color:#ffffff'><b>800</b><span class=mono>#922c27</span></div><div class='step' style='background:#7a2520;color:#ffffff'><b>900</b><span class=mono>#7a2520</span></div><div class='step' style='background:#471713;color:#ffffff'><b>950</b><span class=mono>#471713</span></div></div></div><div class=scale><div class=scale-name>info<small></small></div><div class=steps><div class='step' style='background:#f2f8ff;color:#111111'><b>50</b><span class=mono>#f2f8ff</span></div><div class='step' style='background:#e3f0ff;color:#111111'><b>100</b><span class=mono>#e3f0ff</span></div><div class='step' style='background:#c7e2fe;color:#111111'><b>200</b><span class=mono>#c7e2fe</span></div><div class='step' style='background:#9ecdfe;color:#111111'><b>300</b><span class=mono>#9ecdfe</span></div><div class='step' style='background:#66b2fd;color:#111111'><b>400</b><span class=mono>#66b2fd</span></div><div class='step' style='background:#3e9ef7;color:#111111'><b>500</b><span class=mono>#3e9ef7</span></div><div class='step' style='background:#2681d2;color:#111111'><b>600</b><span class=mono>#2681d2</span></div><div class='step' style='background:#196aaf;color:#ffffff'><b>700</b><span class=mono>#196aaf</span></div><div class='step' style='background:#125792;color:#ffffff'><b>800</b><span class=mono>#125792</span></div><div class='step' style='background:#0f487a;color:#ffffff'><b>900</b><span class=mono>#0f487a</span></div><div class='step' style='background:#0c2a46;color:#ffffff'><b>950</b><span class=mono>#0c2a46</span></div></div></div></section>
+<h2>Funções em uso</h2>
+<section class="modes">
+<div class="mode" style="background:#f5f4f0;color:#101e23;border-color:#d5d3cc">
+  <div class="mode-head"><span>claro</span></div>
+  <div class="card" style="background:#ffffff;border-color:#d5d3cc">
+    <h4 style="color:#101e23">Título sobre superfície</h4>
+    <p style="color:#4a585d">Texto de apoio suave com um <a style="color:#16728d">link de texto</a>.</p>
+    <div class="btns">
+      <span class="btn" style="background:#0b5e75;color:#ffffff">Primária</span>
+      <span class="btn" style="background:#cb4811;color:#ffffff">Destaque</span>
+      <span class="btn ghost" style="color:#101e23;border-color:#d5d3cc;
+        box-shadow:0 0 0 2px #f5f4f0,0 0 0 4px #0b5e75">Em foco</span>
+    </div>
+    <div class="alt" style="background:#ebeae6"><span class=badge style='color:#08795e;border-color:#08795e'>Sucesso</span><span class=badge style='color:#8f5a06;border-color:#8f5a06'>Aviso</span><span class=badge style='color:#b4312b;border-color:#b4312b'>Perigo</span><span class=badge style='color:#196aaf;border-color:#196aaf'>Info</span></div>
+  </div>
+  <table class="pairs" style="color:#101e23"><tr><td>Tinta / Fundo</td><td class=mono>15,49:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Tinta suave / Fundo</td><td class=mono>6,71:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Tinta / Superfície</td><td class=mono>17,05:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Sobre primária / Primária</td><td class=mono>7,31:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Sobre destaque / Destaque</td><td class=mono>4,69:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Link / Fundo</td><td class=mono>4,99:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Foco / Fundo</td><td class=mono>6,64:1</td><td class='ok'>aprovado 3,0</td></tr><tr><td>Perigo / Fundo</td><td class=mono>5,59:1</td><td class='ok'>aprovado 3,0</td></tr><tr><td>Sucesso / Fundo</td><td class=mono>4,88:1</td><td class='ok'>aprovado 3,0</td></tr></table>
+</div>
+<div class="mode" style="background:#061115;color:#f1f4f5;border-color:#35444a">
+  <div class="mode-head"><span>escuro</span></div>
+  <div class="card" style="background:#101e23;border-color:#35444a">
+    <h4 style="color:#f1f4f5">Título sobre superfície</h4>
+    <p style="color:#99a3a8">Texto de apoio suave com um <a style="color:#52a6c3">link de texto</a>.</p>
+    <div class="btns">
+      <span class="btn" style="background:#52a6c3;color:#061115">Primária</span>
+      <span class="btn" style="background:#f0602a;color:#061115">Destaque</span>
+      <span class="btn ghost" style="color:#f1f4f5;border-color:#35444a;
+        box-shadow:0 0 0 2px #061115,0 0 0 4px #52a6c3">Em foco</span>
+    </div>
+    <div class="alt" style="background:#202e33"><span class=badge style='color:#3fc6a0;border-color:#3fc6a0'>Sucesso</span><span class=badge style='color:#e59b37;border-color:#e59b37'>Aviso</span><span class=badge style='color:#fe8477;border-color:#fe8477'>Perigo</span><span class=badge style='color:#66b2fd;border-color:#66b2fd'>Info</span></div>
+  </div>
+  <table class="pairs" style="color:#f1f4f5"><tr><td>Tinta / Fundo</td><td class=mono>17,29:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Tinta suave / Fundo</td><td class=mono>7,43:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Tinta / Superfície</td><td class=mono>15,42:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Sobre primária / Primária</td><td class=mono>6,92:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Sobre destaque / Destaque</td><td class=mono>5,84:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Link / Fundo</td><td class=mono>6,92:1</td><td class='ok'>aprovado 4,5</td></tr><tr><td>Foco / Fundo</td><td class=mono>6,92:1</td><td class='ok'>aprovado 3,0</td></tr><tr><td>Perigo / Fundo</td><td class=mono>7,99:1</td><td class='ok'>aprovado 3,0</td></tr><tr><td>Sucesso / Fundo</td><td class=mono>8,92:1</td><td class='ok'>aprovado 3,0</td></tr></table>
+</div></section>
+<p class="muted" style="margin-top:32px;font-size:12px">Contraste: razões WCAG 2.x, sem arredondar. Os valores Lab D50 são calculados a partir de sRGB para entrega à gráfica; CMYK exige o perfil ICC da gráfica e as correspondências Pantone exigem um guia físico. Gerado pelo brand-identity a partir de palette.json. Edite a paleta, não este arquivo.</p>
+</main></body></html>

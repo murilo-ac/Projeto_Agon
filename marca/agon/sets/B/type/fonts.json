@@ -1,0 +1,27 @@
+{
+  "display": {
+    "family": "Sofia Sans Condensed",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\SofiaSansCondensed-59baa52965b38f78.ttf",
+    "location": {
+      "wght": 800
+    },
+    "weights": [
+      800
+    ],
+    "features": []
+  },
+  "text": {
+    "family": "Sofia Sans",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\SofiaSans-7752077d26c2468b.ttf",
+    "location": {
+      "wght": 400
+    },
+    "weights": [
+      400,
+      600
+    ],
+    "features": [
+      "tnum"
+    ]
+  }
+}

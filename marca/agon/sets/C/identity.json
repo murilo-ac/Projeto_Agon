@@ -1,0 +1,346 @@
+{
+  "schema": "brand-identity/identity@1",
+  "brand": {
+    "name": "Ágon",
+    "tagline": "Todas as disputas num só lugar",
+    "languages": [
+      "pt"
+    ],
+    "doc_lang": "pt",
+    "sector": "Hub pessoal de esportes: agenda, resultados e estatísticas",
+    "numbers": true,
+    "copy": {
+      "sentence": {
+        "pt": "Flamengo 3 × 2 Atlético-MG: 58% de posse, 14 finalizações e o gol da virada aos 41 do segundo tempo."
+      },
+      "nav": [
+        "Agenda",
+        "Jogos",
+        "Times",
+        "Competições"
+      ],
+      "cta": "Ver jogos de hoje"
+    }
+  },
+  "set": {
+    "id": "C",
+    "name": "Ágora",
+    "recommended": false,
+    "mechanism": "A origem grega do agṓn: a fineza cortante de um Bodoni (o mesmo gume do símbolo), o azul do Egeu sobre mármore e um laranja de sinal para o resultado.",
+    "expression_move": "O contraste extremo do Bodoni no nome; o resto é silencioso.",
+    "differs_by": "Nenhum concorrente usa serifa de alto contraste com cor (The Athletic usa serifa, mas em preto e branco editorial); o azul-petróleo fica longe do azul royal do SofaScore."
+  },
+  "axes": {
+    "warm_cool": 0,
+    "quiet_loud": 0,
+    "classic_contemporary": -2
+  },
+  "components": {
+    "logo": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    },
+    "type": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    },
+    "palette": {
+      "mode": "new",
+      "status": "proposed",
+      "source": null,
+      "sha256": null
+    }
+  },
+  "type": {
+    "pairing_mode": "contrast",
+    "display": {
+      "family": "Bodoni Moda",
+      "source": "google",
+      "license": "OFL-1.1",
+      "weights": [
+        600
+      ],
+      "location": {
+        "wght": 600,
+        "opsz": 96
+      },
+      "features": [],
+      "case": "as-is",
+      "tracking": 0,
+      "fallback": "Didot, Georgia, serif",
+      "file": null
+    },
+    "text": {
+      "family": "IBM Plex Sans",
+      "source": "google",
+      "license": "OFL-1.1",
+      "weights": [
+        400,
+        600
+      ],
+      "location": {
+        "wght": 400
+      },
+      "features": [
+        "tnum"
+      ],
+      "case": "as-is",
+      "tracking": 0,
+      "fallback": "system-ui, sans-serif",
+      "file": null
+    },
+    "mono": null
+  },
+  "logo": {
+    "type": "symbol+wordmark",
+    "concept": "As linhas de um mata-mata convergem e formam o A; a final é o ápice e o acento é o campeão.",
+    "symbol": "logo/symbol.svg",
+    "wordmark": {
+      "text": "Ágon",
+      "role": "display",
+      "location": {
+        "wght": 600,
+        "opsz": 24
+      },
+      "tracking": 0,
+      "case": "as-is"
+    },
+    "monogram": null,
+    "lockups": [
+      "horizontal",
+      "stacked"
+    ],
+    "colors": {
+      "chave": "primary",
+      "campeao": "accent",
+      "wordmark": "text"
+    },
+    "tags": [
+      "letterform"
+    ],
+    "clear_space": {
+      "unit": "cap-height",
+      "multiple": 1,
+      "inferred": true
+    },
+    "min_size": {
+      "px": 20,
+      "mm": 7
+    },
+    "misuse": [
+      {
+        "do": "stretch"
+      },
+      {
+        "do": "recolour"
+      },
+      {
+        "do": "crowd"
+      },
+      {
+        "do": "rearrange"
+      },
+      {
+        "svg": "logo/misuse-1.svg",
+        "label": "Não preencher o losango: sem o vazio, a chave some"
+      },
+      {
+        "svg": "logo/misuse-2.svg",
+        "label": "Não espelhar o acento: Á vira À"
+      }
+    ]
+  },
+  "palette": "palette.json",
+  "defaults_used": [],
+  "rationale": [
+    {
+      "claim": "O símbolo é a Chave aprovada pelo cliente; a forma é idêntica nos três conjuntos.",
+      "evidence": "judgement",
+      "source": "marca/logo/BRIEF.md"
+    },
+    {
+      "claim": "Os concorrentes ocupam vermelho (ESPN), verde (ge, FotMob) e azul royal (SofaScore).",
+      "evidence": "judgement",
+      "source": "pesquisa da categoria"
+    }
+  ],
+  "derived": [
+    {
+      "file": "card.png",
+      "requires": [
+        "logo",
+        "type",
+        "palette"
+      ],
+      "inputs_sha256": "766abb0fa6c83bb5c703b8106a1076e9846f932f91123525e7262896e0786d31"
+    }
+  ],
+  "audit": {
+    "schema": "brand-identity/audit@1",
+    "passed": true,
+    "counts": {
+      "gate": 0,
+      "warn": 2,
+      "info": 8
+    },
+    "findings": [
+      {
+        "id": "palette.structure.lightness-range",
+        "component": "palette",
+        "severity": "warn",
+        "measured": 22.4,
+        "threshold": 25,
+        "message": "brand and action colours span only Delta L* 22.4; without a clear light/dark step between them the palette reads flat (lightness contrast is the strongest harmony predictor, O'Donovan 2011)",
+        "suggested_fix": {
+          "change": "brand/accent",
+          "how": "move the accent (not a locked brand colour) at least 25 L* away from the primary"
+        },
+        "roles": [
+          "brand",
+          "light.primary",
+          "light.accent"
+        ]
+      },
+      {
+        "id": "palette.contrast.light.border-on-background",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.36,
+        "threshold": 3.0,
+        "message": "light: border #d5d3cc on background #f5f4f0 is 1.36:1, below 3.0:1 (borders: dividers are exempt, input outlines need 3:1; WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.light.border",
+          "from": "#d5d3cc",
+          "to": "#8e8d86",
+          "how": "darken by OKLCH L -0.22, same hue",
+          "ratio_after": 3.03
+        },
+        "roles": [
+          "light.border",
+          "light.background"
+        ]
+      },
+      {
+        "id": "palette.contrast.dark.link-on-text",
+        "component": "palette",
+        "severity": "info",
+        "measured": 2.5,
+        "threshold": 3.0,
+        "message": "dark: link #52a6c3 on text #f1f4f5 is 2.50:1, below 3.0:1 (underline links in dark mode (WCAG G183: without underline a link needs 3:1 against body text); WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.dark.link",
+          "from": "#52a6c3",
+          "to": "#328aa6",
+          "how": "use primary-600 (same scale)",
+          "ratio_after": 3.57
+        },
+        "roles": [
+          "dark.link",
+          "dark.text"
+        ]
+      },
+      {
+        "id": "palette.contrast.dark.border-on-background",
+        "component": "palette",
+        "severity": "info",
+        "measured": 1.89,
+        "threshold": 3.0,
+        "message": "dark: border #35444a on background #061115 is 1.89:1, below 3.0:1 (borders: dividers are exempt, input outlines need 3:1; WCAG 2, no rounding)",
+        "suggested_fix": {
+          "change": "modes.dark.border",
+          "from": "#35444a",
+          "to": "#68767b",
+          "how": "use neutral-500 (same scale)",
+          "ratio_after": 4.06
+        },
+        "roles": [
+          "dark.border",
+          "dark.background"
+        ]
+      },
+      {
+        "id": "palette.harmony.primary-accent",
+        "component": "palette",
+        "severity": "info",
+        "measured": -0.62,
+        "threshold": -0.3,
+        "message": "Ou-Luo two-colour model scores #0b5e75 + #cb4811 at -0.62 (negative = less harmonious on a grey CRT test, no context): model signal only; the pairing table in references/pairing.md takes precedence",
+        "suggested_fix": null,
+        "roles": [
+          "light.primary",
+          "light.accent"
+        ]
+      },
+      {
+        "id": "type.display.confusables",
+        "component": "type",
+        "severity": "info",
+        "measured": 0.917,
+        "threshold": "0.9 (heuristic, uncalibrated)",
+        "message": "Bodoni Moda: I/1 look alike at small sizes (IoU 0.92 at 48 px)",
+        "suggested_fix": "try ss01 'Alternate J', ss02 'Alternate R', ss03 'Alternate 4'"
+      },
+      {
+        "id": "type.display.web-weight",
+        "component": "type",
+        "severity": "info",
+        "measured": 47,
+        "threshold": null,
+        "message": "Bodoni Moda: ~47 KB WOFF2 for the brief's characters (one variable file, all weights; estimate)",
+        "suggested_fix": null
+      },
+      {
+        "id": "type.text.web-weight",
+        "component": "type",
+        "severity": "info",
+        "measured": 56,
+        "threshold": null,
+        "message": "IBM Plex Sans: ~56 KB WOFF2 for the brief's characters (one variable file, all weights; estimate)",
+        "suggested_fix": null
+      },
+      {
+        "id": "logo.role-tone",
+        "component": "logo",
+        "severity": "info",
+        "measured": "#cb4811",
+        "threshold": "#f0602a",
+        "message": "accent resolves to #cb4811 (UI tone); use brand-2 for #f0602a",
+        "suggested_fix": "data-color=\"brand-2\" (or logo.colors) for the exact brand colour",
+        "roles": [
+          "accent"
+        ]
+      },
+      {
+        "id": "cohesion.sets-close",
+        "component": "cohesion",
+        "severity": "warn",
+        "measured": [
+          "A–B",
+          "A–C"
+        ],
+        "threshold": "2 axes, 2 steps",
+        "message": "sets too alike on the axes: A–B, A–C differ by 2+ steps on fewer than 2 axes (heuristic)",
+        "suggested_fix": null
+      }
+    ],
+    "defaults": {
+      "matched": []
+    }
+  },
+  "palette_build": {
+    "strategy": null,
+    "accent": null,
+    "light_bg": "#f5f4f0",
+    "dark_bg": null,
+    "neutral_tint": null,
+    "neutral_chroma": null,
+    "extra": []
+  },
+  "card": {
+    "ground": "light"
+  }
+}

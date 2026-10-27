@@ -1,0 +1,40 @@
+{
+  "display": {
+    "family": "Geist",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\Geist-5a2f3a1f54f16719.ttf",
+    "location": {
+      "wght": 600
+    },
+    "weights": [
+      600
+    ],
+    "features": []
+  },
+  "text": {
+    "family": "Geist",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\Geist-9ea38a2eebbf4d36.ttf",
+    "location": {
+      "wght": 400
+    },
+    "weights": [
+      400,
+      600
+    ],
+    "features": [
+      "tnum"
+    ]
+  },
+  "mono": {
+    "family": "Geist Mono",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\GeistMono-23a867eb7e0bc32f.ttf",
+    "location": {
+      "wght": 500
+    },
+    "weights": [
+      500
+    ],
+    "features": [
+      "tnum"
+    ]
+  }
+}

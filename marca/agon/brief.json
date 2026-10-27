@@ -1,0 +1,47 @@
+{
+  "schema": "brand-identity/brief@1",
+  "brand": "Ágon",
+  "tagline": "Todas as disputas num só lugar",
+  "site": null,
+  "languages": [
+    "pt"
+  ],
+  "doc_lang": "pt",
+  "numbers": true,
+  "components": {
+    "logo": "new",
+    "type": "new",
+    "palette": "new"
+  },
+  "sources": {},
+  "sets": 3,
+  "sector": "Hub pessoal de esportes: agenda, resultados e estatísticas",
+  "audience": "Cerca de 10 fãs de esporte que hoje alternam entre vários apps",
+  "attributes": [
+    "preciso",
+    "analítico",
+    "competitivo",
+    "intenso"
+  ],
+  "competitors": [
+    "ESPN",
+    "ge",
+    "SofaScore",
+    "FotMob",
+    "OneFootball",
+    "The Athletic"
+  ],
+  "axes": [],
+  "copy": {
+    "sentence": {
+      "pt": "Flamengo 3 × 2 Atlético-MG: 58% de posse, 14 finalizações e o gol da virada aos 41 do segundo tempo."
+    },
+    "nav": [
+      "Agenda",
+      "Jogos",
+      "Times",
+      "Competições"
+    ],
+    "cta": "Ver jogos de hoje"
+  }
+}

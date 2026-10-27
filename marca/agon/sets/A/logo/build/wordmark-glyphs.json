@@ -1,0 +1,77 @@
+{
+ "units": "wordmark: cap height 100, cap top y=0, baseline y=100, x from the pen origin; index = data-glyph",
+ "text": "Ágon",
+ "glyphs": [
+  {
+   "index": 1,
+   "char": "Á",
+   "x0": 2.68,
+   "x1": 97.18,
+   "pen_x": 0.0,
+   "advance": 96.62,
+   "cap_top": 0,
+   "baseline": 100,
+   "stems": []
+  },
+  {
+   "index": 2,
+   "char": "g",
+   "x0": 100.7,
+   "x1": 172.68,
+   "pen_x": 95.21,
+   "advance": 85.92,
+   "cap_top": 0,
+   "baseline": 100,
+   "stems": [
+    [
+     100.76,
+     119.52
+    ],
+    [
+     154.53,
+     172.68
+    ]
+   ]
+  },
+  {
+   "index": 3,
+   "char": "o",
+   "x0": 185.21,
+   "x1": 259.15,
+   "pen_x": 179.72,
+   "advance": 83.52,
+   "cap_top": 0,
+   "baseline": 100,
+   "stems": [
+    [
+     185.21,
+     203.94
+    ],
+    [
+     240.42,
+     259.15
+    ]
+   ]
+  },
+  {
+   "index": 4,
+   "char": "n",
+   "x0": 271.69,
+   "x1": 336.62,
+   "pen_x": 261.83,
+   "advance": 84.65,
+   "cap_top": 0,
+   "baseline": 100,
+   "stems": [
+    [
+     271.69,
+     289.72
+    ],
+    [
+     318.59,
+     336.62
+    ]
+   ]
+  }
+ ]
+}

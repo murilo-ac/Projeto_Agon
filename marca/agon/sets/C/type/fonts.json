@@ -1,0 +1,28 @@
+{
+  "display": {
+    "family": "Bodoni Moda",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\BodoniModa-53cd2a6bfdb49a10.ttf",
+    "location": {
+      "wght": 600,
+      "opsz": 96
+    },
+    "weights": [
+      600
+    ],
+    "features": []
+  },
+  "text": {
+    "family": "IBM Plex Sans",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\IBMPlexSans-11eadf23676df83c.ttf",
+    "location": {
+      "wght": 400
+    },
+    "weights": [
+      400,
+      600
+    ],
+    "features": [
+      "tnum"
+    ]
+  }
+}
