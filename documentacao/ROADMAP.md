@@ -1,7 +1,7 @@
 # Roadmap — Projeto Ágon
 
 > Documento vivo. Registra o contexto do projeto, as decisões tomadas e o plano de evolução.
-> Última atualização: 27/10/2026.
+> Última atualização: 12/11/2026.
 
 ## Sumário
 
@@ -99,7 +99,7 @@ O sistema já terá uma **API própria sobre os provedores**: o backend coleta d
 | Banco | **PostgreSQL** + **SQLAlchemy** + **Alembic** | Suporte a JSONB, robusto, migrações versionadas |
 | Frontend | **TypeScript + Vite + React** | Revisa TypeScript, HTML e CSS; padrão de mercado |
 | Deploy | **Docker Compose** | Sobe tudo com um comando; migrar para VPS ou nuvem é copiar o compose |
-| Acesso remoto | **Tailscale** (v1); Cloudflare Tunnel + Access (v4) | Sem abrir portas no roteador |
+| Acesso remoto | **Cloudflare Tunnel + Cloudflare Access** em `agon.fans` (desde a v1) | Sem abrir portas no roteador; login por e-mail antes de chegar ao servidor |
 
 **Alternativa considerada para o frontend:** páginas renderizadas pelo FastAPI (Jinja2) + HTMX. É mais simples, mas treina menos TypeScript, então foi descartada para o objetivo de estudo.
 
@@ -288,7 +288,7 @@ Projeto_Agon/
 ### v1 — Fundação (futebol)
 Objetivo: validar o fluxo completo **coleta → banco → API → tela** com um esporte.
 
-Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESPN ✅ · 4 jobs ✅ · 5 API ✅ · 6 frontend ⏳ · 7 acesso remoto e fechamento ⏳.
+Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESPN ✅ · 4 jobs ✅ · 5 API ✅ · 6 frontend ⏳ · 7 acesso remoto ✅ e fechamento ⏳.
 
 - [x] Docker Compose com PostgreSQL, `api`, `worker` e `frontend`.
 - [x] Modelos e migrações do banco (Alembic).
@@ -297,7 +297,7 @@ Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESP
 - [x] Rotas: agenda por data, detalhe do jogo, jogos por time, competições.
 - [ ] Telas: agenda, detalhe do jogo com estatísticas, página do time.
 - [x] Chave de API e credenciais em `.env` fora do Git (`.env.example` + `.gitignore`).
-- [ ] Acesso remoto via Tailscale (sem expor o túnel publicamente).
+- [x] Acesso remoto: `agon.fans` via Cloudflare Tunnel + Cloudflare Access (login por e-mail), no servidor do Pedro. Ver a seção "Publicação" do README.
 
 ### v1.1 — Mais esportes
 - [ ] NBA, FIBA, NFL e tênis via ESPN.
@@ -323,7 +323,7 @@ Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESP
 - [ ] Feed de notícias por time ou esporte.
 
 ### v4 — Segurança e usuários
-- [ ] Cloudflare Tunnel + Cloudflare Access (login antes de chegar ao servidor), ou manter Tailscale.
+- [x] Cloudflare Tunnel + Cloudflare Access (login antes de chegar ao servidor): adiantado para a v1 (decisão 13).
 - [ ] Login próprio com sessões/cookies no backend.
 - [ ] Preferências por usuário (times e esportes favoritos), com agenda e notícias personalizadas.
 - [ ] HTTPS de ponta a ponta.
@@ -352,6 +352,7 @@ Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESP
 | 10 | 22/10/2026 | Um repositório, dois processos (`api` e `worker`) | Isolamento de falhas sem duplicar código |
 | 11 | 22/10/2026 | Docker Compose em servidor próprio | Simples hoje, migrável para nuvem amanhã |
 | 12 | 22/10/2026 | Ao vivo na v2, notícias na v3, segurança na v4 | Foco da v1 em partidas e estatísticas pós-jogo |
+| 13 | 12/11/2026 | Publicar em `agon.fans` com Cloudflare Tunnel + Cloudflare Access (código por e-mail), no servidor do Pedro, em vez de Tailscale | Endereço normal para ~10 pessoas, sem instalar nada; ninguém chega ao servidor sem login; mantém o uso dos dados da ESPN pessoal e privado |
 
 ## 10. Pendências e riscos
 
@@ -362,7 +363,8 @@ Fases: 0 exploração ✅ · 1 infraestrutura ✅ · 2 banco ✅ · 3 coleta ESP
 | Cobertura de vôlei e NBB não confirmada | Pendência | Testar API-Sports (roteiro em [V0_EXPLORACAO.md](V0_EXPLORACAO.md#4-api-sports-vôlei-e-nbb)); bloqueia só a v1.2 |
 | Olimpíadas sem fonte grátis | Pendência | Reavaliar perto de 2028 |
 | Rate limits reais da Jolpica e da API-Sports | Pendência | Confirmar na documentação oficial antes da v1.1 |
-| Túnel exposto sem autenticação na v1 | Risco | Usar Tailscale até a v4 |
+| Túnel exposto sem autenticação na v1 | Resolvido | Cloudflare Access na frente do site inteiro, inclusive `/api` (12/11/2026) |
+| O site publicado roda os servidores de desenvolvimento (Vite e `uvicorn --reload`) | Risco | Aceitável atrás do login; trocar por build de produção antes de abrir para mais gente |
 | JSON bruto da ESPN ~4x maior que o estimado (~394 KB por jogo) | Risco | Monitorar o tamanho de `raw_payloads`; se crescer demais, descartar `commentary` ou limpar payloads antigos |
 | Países das competições (`competitions.country`) não vêm da ESPN | Pendência | Preencher manualmente ou por tabela fixa, se a interface precisar |
 | `round` (rodada) não vem no `scoreboard` da ESPN | Pendência | Avaliar o endpoint de calendário da liga antes da tela de competição |
