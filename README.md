@@ -2,7 +2,7 @@
 
 Hub centralizado para acompanhar vários esportes num só lugar: calendário de partidas, resultados e estatísticas de jogos e jogadores. Placar ao vivo e notícias estão previstos para versões futuras.
 
-> **Status:** v1 em andamento. Coleta, banco e API prontos e publicados em [agon.fans](https://agon.fans) (só para convidados); faltam as telas (fase 6) e o fechamento da v1 (fase 7).
+> **Status:** v1 em andamento. Coleta, banco e API prontos e publicados em [agon.fans](https://agon.fans) (só para convidados); identidade visual e mockups definidos. Faltam as telas no código (fase 6) e o fechamento da v1 (fase 7).
 
 ## Esportes
 
@@ -30,6 +30,7 @@ APIs externas → worker → PostgreSQL → api → frontend → usuário
 
 - [Roadmap](documentacao/ROADMAP.md): objetivo, fontes de dados, stack, arquitetura, esboço do banco, versões e decisões.
 - [v0: exploração](documentacao/V0_EXPLORACAO.md): formatos reais da ESPN e ajustes no banco.
+- [v1: progresso](documentacao/V1_PROGRESSO.md): o que foi feito em cada fase da v1 e o que falta.
 
 ## Como rodar
 
