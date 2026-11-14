@@ -1,7 +1,7 @@
 {
   "schema": "brand-identity/palette@1",
   "name": "Ágora",
-  "direction": "Azul do Egeu sobre mármore, com um laranja de sinal para o resultado.",
+  "direction": "Azul do Egeu como estrutura sobre mármore; laranja Sinal em campos grandes para o ao vivo, o favorito e o agora.",
   "brand": [
     {
       "id": "brand-1",
@@ -9,7 +9,7 @@
       "hex": "#0b5e75",
       "source": "chosen",
       "locked": false,
-      "usage": "símbolo, cabeçalhos, links",
+      "usage": "símbolo, faixas e superfícies de estrutura, links",
       "print": {
         "lab_d50": [
           36.3,
@@ -26,7 +26,7 @@
       "hex": "#f0602a",
       "source": "chosen",
       "locked": false,
-      "usage": "o campeão no símbolo; resultado e chamadas",
+      "usage": "o campeão no símbolo; ao vivo, favorito, seleção ativa",
       "print": {
         "lab_d50": [
           59.8,
@@ -162,7 +162,7 @@
       "textMuted": "#4a585d",
       "primary": "#0b5e75",
       "onPrimary": "#ffffff",
-      "accent": "#cb4811",
+      "accent": "#bb410e",
       "onAccent": "#ffffff",
       "link": "#16728d",
       "focus": "#0b5e75",
@@ -190,11 +190,17 @@
       "info": "#66b2fd"
     }
   },
-  "rationale": [],
+  "rationale": [
+    {
+      "claim": "accent claro fixado em #bb410e: o valor calculado (#cb4811) dava 4,26:1 sobre o fundo #f5f4f0; o novo dá 4,92:1 (revisão de 14/11/2026)",
+      "evidence": "practice",
+      "source": "design-system/design-system/IDENTIDADE_VISUAL.md"
+    }
+  ],
   "feels": [
-    "clássico",
-    "lúcido",
-    "afiado"
+    "intenso",
+    "direto",
+    "preciso"
   ],
   "audit": {
     "schema": "brand-identity/audit@1",

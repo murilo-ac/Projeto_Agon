@@ -144,28 +144,31 @@ SETS = [
             "id": "C",
             "name": "Ágora",
             "recommended": False,
-            "mechanism": "A origem grega do agṓn: a fineza cortante de um Bodoni (o mesmo gume do símbolo), o azul do "
-                         "Egeu sobre mármore e um laranja de sinal para o resultado.",
-            "expression_move": "O contraste extremo do Bodoni no nome; o resto é silencioso.",
+            "mechanism": "Arquibancada sobre a origem grega do agṓn: a Anybody estreita e pesada como placar de "
+                         "estádio, o azul do Egeu como estrutura e o laranja Sinal em campos grandes para o que está "
+                         "acontecendo agora.",
+            "expression_move": "O eixo de largura da Anybody: placar estreito (58), títulos (72) e o nome largo (140).",
             "differs_by": "Nenhum concorrente usa serifa de alto contraste com cor (The Athletic usa serifa, mas em "
                           "preto e branco editorial); o azul-petróleo fica longe do azul royal do SofaScore.",
         },
         "axes": {"warm_cool": 0, "quiet_loud": 0, "classic_contemporary": -2},
         "type": {
             "pairing_mode": "contrast",
-            "display": face("Bodoni Moda", [600], {"wght": 600, "opsz": 96}, tracking=0, fallback="Didot, Georgia, serif"),
-            "text": face("IBM Plex Sans", [400, 600], {"wght": 400}, ["tnum"]),
+            # revisão de 14/11/2026: Bodoni Moda -> Anybody (ver design-system/design-system/IDENTIDADE_VISUAL.md, seção 5)
+            "display": face("Anybody", [800, 900], {"wght": 800, "wdth": 72}, ["tnum"], tracking=0,
+                            fallback="Arial Narrow, sans-serif"),
+            "text": face("IBM Plex Sans", [400, 500, 600], {"wght": 400}),
             "mono": None,
         },
-        # opsz baixo no nome: hairlines mais grossas, que sobrevivem ao tamanho mínimo
-        "logo": logo("as-is", 0, {"wght": 600, "opsz": 24}),
+        # o nome usa a largura 140, exclusiva do logotipo
+        "logo": logo("as-is", 0, {"wght": 800, "wdth": 140}),
         "palette_build": {"strategy": None, "accent": None, "light_bg": "#f5f4f0", "dark_bg": None,
                           "neutral_tint": None, "neutral_chroma": None, "extra": []},
         "card": {"ground": "light"},
-        "palette": {"name": "Ágora", "direction": "Azul do Egeu sobre mármore, com um laranja de sinal para o resultado.",
-                    "brand": [brand(1, "Egeu", "#0b5e75", "símbolo, cabeçalhos, links"),
-                              brand(2, "Sinal", "#f0602a", "o campeão no símbolo; resultado e chamadas")],
-                    "feels": ["clássico", "lúcido", "afiado"]},
+        "palette": {"name": "Ágora", "direction": "Azul do Egeu como estrutura sobre mármore; laranja Sinal em campos grandes para o ao vivo, o favorito e o agora.",
+                    "brand": [brand(1, "Egeu", "#0b5e75", "símbolo, faixas e superfícies de estrutura, links"),
+                              brand(2, "Sinal", "#f0602a", "o campeão no símbolo; ao vivo, favorito, seleção ativa")],
+                    "feels": ["intenso", "direto", "preciso"]},
     },
 ]
 

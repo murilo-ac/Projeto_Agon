@@ -1,15 +1,18 @@
 {
   "display": {
-    "family": "Bodoni Moda",
-    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\BodoniModa-53cd2a6bfdb49a10.ttf",
+    "family": "Anybody",
+    "file": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\Anybody-5d4a971c6bdaffc1.ttf",
     "location": {
-      "wght": 600,
-      "opsz": 96
+      "wght": 800,
+      "wdth": 72
     },
     "weights": [
-      600
+      800,
+      900
     ],
-    "features": []
+    "features": [
+      "tnum"
+    ]
   },
   "text": {
     "family": "IBM Plex Sans",
@@ -19,10 +22,9 @@
     },
     "weights": [
       400,
+      500,
       600
     ],
-    "features": [
-      "tnum"
-    ]
+    "features": []
   }
 }

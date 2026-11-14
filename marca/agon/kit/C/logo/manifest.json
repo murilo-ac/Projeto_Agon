@@ -3,14 +3,14 @@
   "set": "C",
   "type": "symbol+wordmark",
   "font": {
-    "path": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\BodoniModa-9691f951046ccfb3.ttf",
+    "path": "C:\\Users\\muril\\.cache\\brand-identity\\fonts\\instances\\Anybody-7afc0600673c2f63.ttf",
     "role": "display",
     "location": {
-      "wght": 600,
-      "opsz": 24
+      "wght": 800,
+      "wdth": 140
     },
     "license": "OFL-1.1",
-    "family": "Bodoni Moda"
+    "family": "Anybody"
   },
   "masters": {
     "symbol": "master-symbol.svg",
@@ -25,7 +25,7 @@
       "png": "full-color.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "light",
       "ground": null,
@@ -41,15 +41,15 @@
             "semi-direita"
           ],
           "hex": "#0b5e75",
-          "area": 4385.85
+          "area": 4365.77
         },
         {
           "role": "accent",
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
-          "area": 206.25
+          "hex": "#bb410e",
+          "area": 205.32
         },
         {
           "role": "text",
@@ -57,7 +57,7 @@
             "wordmark"
           ],
           "hex": "#101e23",
-          "area": 8759.4
+          "area": 33290.27
         }
       ]
     },
@@ -66,7 +66,7 @@
       "png": "full-color-dark.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "dark",
       "ground": null,
@@ -82,7 +82,7 @@
             "semi-direita"
           ],
           "hex": "#52a6c3",
-          "area": 4385.85
+          "area": 4365.77
         },
         {
           "role": "accent",
@@ -90,7 +90,7 @@
             "campeao"
           ],
           "hex": "#f0602a",
-          "area": 206.25
+          "area": 205.32
         },
         {
           "role": "text",
@@ -98,7 +98,7 @@
             "wordmark"
           ],
           "hex": "#f1f4f5",
-          "area": 8759.4
+          "area": 33290.27
         }
       ]
     },
@@ -107,7 +107,7 @@
       "png": "one-color-dark.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "light",
       "ground": null,
@@ -125,7 +125,7 @@
             "wordmark"
           ],
           "hex": "#101e23",
-          "area": 13351.5
+          "area": 37861.36
         }
       ]
     },
@@ -134,7 +134,7 @@
       "png": "one-color-light.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "dark",
       "ground": null,
@@ -152,7 +152,7 @@
             "wordmark"
           ],
           "hex": "#f1f4f5",
-          "area": 12930.43
+          "area": 37442.23
         }
       ]
     },
@@ -161,7 +161,7 @@
       "png": "on-light-background.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "light",
       "ground": "#f5f4f0",
@@ -177,15 +177,15 @@
             "semi-direita"
           ],
           "hex": "#0b5e75",
-          "area": 4385.85
+          "area": 4365.77
         },
         {
           "role": "accent",
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
-          "area": 206.25
+          "hex": "#bb410e",
+          "area": 205.32
         },
         {
           "role": "text",
@@ -193,7 +193,7 @@
             "wordmark"
           ],
           "hex": "#101e23",
-          "area": 8759.4
+          "area": 33290.27
         }
       ]
     },
@@ -202,7 +202,7 @@
       "png": "on-dark-background.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "dark",
       "ground": "#061115",
@@ -218,7 +218,7 @@
             "semi-direita"
           ],
           "hex": "#52a6c3",
-          "area": 4005.99
+          "area": 3987.66
         },
         {
           "role": "accent",
@@ -226,7 +226,7 @@
             "campeao"
           ],
           "hex": "#f0602a",
-          "area": 165.04
+          "area": 164.29
         },
         {
           "role": "text",
@@ -234,7 +234,7 @@
             "wordmark"
           ],
           "hex": "#f1f4f5",
-          "area": 8759.4
+          "area": 33290.27
         }
       ]
     },
@@ -243,7 +243,7 @@
       "png": "on-light-primary.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "light",
       "ground": "#0b5e75",
@@ -261,7 +261,7 @@
             "wordmark"
           ],
           "hex": "#ffffff",
-          "area": 13351.5
+          "area": 37861.36
         }
       ]
     },
@@ -270,10 +270,10 @@
       "png": "on-light-accent.png",
       "size": [
         1024,
-        534
+        389
       ],
       "mode": "light",
-      "ground": "#cb4811",
+      "ground": "#bb410e",
       "ground_role": "accent",
       "one_color": true,
       "device": null,
@@ -288,7 +288,7 @@
             "wordmark"
           ],
           "hex": "#ffffff",
-          "area": 13351.5
+          "area": 37861.36
         }
       ]
     },
@@ -320,7 +320,7 @@
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
+          "hex": "#bb410e",
           "area": 102.51
         }
       ]
@@ -353,7 +353,7 @@
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
+          "hex": "#bb410e",
           "area": 102.51
         }
       ]
@@ -386,7 +386,7 @@
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
+          "hex": "#bb410e",
           "area": 102.51
         }
       ]
@@ -419,7 +419,7 @@
           "ids": [
             "campeao"
           ],
-          "hex": "#cb4811",
+          "hex": "#bb410e",
           "area": 102.51
         }
       ]
@@ -562,15 +562,15 @@
     }
   },
   "optics": {
-    "cap_height": 1500.0,
-    "x_height": 920.0,
+    "cap_height": 1350.0,
+    "x_height": 1174.0,
     "upm": 2000,
-    "overshoot_top": 0.0133,
-    "overshoot_bottom": 0.0133,
-    "x_overshoot_top": 0.0217,
-    "stem": 17.4,
-    "crossbar": 1.2,
-    "crossbar_stem_ratio": 0.069
+    "overshoot_top": 0.0104,
+    "overshoot_bottom": 0.0104,
+    "x_overshoot_top": 0.0128,
+    "stem": 35.63,
+    "crossbar": 23.037,
+    "crossbar_stem_ratio": 0.647
   },
   "glyphs": {
     "wordmark": "wordmark-glyphs.json"

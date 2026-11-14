@@ -1,8 +1,8 @@
 :root {
-  --font-display: "Bodoni Moda", Didot, Georgia, serif;
-  --font-display-weight: 600;
+  --font-display: "Anybody", Arial Narrow, sans-serif;
+  --font-display-weight: 800;
   --font-display-tracking: 0.000em;
-  --font-display-variation: "opsz" 96;
+  --font-display-variation: "wdth" 72;
   --font-text: "IBM Plex Sans", system-ui, sans-serif;
   --font-text-weight: 400;
   --font-text-tracking: 0.000em;

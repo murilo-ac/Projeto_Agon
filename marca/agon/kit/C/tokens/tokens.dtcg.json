@@ -1044,7 +1044,15 @@
       },
       "accent": {
         "$type": "color",
-        "$value": "{color.accent.600}"
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7333,
+            0.2549,
+            0.0549
+          ],
+          "hex": "#bb410e"
+        }
       },
       "on-accent": {
         "$type": "color",
