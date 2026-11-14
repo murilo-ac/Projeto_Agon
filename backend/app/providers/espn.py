@@ -4,6 +4,7 @@
 """
 
 import logging
+import re
 import time
 from collections.abc import Callable
 from datetime import date, datetime
@@ -116,20 +117,85 @@ def _competition(league: dict[str, Any], sport_path: str) -> CompetitionData:
     )
 
 
+# Nota do jogo que diz quem venceu nos pênaltis: "PAL win 5-3 on penalties",
+# "Atlético-MG advance 4-2 on penalties". Vem depois de " - " quando há outras partes
+# ("2nd Leg - Tied on aggregate - PAL win 5-3 on penalties").
+NOTA_PENALTIS = re.compile(r"^(.+?) (?:win|advance) \d+-\d+ on penalties", re.IGNORECASE)
+
+
+def _notas(comp: dict[str, Any]) -> list[str]:
+    return [n.get("headline") or n.get("text") or "" for n in comp.get("notes") or []]
+
+
+def _penaltis(competitors: list[dict[str, Any]]) -> dict[str, int] | None:
+    """Placar da disputa de pênaltis por lado ({"home": 5, "away": 3}), se houve."""
+    placar = {c.get("homeAway"): c.get("shootoutScore") for c in competitors}
+    if set(placar) == {"home", "away"} and all(
+        isinstance(v, (int, float)) for v in placar.values()
+    ):
+        return {lado: int(v) for lado, v in placar.items()}
+    return None
+
+
+def _primeira_palavra(nome: str) -> str:
+    return re.split(r"[\s-]", nome)[0]
+
+
+def _lado_da_nota(nota: str, competitors: list[dict[str, Any]]) -> str | None:
+    """Lado do time citado em "PAL win 5-3 on penalties"; None se a nota não for de pênaltis."""
+    achado = NOTA_PENALTIS.search(nota.split(" - ")[-1].strip())
+    if not achado:
+        return None
+    quem = achado.group(1).strip().casefold()
+    nomes = {
+        c.get("homeAway"): [
+            (c["team"].get(campo) or "").casefold()
+            for campo in ("abbreviation", "displayName", "shortDisplayName", "name")
+        ]
+        for c in competitors
+    }
+    # nome exato; senão a primeira palavra ("Athletico Paranaense" x "Athletico-PR")
+    for chave in (str, _primeira_palavra):
+        lados = [lado for lado, ns in nomes.items() if chave(quem) in {chave(n) for n in ns if n}]
+        if len(lados) == 1:
+            return lados[0]
+    return None
+
+
+def _vencedor(competitors: list[dict[str, Any]], notas: list[str]) -> str | None:
+    """Lado ("home"/"away") que venceu um jogo encerrado, ou None (empate).
+
+    Depois de uma disputa de pênaltis, a flag `winner` da ESPN pode apontar por horas para
+    quem venceu no tempo normal: em Palmeiras 0x1 Fluminense (semifinal da Libertadores,
+    21/10/2026, 2x2 no agregado, PAL 5-3 nos pênaltis) ela marcou o Fluminense antes de
+    virar para o Palmeiras. Por isso decidem, nesta ordem: o placar dos pênaltis, a nota do
+    jogo e, só quando não houve pênaltis, a flag.
+    """
+    pen = _penaltis(competitors)
+    if pen and pen["home"] != pen["away"]:
+        return "home" if pen["home"] > pen["away"] else "away"
+    for nota in notas:
+        if lado := _lado_da_nota(nota, competitors):
+            return lado
+    marcados = [c.get("homeAway") for c in competitors if c.get("winner")]
+    return marcados[0] if len(marcados) == 1 else None
+
+
 def _participants(
-    competitors: list[dict[str, Any]], status: str, with_stats: bool
+    competitors: list[dict[str, Any]], status: str, with_stats: bool, notas: list[str] | None = None
 ) -> list[ParticipantData]:
+    final = status == "final"
+    vencedor = _vencedor(competitors, notas or []) if final else None
     result = []
     for comp in sorted(competitors, key=lambda c: c.get("order", 0)):
         # antes do jogo a ESPN devolve "0": não é placar
         score = comp.get("score") if status != "scheduled" else None
-        final = status == "final"
         result.append(
             ParticipantData(
                 team=_team(comp["team"]),
                 side=comp.get("homeAway"),
                 score=int(score) if score not in (None, "") else None,
-                is_winner=bool(comp.get("winner")) if final else None,
+                is_winner=comp.get("homeAway") == vencedor if final else None,
                 stats=_stats(comp.get("statistics")) if with_stats else {},
             )
         )
@@ -154,6 +220,8 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
         if comp.get("details"):
             lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
             extra["lances"] = [_lance(d, lados) for d in comp["details"]]
+        if pen := _penaltis(comp.get("competitors", [])):
+            extra["penaltis"] = pen
         events.append(
             EventData(
                 external_id=str(ev["id"]),
@@ -161,7 +229,7 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
                 season_label=str(year),
                 start_time=_parse_datetime(ev["date"]),
                 status=status,
-                participants=_participants(comp.get("competitors", []), status, True),
+                participants=_participants(comp.get("competitors", []), status, True, _notas(comp)),
                 venue_name=venue.get("fullName"),
                 venue_city=(venue.get("address") or {}).get("city"),
                 extra=extra,
@@ -179,7 +247,7 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
     competition = _competition(league, sport_path)
     year = (header.get("season") or {}).get("year")
 
-    participants = _participants(comp.get("competitors", []), status, False)
+    participants = _participants(comp.get("competitors", []), status, False, _notas(comp))
     box_stats = {
         t["team"]["id"]: _stats(t.get("statistics")) for t in payload.get("boxscore", {}).get("teams", [])
     }
@@ -191,6 +259,8 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
     if payload.get("keyEvents"):
         lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
         extra["lances"] = [_lance(k, lados) for k in payload["keyEvents"]]
+    if pen := _penaltis(comp.get("competitors", [])):
+        extra["penaltis"] = pen
     event = EventData(
         external_id=str(header["id"]),
         competition=competition,

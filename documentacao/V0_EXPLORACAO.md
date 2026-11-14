@@ -24,6 +24,7 @@ Pontos importantes:
 - O estado do jogo está em `status.type.state` (`pre` / `in` / `post`), mais estável que o `name`. Mapeamento proposto: `pre` → `scheduled`, `in` → `live`, `post` → `final`. Adiados e cancelados aparecem como `name` específico e precisam de tratamento à parte.
 - O `scoreboard` já traz os `details` (gols e cartões), então a listagem sozinha basta para o placar e a linha do tempo.
 - Uma data sem jogos devolve `events` vazio (HTTP 200), sem erro.
+- **Pênaltis:** um jogo decidido nos pênaltis vem com status `STATUS_FINAL_PEN`, `shootoutScore` em cada `competitor` (número inteiro no `scoreboard`, `5.0` no `summary`) e uma nota em `competitions[0].notes` ("2nd Leg - Tied on aggregate - PAL win 5-3 on penalties"). A flag `winner` não é confiável logo depois do jogo: em Palmeiras 0x1 Fluminense (semifinal da Libertadores, 21/10/2026, PAL 5-3 nos pênaltis) ela marcou o Fluminense por horas antes de virar. O vencedor sai do placar dos pênaltis, depois da nota e só então da flag; o placar dos pênaltis fica em `events.extra["penaltis"]`.
 
 ## 2. ESPN: `summary`
 

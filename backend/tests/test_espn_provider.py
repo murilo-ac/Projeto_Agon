@@ -101,6 +101,78 @@ def test_parse_summary():
     assert castillo.stats["totalGoals"] == 1
 
 
+# --- pênaltis ----------------------------------------------------------------------------------
+# Palmeiras 0x1 Fluminense, semifinal da Libertadores (21/10/2026): 2x2 no agregado e PAL 5-3
+# nos pênaltis. Por horas a ESPN marcou `winner` no Fluminense, que venceu o tempo normal.
+PAL, FLU = "2029", "3445"
+
+
+def _flag_errada(competitors: list[dict]) -> None:
+    """Reproduz a flag `winner` como a ESPN mostrou por horas depois do jogo."""
+    for c in competitors:
+        c["winner"] = c["team"]["id"] == FLU
+
+
+def _scoreboard_penaltis() -> dict:
+    payload = load("espn_scoreboard_libertadores_penaltis.json")
+    _flag_errada(payload["events"][0]["competitions"][0]["competitors"])
+    return payload
+
+
+def _summary_penaltis() -> dict:
+    payload = load("espn_summary_libertadores_penaltis.json")
+    _flag_errada(payload["header"]["competitions"][0]["competitors"])
+    return payload
+
+
+def _vencedores(participants) -> dict[str, bool]:
+    return {p.team.external_id: p.is_winner for p in participants}
+
+
+def test_penaltis_decidem_o_vencedor_no_scoreboard():
+    (ev,) = parse_scoreboard(_scoreboard_penaltis(), "soccer")
+    home, away = ev.participants
+    assert (home.team.external_id, home.score) == (PAL, 0)  # perdeu o jogo, passou nos pênaltis
+    assert (away.team.external_id, away.score) == (FLU, 1)
+    assert _vencedores(ev.participants) == {PAL: True, FLU: False}
+    assert ev.extra["penaltis"] == {"home": 5, "away": 3}
+
+
+def test_penaltis_decidem_o_vencedor_no_summary():
+    ev = parse_summary(_summary_penaltis(), "soccer/conmebol.libertadores").event
+    assert _vencedores(ev.participants) == {PAL: True, FLU: False}
+    assert ev.extra["penaltis"] == {"home": 5, "away": 3}  # a ESPN manda 5.0 no summary
+
+
+@pytest.mark.parametrize(
+    "nota",
+    [
+        "2nd Leg - Tied on aggregate - PAL win 5-3 on penalties",
+        "Palmeiras advance 5-3 on penalties",
+    ],
+)
+def test_sem_placar_dos_penaltis_a_nota_decide(nota):
+    payload = _scoreboard_penaltis()
+    comp = payload["events"][0]["competitions"][0]
+    for c in comp["competitors"]:
+        c.pop("shootoutScore")
+    comp["notes"] = [{"type": "event", "headline": nota}]
+    (ev,) = parse_scoreboard(payload, "soccer")
+    assert _vencedores(ev.participants) == {PAL: True, FLU: False}
+    assert "penaltis" not in ev.extra
+
+
+def test_sem_penaltis_vale_a_flag():
+    events = parse_scoreboard(load("espn_scoreboard_bra1.json"), "soccer")
+    for ev in events:
+        comp = next(
+            e for e in load("espn_scoreboard_bra1.json")["events"] if e["id"] == ev.external_id
+        )["competitions"][0]
+        flags = {c["team"]["id"]: bool(c.get("winner")) for c in comp["competitors"]}
+        assert _vencedores(ev.participants) == flags
+        assert "penaltis" not in ev.extra
+
+
 @pytest.mark.parametrize(
     ("type_", "esperado"),
     [
