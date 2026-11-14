@@ -1,0 +1,324 @@
+{
+ "114": {
+  "displayName": "Napoli",
+  "shortDisplayName": "Napoli",
+  "abbreviation": "NAP",
+  "color": "0677d2",
+  "alternateColor": "ffffff"
+ },
+ "11420": {
+  "displayName": "RB Leipzig",
+  "shortDisplayName": "RB Leipzig",
+  "abbreviation": "RBL",
+  "color": "ffffff",
+  "alternateColor": "740c14"
+ },
+ "124": {
+  "displayName": "Borussia Dortmund",
+  "shortDisplayName": "Dortmund",
+  "abbreviation": "DOR",
+  "color": "ffee00",
+  "alternateColor": "272726"
+ },
+ "148": {
+  "displayName": "PSV Eindhoven",
+  "shortDisplayName": "PSV",
+  "abbreviation": "PSV",
+  "color": "ef2f24",
+  "alternateColor": "000000"
+ },
+ "169": {
+  "displayName": "Stade Rennais",
+  "shortDisplayName": "Rennes",
+  "abbreviation": "REN",
+  "color": "ef2f24",
+  "alternateColor": "ffffff"
+ },
+ "175": {
+  "displayName": "Lens",
+  "shortDisplayName": "Lens",
+  "abbreviation": "RCL",
+  "color": "E91514",
+  "alternateColor": "004c37"
+ },
+ "1936": {
+  "displayName": "Internacional",
+  "shortDisplayName": "Internacional",
+  "abbreviation": "INT",
+  "color": null,
+  "alternateColor": null
+ },
+ "2022": {
+  "displayName": "Cruzeiro",
+  "shortDisplayName": "Cruzeiro",
+  "abbreviation": "CRU",
+  "color": "0093EC",
+  "alternateColor": "fafafc"
+ },
+ "2026": {
+  "displayName": "São Paulo",
+  "shortDisplayName": "São Paulo",
+  "abbreviation": "SAO",
+  "color": "C60000",
+  "alternateColor": "000000"
+ },
+ "2029": {
+  "displayName": "Palmeiras",
+  "shortDisplayName": "Palmeiras",
+  "abbreviation": "PAL",
+  "color": "417505",
+  "alternateColor": "fafafc"
+ },
+ "21922": {
+  "displayName": "Sabah FK",
+  "shortDisplayName": "Sabah",
+  "abbreviation": "SAB",
+  "color": "000000",
+  "alternateColor": "FF1493"
+ },
+ "244": {
+  "displayName": "Real Betis",
+  "shortDisplayName": "Betis",
+  "abbreviation": "BET",
+  "color": "288A00",
+  "alternateColor": "0A422D"
+ },
+ "2572": {
+  "displayName": "Como",
+  "shortDisplayName": "Como",
+  "abbreviation": "COMO",
+  "color": "4169E1",
+  "alternateColor": "FFFFFF"
+ },
+ "2671": {
+  "displayName": "Cerro Porteño",
+  "shortDisplayName": "Cerro Porteño",
+  "abbreviation": "CPT",
+  "color": null,
+  "alternateColor": null
+ },
+ "2673": {
+  "displayName": "Sporting Cristal",
+  "shortDisplayName": "Sporting Cristal",
+  "abbreviation": "SCR",
+  "color": null,
+  "alternateColor": null
+ },
+ "2674": {
+  "displayName": "Santos",
+  "shortDisplayName": "Santos",
+  "abbreviation": "SAN",
+  "color": "000000",
+  "alternateColor": "fafafc"
+ },
+ "3445": {
+  "displayName": "Fluminense",
+  "shortDisplayName": "Fluminense",
+  "abbreviation": "FLU",
+  "color": "7E0202",
+  "alternateColor": "417505"
+ },
+ "3454": {
+  "displayName": "Vasco da Gama",
+  "shortDisplayName": "Vasco",
+  "abbreviation": "VAS",
+  "color": "000000",
+  "alternateColor": "fafafc"
+ },
+ "3456": {
+  "displayName": "Coritiba",
+  "shortDisplayName": "Coritiba",
+  "abbreviation": "CFC",
+  "color": null,
+  "alternateColor": null
+ },
+ "3457": {
+  "displayName": "Vitória",
+  "shortDisplayName": "Vitória",
+  "abbreviation": "VIT",
+  "color": null,
+  "alternateColor": null
+ },
+ "3458": {
+  "displayName": "Athletico Paranaense",
+  "shortDisplayName": "Athletico-PR",
+  "abbreviation": "CAP",
+  "color": "D80518",
+  "alternateColor": "C60000"
+ },
+ "359": {
+  "displayName": "Arsenal",
+  "shortDisplayName": "Arsenal",
+  "abbreviation": "ARS",
+  "color": "e20520",
+  "alternateColor": "003399"
+ },
+ "364": {
+  "displayName": "Liverpool",
+  "shortDisplayName": "Liverpool",
+  "abbreviation": "LIV",
+  "color": "d11317",
+  "alternateColor": "FFFFFF"
+ },
+ "382": {
+  "displayName": "Manchester City",
+  "shortDisplayName": "Man City",
+  "abbreviation": "MNC",
+  "color": "99c5ea",
+  "alternateColor": "000000"
+ },
+ "435": {
+  "displayName": "Olympiacos",
+  "shortDisplayName": "Olympiacos",
+  "abbreviation": "OLY",
+  "color": "d01729",
+  "alternateColor": "0202fb"
+ },
+ "436": {
+  "displayName": "Fenerbahce",
+  "shortDisplayName": "Fenerbahce",
+  "abbreviation": "FEN",
+  "color": "ffff00",
+  "alternateColor": "ffffff"
+ },
+ "437": {
+  "displayName": "FC Porto",
+  "shortDisplayName": "FC Porto",
+  "abbreviation": "FCP",
+  "color": "0000dd",
+  "alternateColor": "ffa000"
+ },
+ "4815": {
+  "displayName": "Atlético Junior",
+  "shortDisplayName": "Atl. Junior",
+  "abbreviation": "JUN",
+  "color": null,
+  "alternateColor": null
+ },
+ "4816": {
+  "displayName": "Liga de Quito",
+  "shortDisplayName": "LDU",
+  "abbreviation": "LDU",
+  "color": null,
+  "alternateColor": null
+ },
+ "4936": {
+  "displayName": "Remo",
+  "shortDisplayName": "Remo",
+  "abbreviation": "REMO",
+  "color": null,
+  "alternateColor": null
+ },
+ "494": {
+  "displayName": "Slavia Prague",
+  "shortDisplayName": "Slavia Prague",
+  "abbreviation": "SLP",
+  "color": "dc1f26",
+  "alternateColor": "81c0ff"
+ },
+ "510": {
+  "displayName": "Viking FK",
+  "shortDisplayName": "Viking FK",
+  "abbreviation": "VFK",
+  "color": "000080",
+  "alternateColor": "ffffff"
+ },
+ "570": {
+  "displayName": "Club Brugge",
+  "shortDisplayName": "Club Brugge",
+  "abbreviation": "BRU",
+  "color": "0081ff",
+  "alternateColor": "ffffff"
+ },
+ "6079": {
+  "displayName": "Red Bull Bragantino",
+  "shortDisplayName": "Bragantino",
+  "abbreviation": "BRA",
+  "color": null,
+  "alternateColor": null
+ },
+ "6086": {
+  "displayName": "Botafogo",
+  "shortDisplayName": "Botafogo",
+  "abbreviation": "BOT",
+  "color": "000000",
+  "alternateColor": "fafafc"
+ },
+ "6272": {
+  "displayName": "Fortaleza",
+  "shortDisplayName": "Fortaleza",
+  "abbreviation": "FOR",
+  "color": null,
+  "alternateColor": null
+ },
+ "6273": {
+  "displayName": "Grêmio",
+  "shortDisplayName": "Grêmio",
+  "abbreviation": "GRE",
+  "color": "0093EC",
+  "alternateColor": "000000"
+ },
+ "7632": {
+  "displayName": "Atlético-MG",
+  "shortDisplayName": "Atlético-MG",
+  "abbreviation": "CAM",
+  "color": "000000",
+  "alternateColor": "fafafc"
+ },
+ "8": {
+  "displayName": "Estudiantes de La Plata",
+  "shortDisplayName": "Estudiantes",
+  "abbreviation": "EST",
+  "color": null,
+  "alternateColor": null
+ },
+ "819": {
+  "displayName": "Flamengo",
+  "shortDisplayName": "Flamengo",
+  "abbreviation": "FLA",
+  "color": "C60000",
+  "alternateColor": "000000"
+ },
+ "86": {
+  "displayName": "Real Madrid",
+  "shortDisplayName": "Real Madrid",
+  "abbreviation": "RMA",
+  "color": "ffffff",
+  "alternateColor": "1B4D3E"
+ },
+ "874": {
+  "displayName": "Corinthians",
+  "shortDisplayName": "Corinthians",
+  "abbreviation": "COR",
+  "color": "000000",
+  "alternateColor": "fafafc"
+ },
+ "887": {
+  "displayName": "AEK Athens",
+  "shortDisplayName": "AEK Athens",
+  "abbreviation": "AEK",
+  "color": "ffff00",
+  "alternateColor": "000000"
+ },
+ "9169": {
+  "displayName": "Mirassol",
+  "shortDisplayName": "Mirassol",
+  "abbreviation": "MIR",
+  "color": null,
+  "alternateColor": null
+ },
+ "9318": {
+  "displayName": "Chapecoense",
+  "shortDisplayName": "Chapecoense",
+  "abbreviation": "CHA",
+  "color": null,
+  "alternateColor": null
+ },
+ "9967": {
+  "displayName": "Bahia",
+  "shortDisplayName": "Bahia",
+  "abbreviation": "BAH",
+  "color": null,
+  "alternateColor": null
+ }
+}

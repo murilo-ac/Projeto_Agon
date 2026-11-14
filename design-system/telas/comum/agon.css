@@ -1,0 +1,129 @@
+/* Ágon: tokens da identidade (design-system/design-system/IDENTIDADE_VISUAL.md, seções 4 e 5).
+   Comum às três opções de mockup. Cada opção monta a própria composição por cima disto.
+   Fontes: carregar na página
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@58..140,800..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap"> */
+
+:root {
+  /* cores da marca */
+  --egeu: #0b5e75;
+  --sinal: #f0602a;
+  --tinta: #101e23;
+  --marmore: #f5f4f0;
+
+  /* papéis de interface, modo claro */
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface-alt: #ebeae6;
+  --border: #d5d3cc;
+  --text: #101e23;
+  --text-muted: #4a585d;
+  --primary: #0b5e75;
+  --on-primary: #ffffff;
+  --accent: #bb410e;          /* texto laranja sobre fundo claro (4,92:1 no Mármore) */
+  --on-accent: #ffffff;
+  --link: #16728d;
+  --focus: #0b5e75;
+  --success: #08795e;
+  --warning: #8f5a06;
+  --danger: #b4312b;
+
+  /* campos grandes de cor */
+  --live: #f0602a;            /* ao vivo: fundo Sinal */
+  --on-live: #101e23;         /* texto Tinta sobre Sinal (5,20:1) */
+  --band: #0b5e75;            /* faixas de estrutura em Egeu */
+  --on-band: #f5f4f0;         /* 6,64:1 */
+  --favorite: #f0602a;
+
+  /* gráficos (validados com o validador da skill dataviz) */
+  --chart-home: #0686a8;
+  --chart-away: #cb4811;
+
+  /* tipografia */
+  --font-display: "Anybody", "Arial Narrow", sans-serif;
+  --font-text: "IBM Plex Sans", system-ui, sans-serif;
+  --width-placar: 58%;
+  --width-titulo: 72%;
+  --width-logotipo: 140%;
+
+  /* escala (celular) */
+  --fs-placar-principal: 72px;
+  --fs-placar-destaque: 56px;
+  --fs-titulo-tela: 40px;
+  --fs-titulo-area: 28px;
+  --fs-time-destaque: 22px;
+  --fs-rotulo: 18px;
+  --fs-placar-lista: 19px;
+  --fs-corpo: 16px;
+  --fs-lista: 15px;
+  --fs-pequeno: 12px;
+
+  /* logo */
+  --logo-chave: #0b5e75;
+  --logo-campeao: #f0602a;
+  --logo-nome: #101e23;
+
+  color-scheme: light;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --fs-placar-principal: 120px;
+    --fs-placar-destaque: 64px;
+    --fs-titulo-tela: 56px;
+    --fs-titulo-area: 34px;
+    --fs-time-destaque: 26px;
+    --fs-rotulo: 20px;
+    --fs-placar-lista: 20px;
+    --fs-corpo: 17px;
+    --fs-lista: 16px;
+    --fs-pequeno: 13px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #061115; --surface: #101e23; --surface-alt: #202e33; --border: #35444a;
+    --text: #f1f4f5; --text-muted: #99a3a8; --primary: #52a6c3; --on-primary: #061115;
+    --accent: #f0602a; --on-accent: #061115; --link: #52a6c3; --focus: #52a6c3;
+    --success: #3fc6a0; --warning: #e59b37; --danger: #fe8477;
+    --on-live: #061115; --on-band: #f1f4f5;
+    --chart-home: #2a8fb0; --chart-away: #f0602a;
+    --logo-chave: #52a6c3; --logo-nome: #f1f4f5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #061115; --surface: #101e23; --surface-alt: #202e33; --border: #35444a;
+  --text: #f1f4f5; --text-muted: #99a3a8; --primary: #52a6c3; --on-primary: #061115;
+  --accent: #f0602a; --on-accent: #061115; --link: #52a6c3; --focus: #52a6c3;
+  --success: #3fc6a0; --warning: #e59b37; --danger: #fe8477;
+  --on-live: #061115; --on-band: #f1f4f5;
+  --chart-home: #2a8fb0; --chart-away: #f0602a;
+  --logo-chave: #52a6c3; --logo-nome: #f1f4f5;
+  color-scheme: dark;
+}
+
+/* base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font-text); font-size: var(--fs-corpo); line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+::selection { background: var(--sinal); color: var(--tinta); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+a { color: inherit; text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+
+/* as três combinações permitidas da Anybody */
+.f-placar { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-variant-numeric: tabular-nums; }
+.f-titulo { font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; }
+.f-logotipo { font-family: var(--font-display); font-stretch: var(--width-logotipo); font-weight: 800; }
+
+/* escudos: <i class="esc esc-2029" aria-hidden="true"></i>; o tamanho vem do font-size ou de width/height */
+.esc { display: inline-block; width: 1em; height: 1em; background: center / contain no-repeat; flex: none; vertical-align: middle; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

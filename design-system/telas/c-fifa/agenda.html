@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Ágon · Agenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@58..140,800..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../comum/agon.css">
+<link rel="stylesheet" href="../comum/escudos.css">
+<style>
+/* ===== Ágon · direção C: menu de console (tema único escuro: a cena do estádio à noite) ===== */
+:root, :root[data-theme] {
+  color-scheme: dark;
+  --cena: #061115;
+  --grama-a: #0b2c1e;
+  --grama-b: #0f3727;
+  --gelo: #e3eff4;
+  --gelo-vidro: rgba(227, 239, 244, .96);
+  --gelo-fundo: #d2e3ea;
+  --gelo-fio: #b7ccd5;
+  --tinta-suave: #3b4f57;
+  --cena-texto: #f1f4f5;
+  --cena-suave: #a8b5ba;
+  --egeu-claro: #52a6c3;
+  --sinal-texto: #a3380b;
+  --vidro-escuro: rgba(8, 22, 27, .86);
+  --chanfro: 20px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --focus: #52a6c3;
+  --bg: #061115;
+  --text: #f1f4f5;
+  --logo-chave: #52a6c3; --logo-campeao: #f0602a; --logo-nome: #f1f4f5;
+}
+
+html { background: var(--cena); scrollbar-color: #2c4a54 var(--cena); }
+body {
+  position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip;
+  background: transparent; color: var(--cena-texto);
+}
+/* a cena: gramado com faixas de corte, linhas do campo, refletores e vinheta (só CSS) */
+body::before {
+  content: ""; position: fixed; inset: -8px; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 42% at 14% -6%, rgba(214, 236, 255, .22), transparent 72%),
+    radial-gradient(ellipse 55% 42% at 86% -6%, rgba(214, 236, 255, .18), transparent 72%),
+    linear-gradient(180deg, #061115 0%, rgba(6, 17, 21, .9) 18%, rgba(6, 17, 21, .3) 52%, rgba(6, 17, 21, .78) 100%),
+    radial-gradient(circle at 50% 64%, transparent 0 158px, rgba(241, 244, 245, .09) 159px 161px, transparent 162px),
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(241, 244, 245, .09) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(180deg, transparent 30%, rgba(241, 244, 245, .07) 30% calc(30% + 2px), transparent calc(30% + 2px)),
+    repeating-linear-gradient(90deg, var(--grama-a) 0 110px, var(--grama-b) 110px 220px);
+  filter: blur(2px);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 85% 75% at 50% 42%, transparent 45%, rgba(0, 0, 0, .62) 100%);
+}
+::selection { background: var(--sinal); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+a { color: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.ico { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.palco { max-width: 1360px; margin: 0 auto; padding: 0 16px 40px; }
+@media (min-width: 960px) { .palco { padding: 0 40px 112px; } }
+
+/* ----- topo: marca, abas inclinadas, HUD ----- */
+.topo { position: relative; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 28px; padding: 14px 0 6px; }
+.marca { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.marca svg { display: block; height: 26px; width: auto; }
+.estilhacos { position: absolute; inset: 0 -16px auto auto; width: 62%; height: 120px; pointer-events: none; z-index: -1; overflow: hidden; }
+.estilhacos i { position: absolute; display: block; background: var(--sinal); }
+.estilhacos i:nth-child(1) { right: 6%; top: -30px; width: 260px; height: 92px; clip-path: polygon(38% 0, 100% 0, 62% 100%, 54% 100%); opacity: .9; }
+.estilhacos i:nth-child(2) { right: 30%; top: -10px; width: 160px; height: 70px; clip-path: polygon(80% 0, 100% 0, 18% 100%, 12% 100%); opacity: .55; }
+.estilhacos i:nth-child(3) { right: 0; top: 34px; width: 120px; height: 60px; background: var(--egeu); clip-path: polygon(100% 0, 100% 100%, 0 100%); opacity: .85; }
+@media (min-width: 960px) {
+  .topo { grid-template-columns: auto minmax(0, 1fr) auto; padding: 22px 0 10px; }
+  .estilhacos { width: 46%; right: -40px; }
+}
+
+.abas { grid-column: 1 / -1; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 4px 22px; }
+.abas::-webkit-scrollbar { display: none; }
+@media (min-width: 960px) { .abas { grid-column: auto; margin: 0; padding: 4px 10px; } }
+.aba {
+  position: relative; flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px;
+  transform: skewX(-14deg); background: rgba(6, 17, 21, .62); border: 1px solid rgba(241, 244, 245, .2);
+  color: var(--cena-texto); text-decoration: none; transition: background-color .2s var(--ease), border-color .2s var(--ease);
+}
+.aba > * { transform: skewX(14deg); }
+.aba-txt { font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; font-size: 20px; line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+.aba:hover { background: rgba(11, 94, 117, .55); border-color: var(--egeu-claro); }
+.aba[aria-current] { background: var(--egeu); border-color: var(--egeu); color: #fff; }
+.aba-n { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; background: var(--sinal); color: var(--tinta); font-size: 13px; font-weight: 600; }
+
+.hud { grid-column: 1 / -1; display: flex; align-items: stretch; gap: 8px; min-width: 0; }
+@media (min-width: 960px) { .hud { grid-column: auto; } }
+.hud-favs { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.hud-fav {
+  display: grid; place-items: center; width: 44px; height: 44px; background: var(--gelo); text-decoration: none;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: transform .2s var(--ease); --focus: var(--egeu);
+}
+.hud-fav:focus-visible { outline-offset: -4px; }
+.hud-fav .esc { font-size: 30px; }
+.hud-fav:hover { transform: translateY(-2px); }
+.hud-prox {
+  flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 18px 0 20px;
+  transform: skewX(-14deg); margin-left: 6px; background: var(--vidro-escuro); border: 1px solid rgba(241, 244, 245, .18);
+  text-decoration: none; transition: border-color .2s var(--ease), background-color .2s var(--ease);
+}
+.hud-prox > * { transform: skewX(14deg); }
+.hud-prox:hover { border-color: var(--sinal); background: rgba(16, 30, 35, .95); }
+.hud-rot { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--cena-suave); white-space: nowrap; }
+.hud-jogo { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.hud-jogo .esc { font-size: 20px; }
+.hud .ct { display: none; }
+@media (max-width: 599px) { .hud .lg { display: none; } .hud .ct { display: inline; } }
+.hud-conta { margin-left: auto; font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 22px; line-height: 1; color: var(--sinal); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 420px) { .hud-rot { display: none; } }
+
+/* ----- painéis (gelo translúcido, um canto chanfrado) ----- */
+.painel {
+  position: relative; background: var(--gelo-vidro); color: var(--tinta); padding: 16px 16px 18px; --focus: var(--egeu);
+  clip-path: polygon(0 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% 100%, 0 100%);
+}
+@media (min-width: 960px) { .painel { padding: 20px 22px 22px; } }
+.painel-cabeca { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin: 0 0 14px; padding-right: calc(var(--chanfro) - 4px); }
+.titulo-area { margin: 0; font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; font-size: var(--fs-rotulo); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.painel-meta { font-size: var(--fs-pequeno); font-weight: 500; color: var(--tinta-suave); }
+
+/* placas claras atrás de escudos em fundos escuros ou coloridos */
+.placa { display: inline-grid; place-items: center; flex: none; background: var(--gelo); clip-path: polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%); }
+.esc-vazio { display: inline-block; width: 1em; height: 1em; flex: none; border-radius: 50%; border: 2px dashed var(--gelo-fio); }
+
+/* ----- linhas em seta (chevron) ----- */
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.linha {
+  --corte: 16px; position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 4px 12px;
+  min-height: 64px; padding: 8px calc(var(--corte) + 12px) 8px 12px; background: var(--gelo-fundo); color: var(--tinta); text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - var(--corte)) 0, 100% 50%, calc(100% - var(--corte)) 100%, 0 100%);
+  transition: background-color .18s var(--ease), color .18s var(--ease), transform .28s var(--ease);
+}
+a.linha:hover, a.linha:focus-visible { background: var(--egeu); color: #fff; transform: translateX(4px); }
+a.linha:focus-visible { outline: 2px solid #fff; outline-offset: -5px; }
+.l-estado { display: grid; gap: 2px; font-size: var(--fs-pequeno); font-weight: 500; line-height: 1.3; }
+.l-hora { font-size: 15px; font-weight: 600; }
+.l-caps { text-transform: uppercase; letter-spacing: .06em; }
+.l-suave { color: var(--tinta-suave); }
+a.linha:hover .l-suave, a.linha:focus-visible .l-suave, a.linha:hover .perde, a.linha:focus-visible .perde { color: #cfe4ec; }
+.l-times { display: grid; gap: 4px; min-width: 0; }
+.l-time { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; font-size: var(--fs-lista); line-height: 1.3; }
+.l-time .esc, .l-time .esc-vazio { font-size: 22px; }
+.l-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.l-gols { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: var(--fs-placar-lista); line-height: 1; min-width: 1ch; text-align: right; }
+.vence { font-weight: 600; }
+.perde { color: var(--tinta-suave); }
+.l-lado { display: flex; align-items: center; gap: 6px; font-size: var(--fs-pequeno); font-weight: 500; }
+.estrela { width: 18px; height: 18px; fill: var(--sinal-texto); stroke: none; }
+a.linha:hover .estrela, a.linha:focus-visible .estrela { fill: #fff; }
+
+/* ----- anel do minuto (assinatura) ----- */
+.anel { position: relative; display: inline-grid; place-items: center; flex: none; width: var(--d, 48px); height: var(--d, 48px); }
+.anel svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.anel circle { fill: none; stroke-width: 4; }
+.anel-trilha { stroke: currentColor; opacity: .22; }
+.anel-prog { stroke: currentColor; stroke-dasharray: 90; transition: stroke-dashoffset 1.2s var(--ease); }
+.anel-txt { position: relative; font-size: 13px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* ----- rodapé: nota do mockup e barra de dicas de teclado ----- */
+.nota { margin: 28px 0 0; font-size: var(--fs-pequeno); color: var(--cena-suave); }
+.dicas { display: none; }
+@media (min-width: 960px) and (hover: hover) {
+  .dicas {
+    position: fixed; z-index: 5; inset: auto 0 0 0; display: flex; justify-content: flex-end; gap: 28px; align-items: center;
+    min-height: 56px; padding: 8px 40px; background: linear-gradient(180deg, rgba(6, 17, 21, .78), rgba(6, 17, 21, .96));
+    border-top: 1px solid rgba(82, 166, 195, .35); font-size: 14px; color: var(--cena-texto);
+  }
+  .dicas ul { display: flex; gap: 28px; margin: 0; padding: 0; list-style: none; }
+  .dicas li { display: flex; align-items: center; gap: 8px; }
+  .dicas-nome { margin-right: auto; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--cena-suave); }
+}
+.tecla {
+  display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 15px;
+  background: radial-gradient(circle at 35% 28%, #3d5058, #142328 70%); border: 1px solid rgba(241, 244, 245, .35);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .18);
+  font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff;
+}
+.tecla .ico { width: 16px; height: 16px; stroke-width: 2.5; }
+.tecla-sinal { border-color: var(--sinal); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anel-prog { transition: none; }
+}
+
+/* ===== tela ===== */
+
+/* faixa do dia (Egeu) */
+.dia { position: relative; margin: 8px -16px 0; padding: 12px 16px 10px; background: var(--band); color: var(--on-band); --focus: #fff; }
+@media (min-width: 960px) { .dia { margin: 18px 0 0; padding: 18px 56px 16px 24px; clip-path: polygon(0 0, 100% 0, calc(100% - 36px) 100%, 0 100%); } }
+.dia-cabeca { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; }
+.dia-titulo { margin: 0; font-size: var(--fs-titulo-area); line-height: 1.05; }
+.atalhos-dia { display: flex; gap: 6px; }
+.atalho {
+  min-height: 44px; padding: 0 14px; background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .45);
+  font-size: 14px; font-weight: 500; cursor: pointer; transform: skewX(-12deg); transition: background-color .2s var(--ease);
+}
+.atalho > span { display: inline-block; transform: skewX(12deg); }
+.atalho:hover { background: rgba(255, 255, 255, .14); }
+.atalho[aria-pressed="true"] { background: #fff; color: var(--egeu); border-color: #fff; font-weight: 600; }
+.dias { display: flex; gap: 6px; margin: 10px -16px 0; padding: 4px 22px 4px; overflow-x: auto; scrollbar-width: none; }
+.dias::-webkit-scrollbar { display: none; }
+@media (min-width: 960px) { .dias { margin: 16px 0 0; padding: 4px 8px; } }
+.dia-aba {
+  flex: none; display: grid; justify-items: center; gap: 1px; min-width: 76px; min-height: 64px; padding: 6px 10px;
+  transform: skewX(-12deg); background: rgba(6, 17, 21, .32); color: #fff; border: 1px solid rgba(255, 255, 255, .28); cursor: pointer;
+  transition: background-color .2s var(--ease), transform .25s var(--ease);
+}
+.dia-aba > span { transform: skewX(12deg); }
+.dia-aba:hover { background: rgba(6, 17, 21, .55); }
+.d-sem { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+.d-num { font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; font-size: 22px; line-height: 1; }
+.d-qtd { font-size: 12px; font-weight: 500; }
+.dia-aba[aria-selected="true"] { background: var(--sinal); border-color: var(--sinal); color: var(--tinta); --focus: #fff; }
+@media (min-width: 960px) { .dia-aba { min-width: 92px; } }
+
+/* filtros */
+.barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-top: 14px; }
+.filtros { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px; }
+.filtros::-webkit-scrollbar { display: none; }
+@media (min-width: 960px) { .filtros { margin: 0; padding: 2px; } }
+.filtro {
+  flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px 0 14px; cursor: pointer;
+  background: rgba(6, 17, 21, .7); color: var(--cena-texto); border: 0; font-size: 14px; font-weight: 500;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+  transition: background-color .2s var(--ease), color .2s var(--ease);
+}
+.filtro b { font-weight: 600; color: var(--cena-suave); }
+.filtro:hover { background: rgba(11, 94, 117, .7); }
+.filtro[aria-pressed="true"] { background: var(--gelo); color: var(--tinta); }
+.filtro[aria-pressed="true"] b { color: var(--tinta-suave); }
+.filtro:focus-visible { outline-offset: -4px; }
+
+/* mosaico */
+.mosaico { display: grid; gap: 14px; margin-top: 14px; }
+.coluna { display: contents; }
+.t-fav { order: 1; } .t-fav .painel-cabeca { margin-bottom: 8px; } .t-vivo { order: 2; } .t-bra { order: 3; } .t-ucl { order: 4; } .t-uel { order: 5; }
+@media (min-width: 960px) {
+  .mosaico { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px; align-items: start; margin-top: 18px; }
+  .coluna { display: grid; gap: 20px; }
+}
+.mosaico[data-filtro="bra"] [data-comp]:not([data-comp="bra"]),
+.mosaico[data-filtro="ucl"] [data-comp]:not([data-comp="ucl"]),
+.mosaico[data-filtro="uel"] [data-comp]:not([data-comp="uel"]) { display: none; }
+.troca-dir { animation: entraDir .42s var(--ease); }
+.troca-esq { animation: entraEsq .42s var(--ease); }
+@keyframes entraDir { from { transform: translateX(28px); opacity: .35; } }
+@keyframes entraEsq { from { transform: translateX(-28px); opacity: .35; } }
+
+/* tile do favorito (grande) */
+.t-fav { --chanfro: 34px; padding-bottom: 0; overflow: hidden; }
+.fav-estilhaco { position: absolute; right: 0; top: 0; width: 190px; height: 64px; pointer-events: none; }
+.fav-estilhaco i { position: absolute; display: block; background: var(--sinal); }
+.fav-estilhaco i:nth-child(1) { inset: 0; clip-path: polygon(52% 0, 84% 0, 34% 100%, 22% 100%); }
+.fav-estilhaco i:nth-child(2) { inset: 0; clip-path: polygon(92% 0, 100% 0, 100% 34%, 76% 78%); opacity: .55; }
+.fav-cabeca { position: relative; justify-content: flex-start; padding-right: 0; }
+@media (min-width: 960px) { .fav-cabeca { padding-right: 170px; } }
+.fav-meta { display: inline-flex; align-items: center; gap: 6px; }
+.fav-meta .estrela { width: 16px; height: 16px; }
+.fav-jogo {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px;
+  margin: 0; padding: 2px 0 0; text-decoration: none; color: inherit;
+}
+.fav-jogo:focus-visible { outline-offset: 4px; }
+.fav-time { display: grid; justify-items: center; gap: 8px; text-align: center; }
+.fav-time .esc { font-size: 56px; transition: transform .3s var(--ease); }
+.fav-nome { font-size: var(--fs-time-destaque); line-height: 1.1; }
+.fav-hora { font-size: var(--fs-placar-destaque); line-height: .9; }
+.fav-jogo:hover .esc { transform: translateY(-3px); }
+.fav-jogo:hover .fav-nome { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.fav-rodape { display: grid; gap: 0; margin: 10px -16px 0; }
+.fav-local { margin: 0; padding: 0 16px 10px; text-align: center; font-size: 14px; color: var(--tinta-suave); }
+.fav-conta {
+  display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 64px; padding: 10px 20px;
+  background: var(--tinta); color: var(--cena-texto);
+}
+.fav-conta span { font-size: 14px; font-weight: 500; }
+.fav-conta strong { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: var(--fs-placar-destaque); line-height: .9; color: var(--sinal); }
+.fav-palm { order: 2; display: flex; align-items: center; gap: 10px; margin: 0; padding: 12px 16px 14px; background: var(--gelo-fundo); font-size: 14px; line-height: 1.4; }
+.fav-palm .esc { font-size: 24px; }
+.fav-palm a { font-weight: 600; color: var(--egeu); text-decoration: underline; text-decoration-thickness: 1px; }
+.fav-palm a:hover { text-decoration-thickness: 2px; }
+@media (min-width: 960px) {
+  .fav-jogo { padding: 18px 20px 6px; gap: 20px; }
+  .fav-time .esc { font-size: 104px; }
+  .fav-rodape { grid-template-columns: minmax(0, 1fr) auto; align-items: stretch; margin: 22px -22px 0; }
+  .fav-local { grid-column: 1 / -1; padding: 0 22px 14px; }
+  .fav-palm { padding: 12px 22px; }
+  .fav-conta { justify-content: flex-start; padding: 10px 28px 10px 44px; clip-path: polygon(24px 0, 100% 0, 100% 100%, 0 100%); }
+  .fav-palm { grid-row: 2; grid-column: 1; }
+}
+
+/* tile ao vivo: a área mais forte (fundo Sinal, texto Tinta) */
+.t-vivo { background: var(--live); color: var(--tinta); --focus: var(--tinta); scroll-margin-top: 12px; }
+.t-vivo .painel-meta { color: var(--tinta); }
+.vivo-lista { list-style: none; margin: 0 -6px; padding: 0; }
+.vivo-lista li + li { border-top: 1px solid rgba(16, 30, 35, .24); }
+.vivo-linha {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 30px auto 30px minmax(0, 1fr); align-items: center; gap: 6px 8px;
+  min-height: 68px; padding: 8px 6px; color: inherit; text-decoration: none; transition: background-color .2s var(--ease);
+}
+.vivo-linha:hover { background: rgba(255, 255, 255, .2); }
+.vivo-linha:focus-visible { outline-offset: -3px; }
+.v-time { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 14px; font-weight: 600; line-height: 1.2; }
+.v-time .esc { font-size: 26px; }
+.v-casa { justify-content: flex-end; text-align: right; }
+.v-nome { overflow-wrap: break-word; min-width: 0; }
+@media (max-width: 599px) { .v-time { flex-direction: column; align-items: flex-start; gap: 4px; } .v-casa { flex-direction: column-reverse; align-items: flex-end; } .fav-estilhaco { width: 110px; } .fav-estilhaco i:nth-child(2) { display: none; } }
+.v-gols { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 34px; line-height: 1; text-align: center; font-variant-numeric: tabular-nums; }
+.t-vivo .anel-trilha { opacity: .25; }
+.gol-tag { grid-column: 1 / -1; justify-self: center; display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; background: var(--tinta); color: var(--sinal); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.gol-tag .ico { width: 16px; height: 16px; }
+.gol-tag[hidden] { display: none; }
+.vivo-linha.gol { animation: golPisca 1.6s var(--ease) 1; }
+.v-gols.entra { animation: placarEntra .7s var(--ease) 1; }
+@keyframes golPisca { 0%, 18% { background: var(--tinta); color: var(--sinal); } 100% { background: transparent; } }
+@keyframes placarEntra { from { transform: translateY(-55%) scale(1.25); opacity: 0; } }
+.vivo-rodape { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid rgba(16, 30, 35, .24); font-size: var(--fs-pequeno); font-weight: 500; }
+@media (min-width: 960px) {
+  .v-time { font-size: 15px; }
+  .vivo-linha { grid-template-columns: minmax(0, 1fr) 34px auto 34px minmax(0, 1fr); gap: 6px 12px; }
+}
+
+/* listas por competição */
+.t-bra .linha-fav { background: #f3d9cd; }
+.t-bra a.linha-fav:hover, .t-bra a.linha-fav:focus-visible { background: var(--egeu); }
+
+/* dia sem dados no mockup */
+.vazio { margin-top: 14px; padding: 28px 22px; }
+.vazio p { margin: 0; max-width: 60ch; }
+.vazio .titulo-area { font-size: var(--fs-titulo-area); margin-bottom: 8px; text-transform: none; letter-spacing: 0; }
+.vazio[hidden], .mosaico[hidden], .barra[hidden] { display: none; }
+
+</style>
+</head>
+
+<body>
+<div class="palco">
+<header class="topo">
+  <div class="estilhacos" aria-hidden="true"><i></i><i></i><i></i></div>
+  <a class="marca" href="agenda.html" aria-label="Ágon, ir para a agenda"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-162.602 -22.519 742.75 158.075"><g id="symbol"><path fill="var(--logo-chave, #0b5e75)" d="M-144.063 112.5L-162.602 112.5L-133.434 54.15L-133.43 54.157L-109.107 5.509L-84.782 54.157L-84.779 54.15L-55.611 112.5L-74.15 112.5L-84.779 91.243L-95.407 112.5L-122.806 112.5L-133.434 91.243ZM-124.16 72.694L-109.107 102.794L-94.053 72.694L-109.107 42.588L-124.16 72.694Z"/><path fill="var(--logo-campeao, #f0602a)" d="M-102.469 1.943L-94.728 -13.54L-81.467 -13.54L-89.208 1.943Z"/></g><g id="wordmark" fill="var(--logo-nome, currentColor)"><path d="M224.593 135.556Q203.185 135.556 185.444 128Q167.704 120.444 164.519 102.667L198.889 102.667Q199.778 106.519 203.407 109.296Q207.037 112.074 213 113.444Q218.963 114.815 226.222 114.815Q238.667 114.815 246.63 110.519Q254.593 106.222 254.593 95.556L254.593 91.037L253.259 91.778Q237.185 100.667 214.148 100.667Q191.333 100.667 176.37 89.63Q161.407 78.593 161.407 56.222Q161.407 33.926 176.074 23.074Q190.741 12.222 213.556 12.222Q236.593 12.222 252.889 21.185Q256.222 23.037 258.815 24.667L264.37 13.037L289.852 13.037L289.852 90.074Q289.852 107.259 280 117.259Q270.148 127.259 257.259 131.407Q244.37 135.556 224.593 135.556ZM376 100.593Q347.926 100.593 328.815 89.333Q309.704 78.074 309.704 55.852Q309.704 33.556 328.815 22.741Q347.926 11.926 376 11.926Q404.148 11.926 423.222 22.741Q442.296 33.556 442.296 55.852Q442.296 78.074 423.222 89.333Q404.148 100.593 376 100.593ZM6.889 100L57.778 -0.148L104.889 -0.148L155.704 100L118.593 100L108.519 78.593L54.148 78.593L43.926 100ZM460.222 100L460.222 13.037L487.852 13.037L494.222 25.926Q509.852 12.148 534.889 12.148Q556.296 12.148 568.222 22.889Q580.148 33.63 580.148 56.296L580.148 100L544.963 100L544.963 58.593Q544.963 45.778 539.407 40.519Q533.852 35.259 523.037 35.259Q511.259 35.259 502.444 43.333Q497.556 47.778 495.333 53.407L495.333 100ZM376 78.148Q389.185 78.148 398.185 72.963Q407.185 67.778 407.185 56.148Q407.185 44.444 398.185 39.444Q389.185 34.444 376 34.444Q362.889 34.444 353.852 39.444Q344.815 44.444 344.815 56.148Q344.815 67.778 353.852 72.963Q362.889 78.148 376 78.148ZM254.593 51.481L254.444 51.63Q254.444 45.778 245.259 40.519Q236.074 35.259 224.444 35.259Q211.704 35.259 204.444 40.556Q197.185 45.852 197.185 56.444Q197.185 67.111 204.444 72.407Q211.704 77.704 224.444 77.704Q236.074 77.704 245.259 72.333Q254.444 66.963 254.444 61.185L254.593 61.259ZM62.889 56.667L99.926 56.667L81.481 18L81.333 18ZM60.593 -3.704L77.852 -22.519L101.407 -22.519L76.074 -3.704Z"/></g></svg></a>
+  <nav class="abas" aria-label="Principal">
+    <a class="aba" href="agenda.html" aria-current="page"><span class="aba-txt">Agenda</span></a>
+    <a class="aba" href="time.html"><span class="aba-txt">Times</span></a>
+    <a class="aba" href="agenda.html#ao-vivo"><span class="aba-txt">Ao vivo</span><span class="aba-n" aria-label="7 jogos">7</span></a>
+  </nav>
+  <aside class="hud" aria-label="Seus favoritos">
+    <ul class="hud-favs">
+      <li><a class="hud-fav" href="agenda.html" title="Flamengo"><i class="esc esc-819 " aria-hidden="true"></i><span class="sr">Flamengo</span></a></li>
+      <li><a class="hud-fav" href="time.html" title="Palmeiras"><i class="esc esc-2029 " aria-hidden="true"></i><span class="sr">Palmeiras</span></a></li>
+    </ul>
+    <a class="hud-prox" href="jogo.html" aria-label="Próximo jogo de favorito: Flamengo contra Grêmio, hoje às 19:30, começa em 1 hora e 20 minutos">
+      <span class="hud-rot">Próximo</span>
+      <span class="hud-jogo"><i class="esc esc-819 " aria-hidden="true"></i><span class="lg">Flamengo × Grêmio · 19:30</span><span class="ct">FLA × GRE</span></span>
+      <span class="hud-conta">em 1h20</span>
+    </a>
+  </aside>
+</header>
+
+<main id="conteudo">
+  <section class="dia" aria-labelledby="dia-titulo">
+    <div class="dia-cabeca">
+      <h1 class="dia-titulo f-titulo" id="dia-titulo" aria-live="polite">Quarta, 4 de novembro</h1>
+      <div class="atalhos-dia" role="group" aria-label="Ir para o dia">
+        <button class="atalho" type="button" data-ir="2" aria-pressed="false"><span>Ontem</span></button>
+        <button class="atalho" type="button" data-ir="3" aria-pressed="true"><span>Hoje</span></button>
+        <button class="atalho" type="button" data-ir="4" aria-pressed="false"><span>Amanhã</span></button>
+      </div>
+    </div>
+    <div class="dias" role="tablist" aria-label="Dias da semana">
+      <button class="dia-aba" role="tab" type="button" id="dia-1" aria-selected="false" tabindex="-1" data-i="0" aria-label="Domingo, 1 de novembro, 2 jogos"><span class="d-sem">dom</span><span class="d-num">1</span><span class="d-qtd">2 jogos</span></button><button class="dia-aba" role="tab" type="button" id="dia-2" aria-selected="false" tabindex="-1" data-i="1" aria-label="Segunda, 2 de novembro, 1 jogo"><span class="d-sem">seg</span><span class="d-num">2</span><span class="d-qtd">1 jogo</span></button><button class="dia-aba" role="tab" type="button" id="dia-3" aria-selected="false" tabindex="-1" data-i="2" aria-label="Terça, 3 de novembro, 11 jogos"><span class="d-sem">ter</span><span class="d-num">3</span><span class="d-qtd">11 jogos</span></button><button class="dia-aba" role="tab" type="button" id="dia-4" aria-selected="true" tabindex="0" data-i="3" aria-label="Quarta, 4 de novembro, 14 jogos"><span class="d-sem">qua</span><span class="d-num">4</span><span class="d-qtd">14 jogos</span></button><button class="dia-aba" role="tab" type="button" id="dia-5" aria-selected="false" tabindex="-1" data-i="4" aria-label="Quinta, 5 de novembro, 37 jogos"><span class="d-sem">qui</span><span class="d-num">5</span><span class="d-qtd">37 jogos</span></button><button class="dia-aba" role="tab" type="button" id="dia-6" aria-selected="false" tabindex="-1" data-i="5" aria-label="Sexta, 6 de novembro, 1 jogo"><span class="d-sem">sex</span><span class="d-num">6</span><span class="d-qtd">1 jogo</span></button><button class="dia-aba" role="tab" type="button" id="dia-7" aria-selected="false" tabindex="-1" data-i="6" aria-label="Sábado, 7 de novembro, 1 jogo"><span class="d-sem">sáb</span><span class="d-num">7</span><span class="d-qtd">1 jogo</span></button>
+    </div>
+  </section>
+
+  <div class="barra" id="barra">
+    <div class="filtros" role="group" aria-label="Filtrar por competição">
+      <button class="filtro" type="button" data-f="todos" aria-pressed="true">Todos <b>14</b></button>
+      <button class="filtro" type="button" data-f="bra" aria-pressed="false">Brasileirão <b>4</b></button>
+      <button class="filtro" type="button" data-f="ucl" aria-pressed="false">Champions League <b>9</b></button>
+      <button class="filtro" type="button" data-f="uel" aria-pressed="false">Liga Europa <b>1</b></button>
+    </div>
+  </div>
+
+  <div class="mosaico" id="mosaico" data-filtro="todos" role="tabpanel" aria-labelledby="dia-4">
+    <div class="coluna">
+      <article class="painel t-fav" data-comp="bra" aria-labelledby="fav-t">
+        <div class="fav-estilhaco" aria-hidden="true"><i></i><i></i></div>
+        <div class="painel-cabeca fav-cabeca">
+          <h2 class="titulo-area" id="fav-t">Seu jogo hoje</h2>
+          <span class="painel-meta fav-meta"><svg class="estrela" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.9 6.45.75-4.78 4.4 1.28 6.37L12 17.02 6.3 20.22l1.28-6.37L2.8 9.45l6.45-.75z"/></svg> Favorito · Brasileirão</span>
+        </div>
+        <a class="fav-jogo" href="jogo.html" aria-label="Flamengo contra Grêmio, hoje às 19:30, no Maracanã. Abrir o jogo">
+          <span class="fav-time"><i class="esc esc-819 " aria-hidden="true"></i><span class="fav-nome f-titulo">Flamengo</span></span>
+          <span class="fav-hora f-placar">19:30</span>
+          <span class="fav-time"><i class="esc esc-6273 " aria-hidden="true"></i><span class="fav-nome f-titulo">Grêmio</span></span>
+        </a>
+        <div class="fav-rodape">
+          <p class="fav-local">Maracanã · Rio de Janeiro</p>
+          <p class="fav-palm" data-comp="bra"><i class="esc esc-2029 " aria-hidden="true"></i><span><a href="time.html">Palmeiras</a> não joga hoje. Próximo: qua 18/11, 20:30, Cruzeiro × Palmeiras.</span></p>
+          <div class="fav-conta"><span>Começa em</span><strong>1h20</strong></div>
+        </div>
+      </article>
+
+      <section class="painel t-bra" data-comp="bra" aria-labelledby="bra-t">
+        <div class="painel-cabeca"><h2 class="titulo-area" id="bra-t">Brasileirão</h2><span class="painel-meta">4 jogos · 19:30 e 21:30</span></div>
+        <ul class="lista"><li><a class="linha linha-fav" href="jogo.html" aria-label="Flamengo contra Grêmio, às 19:30, Maracanã, favorito">
+  <span class="l-estado"><span class="l-hora">19:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-819 " aria-hidden="true"></i><span class="l-nome">Flamengo</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-6273 " aria-hidden="true"></i><span class="l-nome">Grêmio</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"><svg class="estrela" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.9 6.45.75-4.78 4.4 1.28 6.37L12 17.02 6.3 20.22l1.28-6.37L2.8 9.45l6.45-.75z"/></svg><span class="sr">Favorito</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="Athletico-PR contra Vasco, às 19:30, Arena da Baixada">
+  <span class="l-estado"><span class="l-hora">19:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-3458 " aria-hidden="true"></i><span class="l-nome">Athletico-PR</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-3454 " aria-hidden="true"></i><span class="l-nome">Vasco</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="Botafogo contra Atlético-MG, às 21:30, Nilton Santos">
+  <span class="l-estado"><span class="l-hora">21:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-6086 " aria-hidden="true"></i><span class="l-nome">Botafogo</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-7632 " aria-hidden="true"></i><span class="l-nome">Atlético-MG</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="São Paulo contra Corinthians, às 21:30, Vila Belmiro">
+  <span class="l-estado"><span class="l-hora">21:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-2026 " aria-hidden="true"></i><span class="l-nome">São Paulo</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-874 " aria-hidden="true"></i><span class="l-nome">Corinthians</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li></ul>
+      </section>
+
+      <section class="painel t-uel" data-comp="uel" aria-labelledby="uel-t">
+        <div class="painel-cabeca"><h2 class="titulo-area" id="uel-t">Liga Europa</h2><span class="painel-meta">Encerrado · 12:30</span></div>
+        <ul class="lista"><li><a class="linha" href="jogo.html" aria-label="Rennes 0, Olympiacos 0, encerrado, 12:30">
+  <span class="l-estado"><span class="l-caps">Fim</span><span class="l-suave">12:30</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-169 " aria-hidden="true"></i><span class="l-nome">Rennes</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-435 " aria-hidden="true"></i><span class="l-nome">Olympiacos</span><b class="l-gols">0</b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li></ul>
+      </section>
+    </div>
+
+    <div class="coluna">
+      <section class="painel t-vivo" data-comp="ucl" id="ao-vivo" aria-labelledby="vivo-t">
+        <div class="painel-cabeca"><h2 class="titulo-area" id="vivo-t">Ao vivo</h2><span class="painel-meta">Champions League · 17:00 · 7 jogos</span></div>
+        <ul class="vivo-lista"><li><a class="vivo-linha" href="jogo.html" aria-label="RB Leipzig 2, Manchester City 2, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">RB Leipzig</span><i class="esc esc-11420 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">2</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">2</b>
+  <span class="v-time v-fora"><i class="esc esc-382 " aria-hidden="true"></i><span class="v-nome">Manchester City</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" id="vivo-gol" aria-label="Dortmund 1, Real Betis 1, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">Dortmund</span><i class="esc esc-124 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">1</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">1</b>
+  <span class="v-time v-fora"><i class="esc esc-244 " aria-hidden="true"></i><span class="v-nome">Real Betis</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" aria-label="FC Porto 3, Napoli 1, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">FC Porto</span><i class="esc esc-437 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">3</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">1</b>
+  <span class="v-time v-fora"><i class="esc esc-114 " aria-hidden="true"></i><span class="v-nome">Napoli</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" aria-label="Lens 1, Como 6, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">Lens</span><i class="esc esc-175 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">1</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">6</b>
+  <span class="v-time v-fora"><i class="esc esc-2572 " aria-hidden="true"></i><span class="v-nome">Como</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" aria-label="PSV 0, Club Brugge 1, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">PSV</span><i class="esc esc-148 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">0</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">1</b>
+  <span class="v-time v-fora"><i class="esc esc-570 " aria-hidden="true"></i><span class="v-nome">Club Brugge</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" aria-label="Slavia Praga 1, Arsenal 1, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">Slavia Praga</span><i class="esc esc-494 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">1</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">1</b>
+  <span class="v-time v-fora"><i class="esc esc-359 " aria-hidden="true"></i><span class="v-nome">Arsenal</span></span>
+</a></li><li><a class="vivo-linha" href="jogo.html" aria-label="Viking FK 3, Sabah 1, ao vivo, 68 minutos">
+  <span class="v-time v-casa"><span class="v-nome">Viking FK</span><i class="esc esc-510 " aria-hidden="true"></i></span>
+  <b class="v-gols v-gols-casa">3</b>
+  <span class="anel " style="--d:46px"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="anel-trilha" cx="24" cy="24" r="21"/><circle class="anel-prog" cx="24" cy="24" r="21" pathLength="90" style="stroke-dashoffset:22.0" data-off="22.0"/></svg><span class="anel-txt">68'</span></span>
+  <b class="v-gols">1</b>
+  <span class="v-time v-fora"><i class="esc esc-21922 " aria-hidden="true"></i><span class="v-nome">Sabah</span></span>
+</a></li></ul>
+        <p class="vivo-rodape"><span>Atualizado às 18:08</span><span>Placar parcial simulado</span></p>
+        <p class="sr" aria-live="polite" id="aviso-gol"></p>
+      </section>
+
+      <section class="painel t-ucl" data-comp="ucl" aria-labelledby="ucl-t">
+        <div class="painel-cabeca"><h2 class="titulo-area" id="ucl-t">Champions League</h2><span class="painel-meta">Encerrados · 14:45</span></div>
+        <ul class="lista"><li><a class="linha" href="jogo.html" aria-label="AEK Atenas 2, Real Madrid 3, encerrado, 14:45">
+  <span class="l-estado"><span class="l-caps">Fim</span><span class="l-suave">14:45</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-887 " aria-hidden="true"></i><span class="l-nome">AEK Atenas</span><b class="l-gols">2</b></span>
+    <span class="l-time vence"><i class="esc esc-86 " aria-hidden="true"></i><span class="l-nome">Real Madrid</span><b class="l-gols">3</b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="Fenerbahçe 3, Liverpool 2, encerrado, 14:45">
+  <span class="l-estado"><span class="l-caps">Fim</span><span class="l-suave">14:45</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-436 " aria-hidden="true"></i><span class="l-nome">Fenerbahçe</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-364 " aria-hidden="true"></i><span class="l-nome">Liverpool</span><b class="l-gols">2</b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li></ul>
+      </section>
+
+    </div>
+  </div>
+
+  <section class="painel vazio" id="vazio" hidden aria-live="polite">
+    <h2 class="titulo-area" id="vazio-t">Quinta, 5 de novembro</h2>
+    <p id="vazio-txt">37 jogos neste dia. Só quarta, 4/11, tem dados neste mockup.</p>
+  </section>
+
+  <p class="nota">Ao vivo simulado para o mockup; placares finais reais de 4/11/2026. Agora simulado: 18:10.</p>
+</main>
+</div>
+
+<footer class="dicas" aria-label="Atalhos de teclado">
+  <span class="dicas-nome">Teclado</span>
+  <ul><li><kbd class="tecla " aria-label="Seta para a esquerda"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></kbd><kbd class="tecla " aria-label="Seta para a direita"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></kbd><span>Trocar dia</span></li><li><kbd class="tecla tecla-sinal">Enter</kbd><span>Abrir jogo</span></li><li><kbd class="tecla ">Esc</kbd><span>Voltar para hoje</span></li></ul>
+</footer>
+
+<script>
+
+const semMov = navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches;
+function avancarAneis(raiz) {
+  if (semMov) return;
+  const arcos = [...(raiz || document).querySelectorAll('.anel-prog')];
+  arcos.forEach(a => { a.style.transition = 'none'; a.style.strokeDashoffset = 90; });
+  void document.body.offsetWidth;
+  requestAnimationFrame(() => arcos.forEach((a, i) => {
+    a.style.transition = ''; a.style.transitionDelay = (i * 70) + 'ms'; a.style.strokeDashoffset = a.dataset.off;
+  }));
+}
+
+const DIAS = [["Domingo", 1, 2], ["Segunda", 2, 1], ["Terça", 3, 11], ["Quarta", 4, 14], ["Quinta", 5, 37], ["Sexta", 6, 1], ["Sábado", 7, 1]];
+const HOJE = 3;
+let atual = HOJE;
+const abas = [...document.querySelectorAll('.dia-aba')];
+const mosaico = document.getElementById('mosaico');
+const barra = document.getElementById('barra');
+const vazio = document.getElementById('vazio');
+const titulo = document.getElementById('dia-titulo');
+
+function irPara(i, foco) {
+  if (i < 0 || i >= DIAS.length || i === atual) return;
+  const dir = i > atual ? 'troca-dir' : 'troca-esq';
+  atual = i;
+  abas.forEach((a, k) => { a.setAttribute('aria-selected', k === i); a.tabIndex = k === i ? 0 : -1; });
+  document.querySelectorAll('.atalho').forEach(b => b.setAttribute('aria-pressed', +b.dataset.ir === i));
+  const [nome, n, q] = DIAS[i];
+  titulo.textContent = nome + ', ' + n + ' de novembro';
+  const temDados = i === HOJE;
+  mosaico.hidden = !temDados; barra.hidden = !temDados; vazio.hidden = temDados;
+  if (!temDados) {
+    document.getElementById('vazio-t').textContent = nome + ', ' + n + ' de novembro';
+    document.getElementById('vazio-txt').textContent = q + (q === 1 ? ' jogo' : ' jogos') + ' neste dia. Só quarta, 4/11, tem dados neste mockup.';
+  }
+  const alvo = temDados ? mosaico : vazio;
+  if (!semMov) { alvo.classList.remove('troca-dir', 'troca-esq'); void alvo.offsetWidth; alvo.classList.add(dir); }
+  mosaico.setAttribute('aria-labelledby', abas[i].id);
+  if (foco) abas[i].focus();
+}
+abas.forEach((a, i) => a.addEventListener('click', () => irPara(i)));
+document.querySelectorAll('.atalho').forEach(b => b.addEventListener('click', () => irPara(+b.dataset.ir)));
+
+document.querySelectorAll('.filtro').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filtro').forEach(x => x.setAttribute('aria-pressed', x === b));
+  mosaico.dataset.filtro = b.dataset.f;
+  if (!semMov) { mosaico.classList.remove('troca-dir', 'troca-esq'); void mosaico.offsetWidth; mosaico.classList.add('troca-dir'); }
+}));
+
+document.addEventListener('keydown', ev => {
+  if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
+  const t = ev.target;
+  if (t.matches && t.matches('input, textarea, select')) return;
+  if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
+    ev.preventDefault();
+    irPara(atual + (ev.key === 'ArrowRight' ? 1 : -1), t.classList && t.classList.contains('dia-aba'));
+  } else if (ev.key === 'Enter' && !t.closest('a, button')) {
+    location.href = 'jogo.html';
+  } else if (ev.key === 'Escape') {
+    irPara(HOJE);
+  }
+});
+
+/* o gol: Dortmund 1–1 vira 2–1 aos 68' (parcial simulado, nunca acima do final real 2–1) */
+function gol(animar) {
+  const linha = document.getElementById('vivo-gol');
+  const n = linha.querySelector('.v-gols-casa');
+  n.textContent = '2';
+  linha.setAttribute('aria-label', 'Dortmund 2, Real Betis 1, ao vivo, 68 minutos. Gol do Dortmund aos 68');
+  const tag = document.createElement('span');
+  tag.className = 'gol-tag';
+  tag.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 19V6.5h19V19"/><path d="M2.5 11h19M2.5 15h19M8.8 6.5V19M15.2 6.5V19" stroke-width="1.2"/></svg>Gol do Dortmund · 68\'';
+  linha.appendChild(tag);
+  document.getElementById('aviso-gol').textContent = 'Gol: Dortmund 2, Real Betis 1, aos 68 minutos.';
+  if (animar) { linha.classList.add('gol'); n.classList.add('entra'); }
+}
+if (semMov) gol(false);
+else { avancarAneis(document.getElementById('ao-vivo')); setTimeout(() => gol(true), 2600); }
+</script>
+</body>
+</html>

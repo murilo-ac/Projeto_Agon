@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Ágon · Palmeiras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@58..140,800..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../comum/agon.css">
+<link rel="stylesheet" href="../comum/escudos.css">
+<style>
+/* ===== Ágon · direção C: menu de console (tema único escuro: a cena do estádio à noite) ===== */
+:root, :root[data-theme] {
+  color-scheme: dark;
+  --cena: #061115;
+  --grama-a: #0b2c1e;
+  --grama-b: #0f3727;
+  --gelo: #e3eff4;
+  --gelo-vidro: rgba(227, 239, 244, .96);
+  --gelo-fundo: #d2e3ea;
+  --gelo-fio: #b7ccd5;
+  --tinta-suave: #3b4f57;
+  --cena-texto: #f1f4f5;
+  --cena-suave: #a8b5ba;
+  --egeu-claro: #52a6c3;
+  --sinal-texto: #a3380b;
+  --vidro-escuro: rgba(8, 22, 27, .86);
+  --chanfro: 20px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --focus: #52a6c3;
+  --bg: #061115;
+  --text: #f1f4f5;
+  --logo-chave: #52a6c3; --logo-campeao: #f0602a; --logo-nome: #f1f4f5;
+}
+
+html { background: var(--cena); scrollbar-color: #2c4a54 var(--cena); }
+body {
+  position: relative; isolation: isolate; min-height: 100vh; overflow-x: clip;
+  background: transparent; color: var(--cena-texto);
+}
+/* a cena: gramado com faixas de corte, linhas do campo, refletores e vinheta (só CSS) */
+body::before {
+  content: ""; position: fixed; inset: -8px; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 42% at 14% -6%, rgba(214, 236, 255, .22), transparent 72%),
+    radial-gradient(ellipse 55% 42% at 86% -6%, rgba(214, 236, 255, .18), transparent 72%),
+    linear-gradient(180deg, #061115 0%, rgba(6, 17, 21, .9) 18%, rgba(6, 17, 21, .3) 52%, rgba(6, 17, 21, .78) 100%),
+    radial-gradient(circle at 50% 64%, transparent 0 158px, rgba(241, 244, 245, .09) 159px 161px, transparent 162px),
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(241, 244, 245, .09) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(180deg, transparent 30%, rgba(241, 244, 245, .07) 30% calc(30% + 2px), transparent calc(30% + 2px)),
+    repeating-linear-gradient(90deg, var(--grama-a) 0 110px, var(--grama-b) 110px 220px);
+  filter: blur(2px);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 85% 75% at 50% 42%, transparent 45%, rgba(0, 0, 0, .62) 100%);
+}
+::selection { background: var(--sinal); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+a { color: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.ico { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.palco { max-width: 1360px; margin: 0 auto; padding: 0 16px 40px; }
+@media (min-width: 960px) { .palco { padding: 0 40px 112px; } }
+
+/* ----- topo: marca, abas inclinadas, HUD ----- */
+.topo { position: relative; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 28px; padding: 14px 0 6px; }
+.marca { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.marca svg { display: block; height: 26px; width: auto; }
+.estilhacos { position: absolute; inset: 0 -16px auto auto; width: 62%; height: 120px; pointer-events: none; z-index: -1; overflow: hidden; }
+.estilhacos i { position: absolute; display: block; background: var(--sinal); }
+.estilhacos i:nth-child(1) { right: 6%; top: -30px; width: 260px; height: 92px; clip-path: polygon(38% 0, 100% 0, 62% 100%, 54% 100%); opacity: .9; }
+.estilhacos i:nth-child(2) { right: 30%; top: -10px; width: 160px; height: 70px; clip-path: polygon(80% 0, 100% 0, 18% 100%, 12% 100%); opacity: .55; }
+.estilhacos i:nth-child(3) { right: 0; top: 34px; width: 120px; height: 60px; background: var(--egeu); clip-path: polygon(100% 0, 100% 100%, 0 100%); opacity: .85; }
+@media (min-width: 960px) {
+  .topo { grid-template-columns: auto minmax(0, 1fr) auto; padding: 22px 0 10px; }
+  .estilhacos { width: 46%; right: -40px; }
+}
+
+.abas { grid-column: 1 / -1; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 4px 22px; }
+.abas::-webkit-scrollbar { display: none; }
+@media (min-width: 960px) { .abas { grid-column: auto; margin: 0; padding: 4px 10px; } }
+.aba {
+  position: relative; flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px;
+  transform: skewX(-14deg); background: rgba(6, 17, 21, .62); border: 1px solid rgba(241, 244, 245, .2);
+  color: var(--cena-texto); text-decoration: none; transition: background-color .2s var(--ease), border-color .2s var(--ease);
+}
+.aba > * { transform: skewX(14deg); }
+.aba-txt { font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; font-size: 20px; line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+.aba:hover { background: rgba(11, 94, 117, .55); border-color: var(--egeu-claro); }
+.aba[aria-current] { background: var(--egeu); border-color: var(--egeu); color: #fff; }
+.aba-n { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; background: var(--sinal); color: var(--tinta); font-size: 13px; font-weight: 600; }
+
+.hud { grid-column: 1 / -1; display: flex; align-items: stretch; gap: 8px; min-width: 0; }
+@media (min-width: 960px) { .hud { grid-column: auto; } }
+.hud-favs { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.hud-fav {
+  display: grid; place-items: center; width: 44px; height: 44px; background: var(--gelo); text-decoration: none;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: transform .2s var(--ease); --focus: var(--egeu);
+}
+.hud-fav:focus-visible { outline-offset: -4px; }
+.hud-fav .esc { font-size: 30px; }
+.hud-fav:hover { transform: translateY(-2px); }
+.hud-prox {
+  flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 18px 0 20px;
+  transform: skewX(-14deg); margin-left: 6px; background: var(--vidro-escuro); border: 1px solid rgba(241, 244, 245, .18);
+  text-decoration: none; transition: border-color .2s var(--ease), background-color .2s var(--ease);
+}
+.hud-prox > * { transform: skewX(14deg); }
+.hud-prox:hover { border-color: var(--sinal); background: rgba(16, 30, 35, .95); }
+.hud-rot { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--cena-suave); white-space: nowrap; }
+.hud-jogo { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.hud-jogo .esc { font-size: 20px; }
+.hud .ct { display: none; }
+@media (max-width: 599px) { .hud .lg { display: none; } .hud .ct { display: inline; } }
+.hud-conta { margin-left: auto; font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 22px; line-height: 1; color: var(--sinal); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 420px) { .hud-rot { display: none; } }
+
+/* ----- painéis (gelo translúcido, um canto chanfrado) ----- */
+.painel {
+  position: relative; background: var(--gelo-vidro); color: var(--tinta); padding: 16px 16px 18px; --focus: var(--egeu);
+  clip-path: polygon(0 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% 100%, 0 100%);
+}
+@media (min-width: 960px) { .painel { padding: 20px 22px 22px; } }
+.painel-cabeca { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin: 0 0 14px; padding-right: calc(var(--chanfro) - 4px); }
+.titulo-area { margin: 0; font-family: var(--font-display); font-stretch: var(--width-titulo); font-weight: 800; font-size: var(--fs-rotulo); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.painel-meta { font-size: var(--fs-pequeno); font-weight: 500; color: var(--tinta-suave); }
+
+/* placas claras atrás de escudos em fundos escuros ou coloridos */
+.placa { display: inline-grid; place-items: center; flex: none; background: var(--gelo); clip-path: polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%); }
+.esc-vazio { display: inline-block; width: 1em; height: 1em; flex: none; border-radius: 50%; border: 2px dashed var(--gelo-fio); }
+
+/* ----- linhas em seta (chevron) ----- */
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.linha {
+  --corte: 16px; position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 4px 12px;
+  min-height: 64px; padding: 8px calc(var(--corte) + 12px) 8px 12px; background: var(--gelo-fundo); color: var(--tinta); text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - var(--corte)) 0, 100% 50%, calc(100% - var(--corte)) 100%, 0 100%);
+  transition: background-color .18s var(--ease), color .18s var(--ease), transform .28s var(--ease);
+}
+a.linha:hover, a.linha:focus-visible { background: var(--egeu); color: #fff; transform: translateX(4px); }
+a.linha:focus-visible { outline: 2px solid #fff; outline-offset: -5px; }
+.l-estado { display: grid; gap: 2px; font-size: var(--fs-pequeno); font-weight: 500; line-height: 1.3; }
+.l-hora { font-size: 15px; font-weight: 600; }
+.l-caps { text-transform: uppercase; letter-spacing: .06em; }
+.l-suave { color: var(--tinta-suave); }
+a.linha:hover .l-suave, a.linha:focus-visible .l-suave, a.linha:hover .perde, a.linha:focus-visible .perde { color: #cfe4ec; }
+.l-times { display: grid; gap: 4px; min-width: 0; }
+.l-time { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; font-size: var(--fs-lista); line-height: 1.3; }
+.l-time .esc, .l-time .esc-vazio { font-size: 22px; }
+.l-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.l-gols { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: var(--fs-placar-lista); line-height: 1; min-width: 1ch; text-align: right; }
+.vence { font-weight: 600; }
+.perde { color: var(--tinta-suave); }
+.l-lado { display: flex; align-items: center; gap: 6px; font-size: var(--fs-pequeno); font-weight: 500; }
+.estrela { width: 18px; height: 18px; fill: var(--sinal-texto); stroke: none; }
+a.linha:hover .estrela, a.linha:focus-visible .estrela { fill: #fff; }
+
+/* ----- anel do minuto (assinatura) ----- */
+.anel { position: relative; display: inline-grid; place-items: center; flex: none; width: var(--d, 48px); height: var(--d, 48px); }
+.anel svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.anel circle { fill: none; stroke-width: 4; }
+.anel-trilha { stroke: currentColor; opacity: .22; }
+.anel-prog { stroke: currentColor; stroke-dasharray: 90; transition: stroke-dashoffset 1.2s var(--ease); }
+.anel-txt { position: relative; font-size: 13px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* ----- rodapé: nota do mockup e barra de dicas de teclado ----- */
+.nota { margin: 28px 0 0; font-size: var(--fs-pequeno); color: var(--cena-suave); }
+.dicas { display: none; }
+@media (min-width: 960px) and (hover: hover) {
+  .dicas {
+    position: fixed; z-index: 5; inset: auto 0 0 0; display: flex; justify-content: flex-end; gap: 28px; align-items: center;
+    min-height: 56px; padding: 8px 40px; background: linear-gradient(180deg, rgba(6, 17, 21, .78), rgba(6, 17, 21, .96));
+    border-top: 1px solid rgba(82, 166, 195, .35); font-size: 14px; color: var(--cena-texto);
+  }
+  .dicas ul { display: flex; gap: 28px; margin: 0; padding: 0; list-style: none; }
+  .dicas li { display: flex; align-items: center; gap: 8px; }
+  .dicas-nome { margin-right: auto; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--cena-suave); }
+}
+.tecla {
+  display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 15px;
+  background: radial-gradient(circle at 35% 28%, #3d5058, #142328 70%); border: 1px solid rgba(241, 244, 245, .35);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .18);
+  font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff;
+}
+.tecla .ico { width: 16px; height: 16px; stroke-width: 2.5; }
+.tecla-sinal { border-color: var(--sinal); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anel-prog { transition: none; }
+}
+
+/* ===== tela ===== */
+
+.mosaico { display: grid; gap: 14px; margin-top: 14px; }
+.coluna { display: contents; }
+.t-hub { order: 1; } .t-prox { order: 2; } .t-finais { order: 3; } .t-proxs { order: 4; } .t-res { order: 5; }
+@media (min-width: 960px) {
+  .mosaico { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px; margin-top: 18px; align-items: start; }
+  .coluna { display: grid; gap: 20px; }
+  .t-finais, .t-res { grid-column: 1 / -1; }
+}
+
+/* hub do clube (cor do Palmeiras: branco sobre #417505 = 5,57:1) */
+.t-hub { --chanfro: 34px; background: #417505; color: #fff; --focus: #fff; overflow: hidden; }
+.hub-estilhaco { position: absolute; right: 0; top: 0; width: 220px; height: 104px; pointer-events: none; }
+.t-hub > :not(.hub-estilhaco) { position: relative; }
+.hub-estilhaco i { position: absolute; inset: 0; display: block; }
+.hub-estilhaco i:nth-child(1) { background: #fff; opacity: .14; clip-path: polygon(46% 0, 74% 0, 30% 100%, 16% 100%); }
+.hub-estilhaco i:nth-child(2) { background: #2f5604; clip-path: polygon(86% 0, 100% 0, 100% 52%, 62% 100%, 52% 100%); }
+.hub-id { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 16px; }
+.hub-id .placa { width: 88px; height: 88px; } .hub-id .placa .esc { font-size: 70px; }
+.hub-nome { margin: 0; font-size: var(--fs-titulo-tela); line-height: 1; }
+.hub-comp { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 500; }
+.hub-comp li { padding: 3px 8px; border: 1px solid rgba(255, 255, 255, .55); }
+.temporada { margin: 22px 0 0; }
+.temp-t { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 0 0 8px; font-size: 14px; }
+.temp-t h2 { margin: 0; }
+.temp-barra { display: flex; height: 14px; gap: 2px; }
+.temp-barra i { display: block; height: 100%; }
+.tb-V { background: #fff; } .tb-E { background: rgba(255, 255, 255, .42); } .tb-D { background: var(--tinta); }
+.temp-leg { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 14px; }
+.temp-leg li { display: flex; align-items: center; gap: 6px; }
+.temp-leg i { display: inline-block; width: 12px; height: 12px; }
+.temp-leg b { font-weight: 600; }
+.forma { margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .3); }
+.forma-cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; margin-bottom: 12px; }
+.forma-cab p { margin: 0; font-size: 14px; }
+.chips { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 600px) { .chips { grid-template-columns: repeat(10, minmax(0, 1fr)); } }
+.chip {
+  position: relative; display: grid; justify-items: center; gap: 2px; padding: 8px 6px; text-align: center;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+.ch-r { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 28px; line-height: 1; }
+.ch-p { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ch-adv { margin: 2px 0; } .ch-adv .esc { font-size: 20px; }
+.ch-d { font-size: 12px; font-weight: 500; }
+.ch-V { background: #fff; color: #2f5604; }
+.ch-E { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px #fff; }
+.ch-D { background: var(--tinta); color: #fff; }
+.ch-pen { margin-top: 2px; padding: 1px 4px; background: var(--sinal); color: var(--tinta); font-size: 12px; font-weight: 600; }
+.forma-ordem { display: flex; justify-content: space-between; margin: 8px 0 0; font-size: 12px; font-weight: 500; }
+.pens { display: grid; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.4; }
+.pens li { display: flex; gap: 8px; align-items: flex-start; }
+.pens .ico { width: 18px; height: 18px; margin-top: 1px; }
+.pens b { font-weight: 600; }
+@media (min-width: 960px) { .hub-id .placa { width: 128px; height: 128px; } .hub-id .placa .esc { font-size: 100px; } .hub-id { gap: 24px; } }
+
+/* próximo jogo: anel de contagem regressiva sobre o Sinal */
+.t-prox { padding: 0; overflow: hidden; }
+.prox-grade { display: grid; }
+.prox-anel { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 18px 16px; background: var(--sinal); color: var(--tinta); }
+.prox-anel p { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.4; }
+.prox-anel p b { display: block; font-size: 16px; font-weight: 600; }
+.anel-dias { position: relative; display: grid; place-items: center; width: 120px; height: 120px; flex: none; }
+.anel-dias svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.seg { fill: none; stroke: var(--tinta); stroke-width: 5; stroke-dasharray: 8.4 91.6; opacity: .2; transition: opacity .5s var(--ease); }
+.seg.seg-on { opacity: 1; }
+.ad-txt { position: relative; display: grid; justify-items: center; line-height: 1; }
+.ad-txt b { font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: var(--fs-placar-destaque); line-height: .9; }
+.ad-txt span { font-size: 13px; font-weight: 600; }
+.prox-info { padding: 16px 16px 18px; }
+.prox-info .painel-cabeca { margin-bottom: 10px; }
+.prox-jogo { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+.prox-time { display: grid; justify-items: center; gap: 6px; text-align: center; }
+.prox-time .esc { font-size: 56px; }
+.prox-nome { font-size: var(--fs-time-destaque); line-height: 1.1; }
+.prox-x { font-size: 15px; font-weight: 600; color: var(--tinta-suave); }
+.prox-jogo:hover .prox-nome { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.prox-quando { margin: 12px 0 0; text-align: center; font-size: 14px; color: var(--tinta-suave); }
+.prox-quando b { color: var(--tinta); font-weight: 600; }
+
+/* as duas finais */
+.t-finais { display: grid; background: var(--band); color: #fff; padding: 0; --focus: #fff; --chanfro: 30px; }
+.final { position: relative; padding: 20px 20px 22px; }
+.final + .final { border-top: 10px solid var(--sinal); }
+.final-t { margin: 0 0 14px; font-size: var(--fs-titulo-area); line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
+.final-jogo { display: flex; align-items: center; gap: 14px; }
+.final-time { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; min-width: 0; }
+.final-time .esc { font-size: 54px; }
+.final-x { font-size: 16px; font-weight: 600; opacity: .8; }
+.final-quando { display: grid; gap: 2px; margin: 14px 0 0; font-size: 14px; }
+.final-quando b { font-size: 16px; font-weight: 600; }
+.final-rodape { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-top: 14px; }
+.final-rodape .final-quando { margin: 0; }
+.final-falta { margin: 0; font-size: 14px; font-weight: 500; text-align: right; }
+.final-falta b { display: block; font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 44px; line-height: .9; color: #fff; }
+@media (max-width: 599px) { .final { padding: 16px 16px 18px; } .final-t { margin-bottom: 10px; } .final-jogo { gap: 10px; } .final-time { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 14px; } .final-time .placa { width: 52px !important; height: 52px !important; } .final-time .esc { font-size: 40px; } .final-rodape { margin-top: 10px; } .final-falta b { font-size: 40px; } }
+@media (min-width: 960px) {
+  .t-finais { grid-template-columns: 1fr 1fr; }
+  .final { padding: 24px 32px 26px; }
+  .final:first-child { padding-right: 52px; }
+  .final + .final { border-top: 0; }
+  .final + .final::before { content: ""; position: absolute; left: -26px; top: 0; bottom: 0; width: 36px; background: var(--sinal); clip-path: polygon(60% 0, 100% 0, 40% 100%, 0 100%); }
+  .final-time .esc { font-size: 62px; }
+  .final-falta b { font-size: 56px; }
+}
+
+/* listas */
+.linha-final { background: #f3d9cd; }
+.t-proxs a.linha-final:hover, .t-proxs a.linha-final:focus-visible { background: var(--egeu); }
+.tag-final-movel { display: none; justify-self: start; margin-top: 2px; }
+@media (max-width: 599px) { .l-lado .tag-final { display: none; } .tag-final-movel { display: inline-block; } }
+.tag-final { padding: 3px 8px; background: var(--tinta); color: var(--sinal); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.linha { grid-template-columns: 92px minmax(0, 1fr) auto; }
+.l-pen { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--sinal-texto); }
+.l-pen .ico { width: 14px; height: 14px; stroke-width: 2.5; }
+a.linha:hover .l-pen, a.linha:focus-visible .l-pen { color: #fff; }
+.res-r { display: grid; place-items: center; width: 30px; height: 30px; font-family: var(--font-display); font-stretch: var(--width-placar); font-weight: 900; font-size: 20px; }
+.rr-V { background: #417505; color: #fff; }
+.rr-E { box-shadow: inset 0 0 0 2px var(--tinta-suave); color: var(--tinta); }
+.rr-D { background: var(--tinta); color: #fff; }
+a.linha:hover .rr-E, a.linha:focus-visible .rr-E { color: #fff; box-shadow: inset 0 0 0 2px #fff; }
+.mes + .mes, .temporada-toda .mes:first-of-type { margin-top: 20px; }
+.temporada-toda { margin-top: 14px; border-top: 1px solid var(--gelo-fio); padding-top: 4px; }
+.temporada-toda summary { display: flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; list-style: none; font-size: 14px; font-weight: 600; color: var(--egeu); }
+.temporada-toda summary::-webkit-details-marker { display: none; }
+.temporada-toda summary::before { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform .2s var(--ease); }
+.temporada-toda[open] summary::before { transform: rotate(45deg); }
+.temporada-toda summary:hover { text-decoration: underline; text-underline-offset: 4px; }
+.mes-t { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+.mes-t span { font-size: 12px; font-weight: 500; color: var(--tinta-suave); }
+@media (min-width: 960px) { .t-res .lista { grid-template-columns: 1fr 1fr; column-gap: 16px; } }
+
+
+</style>
+</head>
+
+<body>
+<div class="palco">
+<header class="topo">
+  <div class="estilhacos" aria-hidden="true"><i></i><i></i><i></i></div>
+  <a class="marca" href="agenda.html" aria-label="Ágon, ir para a agenda"><svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-162.602 -22.519 742.75 158.075"><g id="symbol"><path fill="var(--logo-chave, #0b5e75)" d="M-144.063 112.5L-162.602 112.5L-133.434 54.15L-133.43 54.157L-109.107 5.509L-84.782 54.157L-84.779 54.15L-55.611 112.5L-74.15 112.5L-84.779 91.243L-95.407 112.5L-122.806 112.5L-133.434 91.243ZM-124.16 72.694L-109.107 102.794L-94.053 72.694L-109.107 42.588L-124.16 72.694Z"/><path fill="var(--logo-campeao, #f0602a)" d="M-102.469 1.943L-94.728 -13.54L-81.467 -13.54L-89.208 1.943Z"/></g><g id="wordmark" fill="var(--logo-nome, currentColor)"><path d="M224.593 135.556Q203.185 135.556 185.444 128Q167.704 120.444 164.519 102.667L198.889 102.667Q199.778 106.519 203.407 109.296Q207.037 112.074 213 113.444Q218.963 114.815 226.222 114.815Q238.667 114.815 246.63 110.519Q254.593 106.222 254.593 95.556L254.593 91.037L253.259 91.778Q237.185 100.667 214.148 100.667Q191.333 100.667 176.37 89.63Q161.407 78.593 161.407 56.222Q161.407 33.926 176.074 23.074Q190.741 12.222 213.556 12.222Q236.593 12.222 252.889 21.185Q256.222 23.037 258.815 24.667L264.37 13.037L289.852 13.037L289.852 90.074Q289.852 107.259 280 117.259Q270.148 127.259 257.259 131.407Q244.37 135.556 224.593 135.556ZM376 100.593Q347.926 100.593 328.815 89.333Q309.704 78.074 309.704 55.852Q309.704 33.556 328.815 22.741Q347.926 11.926 376 11.926Q404.148 11.926 423.222 22.741Q442.296 33.556 442.296 55.852Q442.296 78.074 423.222 89.333Q404.148 100.593 376 100.593ZM6.889 100L57.778 -0.148L104.889 -0.148L155.704 100L118.593 100L108.519 78.593L54.148 78.593L43.926 100ZM460.222 100L460.222 13.037L487.852 13.037L494.222 25.926Q509.852 12.148 534.889 12.148Q556.296 12.148 568.222 22.889Q580.148 33.63 580.148 56.296L580.148 100L544.963 100L544.963 58.593Q544.963 45.778 539.407 40.519Q533.852 35.259 523.037 35.259Q511.259 35.259 502.444 43.333Q497.556 47.778 495.333 53.407L495.333 100ZM376 78.148Q389.185 78.148 398.185 72.963Q407.185 67.778 407.185 56.148Q407.185 44.444 398.185 39.444Q389.185 34.444 376 34.444Q362.889 34.444 353.852 39.444Q344.815 44.444 344.815 56.148Q344.815 67.778 353.852 72.963Q362.889 78.148 376 78.148ZM254.593 51.481L254.444 51.63Q254.444 45.778 245.259 40.519Q236.074 35.259 224.444 35.259Q211.704 35.259 204.444 40.556Q197.185 45.852 197.185 56.444Q197.185 67.111 204.444 72.407Q211.704 77.704 224.444 77.704Q236.074 77.704 245.259 72.333Q254.444 66.963 254.444 61.185L254.593 61.259ZM62.889 56.667L99.926 56.667L81.481 18L81.333 18ZM60.593 -3.704L77.852 -22.519L101.407 -22.519L76.074 -3.704Z"/></g></svg></a>
+  <nav class="abas" aria-label="Principal">
+    <a class="aba" href="agenda.html"><span class="aba-txt">Agenda</span></a>
+    <a class="aba" href="time.html" aria-current="page"><span class="aba-txt">Times</span></a>
+    <a class="aba" href="agenda.html#ao-vivo"><span class="aba-txt">Ao vivo</span><span class="aba-n" aria-label="7 jogos">7</span></a>
+  </nav>
+  <aside class="hud" aria-label="Seus favoritos">
+    <ul class="hud-favs">
+      <li><a class="hud-fav" href="agenda.html" title="Flamengo"><i class="esc esc-819 " aria-hidden="true"></i><span class="sr">Flamengo</span></a></li>
+      <li><a class="hud-fav" href="time.html" title="Palmeiras"><i class="esc esc-2029 " aria-hidden="true"></i><span class="sr">Palmeiras</span></a></li>
+    </ul>
+    <a class="hud-prox" href="#proximo" aria-label="Próximo jogo de favorito: Cruzeiro contra Palmeiras, quarta 18/11 às 20:30, faltam 4 dias">
+      <span class="hud-rot">Próximo</span>
+      <span class="hud-jogo"><i class="esc esc-2029 " aria-hidden="true"></i><span class="lg">Cruzeiro × Palmeiras · qua 20:30</span><span class="ct">CRU × PAL</span></span>
+      <span class="hud-conta">em 4 dias</span>
+    </a>
+  </aside>
+</header>
+
+<main class="mosaico">
+  <div class="coluna">
+    <section class="painel t-hub" aria-labelledby="hub-t">
+      <div class="hub-estilhaco" aria-hidden="true"><i></i><i></i></div>
+      <div class="hub-id">
+        <span class="placa" style="width:88px;height:88px"><i class="esc esc-2029 " aria-hidden="true"></i></span>
+        <div>
+          <h1 class="hub-nome f-titulo" id="hub-t">Palmeiras</h1>
+          <ul class="hub-comp" aria-label="Competições"><li>Brasileirão</li><li>Copa do Brasil</li><li>Libertadores</li></ul>
+        </div>
+      </div>
+      <div class="temporada">
+        <div class="temp-t"><h2 class="titulo-area">Temporada 2026</h2><span>54 jogos · 96 gols pró, 40 contra</span></div>
+        <div class="temp-barra" role="img" aria-label="32 vitórias, 14 empates, 8 derrotas">
+          <i class="tb-V" style="width:59.26%"></i><i class="tb-E" style="width:25.93%"></i><i class="tb-D" style="width:14.81%"></i>
+        </div>
+        <ul class="temp-leg" aria-hidden="true">
+          <li><i class="tb-V"></i><b>32</b> V</li><li><i class="tb-E"></i><b>14</b> E</li><li><i class="tb-D"></i><b>8</b> D</li>
+        </ul>
+      </div>
+      <div class="forma">
+        <div class="forma-cab"><h2 class="titulo-area">Últimos 10</h2><p>7 V · 1 E · 2 D · 19 gols pró, 6 contra</p></div>
+        <ol class="chips"><li class="chip ch-V" aria-label="08/10, Brasileirão: Palmeiras 1–0 Bahia, vitória" title="08/10, Brasileirão: Palmeiras 1–0 Bahia, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">1–0</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-9967 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">08/10</span></li><li class="chip ch-V" aria-label="11/10, Brasileirão: Palmeiras 4–1 Corinthians, vitória" title="11/10, Brasileirão: Palmeiras 4–1 Corinthians, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">4–1</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-874 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">11/10</span></li><li class="chip ch-V" aria-label="14/10, Libertadores: Fluminense 1–2 Palmeiras, vitória" title="14/10, Libertadores: Fluminense 1–2 Palmeiras, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">2–1</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-3445 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">14/10</span></li><li class="chip ch-V" aria-label="17/10, Brasileirão: Athletico-PR 0–2 Palmeiras, vitória" title="17/10, Brasileirão: Athletico-PR 0–2 Palmeiras, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">2–0</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-3458 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">17/10</span></li><li class="chip ch-D" aria-label="21/10, Libertadores: Palmeiras 0–1 Fluminense, derrota, classificou nos pênaltis 5–3" title="21/10, Libertadores: Palmeiras 0–1 Fluminense, derrota, classificou nos pênaltis 5–3"><span class="ch-r" aria-hidden="true">D</span><span class="ch-p" aria-hidden="true">0–1</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-3445 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">21/10</span><span class="ch-pen">pên.</span></li><li class="chip ch-V" aria-label="24/10, Brasileirão: Palmeiras 2–0 Bragantino, vitória" title="24/10, Brasileirão: Palmeiras 2–0 Bragantino, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">2–0</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-6079 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">24/10</span></li><li class="chip ch-E" aria-label="28/10, Brasileirão: Santos 0–0 Palmeiras, empate" title="28/10, Brasileirão: Santos 0–0 Palmeiras, empate"><span class="ch-r" aria-hidden="true">E</span><span class="ch-p" aria-hidden="true">0–0</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-2674 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">28/10</span></li><li class="chip ch-V" aria-label="01/11, Copa do Brasil: Palmeiras 1–0 Vasco, vitória" title="01/11, Copa do Brasil: Palmeiras 1–0 Vasco, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">1–0</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-3454 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">01/11</span></li><li class="chip ch-V" aria-label="05/11, Brasileirão: Palmeiras 6–1 Remo, vitória" title="05/11, Brasileirão: Palmeiras 6–1 Remo, vitória"><span class="ch-r" aria-hidden="true">V</span><span class="ch-p" aria-hidden="true">6–1</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-4936 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">05/11</span></li><li class="chip ch-D" aria-label="08/11, Copa do Brasil: Vasco 2–1 Palmeiras, derrota, classificou nos pênaltis 5–4" title="08/11, Copa do Brasil: Vasco 2–1 Palmeiras, derrota, classificou nos pênaltis 5–4"><span class="ch-r" aria-hidden="true">D</span><span class="ch-p" aria-hidden="true">1–2</span><span class="ch-adv" aria-hidden="true"><span class="placa" style="width:26px;height:26px"><i class="esc esc-3454 " aria-hidden="true"></i></span></span><span class="ch-d" aria-hidden="true">08/11</span><span class="ch-pen">pên.</span></li></ol>
+        <p class="forma-ordem" aria-hidden="true"><span>mais antigo: 08/10</span><span>mais recente: 08/11</span></p>
+        <ul class="pens" aria-label="Decididos nos pênaltis"><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span><b>21/10</b> · Libertadores · Palmeiras 0–1 Fluminense · classificou nos pênaltis 5–3</span></li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span><b>08/11</b> · Copa do Brasil · Vasco 2–1 Palmeiras · classificou nos pênaltis 5–4</span></li></ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="coluna">
+    <section class="painel t-prox" id="proximo" aria-labelledby="prox-t">
+      <div class="prox-grade">
+        <div class="prox-anel">
+          <span class="anel-dias" role="img" aria-label="Faltam 4 dias"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:0" /><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-10" /><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-20" /><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-30" /><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-40" /><circle class="seg" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-50" /><circle class="seg seg-on" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-60" /><circle class="seg seg-on" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-70" /><circle class="seg seg-on" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-80" /><circle class="seg seg-on" cx="24" cy="24" r="21" pathLength="100" style="stroke-dashoffset:-90" /></svg><span class="ad-txt" aria-hidden="true"><b>4</b><span>dias</span></span></span>
+          <p><b>faltam 4 dias</b>último jogo 08/11, próximo 18/11</p>
+        </div>
+        <div class="prox-info">
+          <div class="painel-cabeca"><h2 class="titulo-area" id="prox-t">Próximo jogo</h2><span class="painel-meta">Brasileirão</span></div>
+          <a class="prox-jogo" href="jogo.html" aria-label="Cruzeiro contra Palmeiras, quarta 18/11 às 20:30, Mineirão">
+            <span class="prox-time"><i class="esc esc-2022 " aria-hidden="true"></i><span class="prox-nome f-titulo">Cruzeiro</span></span>
+            <span class="prox-x" aria-hidden="true">×</span>
+            <span class="prox-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="prox-nome f-titulo">Palmeiras</span></span>
+          </a>
+          <p class="prox-quando"><b>qua 18/11 · 20:30</b> · Mineirão</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="painel t-proxs" aria-labelledby="proxs-t">
+      <div class="painel-cabeca"><h2 class="titulo-area" id="proxs-t">Depois</h2><span class="painel-meta">até 06/12</span></div>
+      <ul class="lista"><li><a class="linha" href="jogo.html" aria-label="sábado 21/11, 16:30, Brasileirão: Palmeiras contra Flamengo, Allianz Parque">
+  <span class="l-estado"><span class="l-hora">sáb 21/11</span><span class="l-suave">16:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-819 " aria-hidden="true"></i><span class="l-nome">Flamengo</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"><svg class="estrela" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.9 6.45.75-4.78 4.4 1.28 6.37L12 17.02 6.3 20.22l1.28-6.37L2.8 9.45l6.45-.75z"/></svg><span class="sr">Favorito</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="terça 24/11, 18:00, Brasileirão: Chapecoense contra Palmeiras, Arena Condá">
+  <span class="l-estado"><span class="l-hora">ter 24/11</span><span class="l-suave">18:00</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-9318 " aria-hidden="true"></i><span class="l-nome">Chapecoense</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li><li><a class="linha linha-final" href="jogo.html" aria-label="sábado 28/11, 17:00, Libertadores final: Palmeiras contra Estudiantes, Estadio Centenario">
+  <span class="l-estado"><span class="l-hora">sáb 28/11</span><span class="l-suave">17:00</span><span class="tag-final tag-final-movel" aria-hidden="true">Final</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-8 " aria-hidden="true"></i><span class="l-nome">Estudiantes</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"><span class="tag-final">Final</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="quarta 02/12, 21:30, Brasileirão: Palmeiras contra Coritiba, Allianz Parque">
+  <span class="l-estado"><span class="l-hora">qua 02/12</span><span class="l-suave">21:30</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-3456 " aria-hidden="true"></i><span class="l-nome">Coritiba</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"></span>
+</a></li><li><a class="linha linha-final" href="jogo.html" aria-label="domingo 06/12, 17:00, Copa do Brasil final: Grêmio contra Palmeiras, Arena BRB Mané Garrincha">
+  <span class="l-estado"><span class="l-hora">dom 06/12</span><span class="l-suave">17:00</span><span class="tag-final tag-final-movel" aria-hidden="true">Final</span></span>
+  <span class="l-times">
+    <span class="l-time"><i class="esc esc-6273 " aria-hidden="true"></i><span class="l-nome">Grêmio</span><b class="l-gols"></b></span>
+    <span class="l-time"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols"></b></span>
+  </span>
+  <span class="l-lado"><span class="tag-final">Final</span></span>
+</a></li></ul>
+    </section>
+  </div>
+
+  <section class="painel t-finais" aria-label="As duas finais">
+    <article class="final" aria-labelledby="f-28">
+  <h3 class="final-t f-titulo" id="f-28">Final da Libertadores</h3>
+  <div class="final-jogo">
+    <span class="final-time"><span class="placa" style="width:72px;height:72px"><i class="esc esc-2029 " aria-hidden="true"></i></span><span>Palmeiras</span></span>
+    <span class="final-x" aria-hidden="true">×</span>
+    <span class="final-time"><span class="placa" style="width:72px;height:72px"><i class="esc esc-8 " aria-hidden="true"></i></span><span>Estudiantes</span></span>
+  </div>
+  <div class="final-rodape">
+    <p class="final-quando"><b>sáb 28/11 · 17:00</b><span>Estadio Centenario</span></p>
+    <p class="final-falta">faltam <b>14</b> dias</p>
+  </div>
+</article>
+    <article class="final" aria-labelledby="f-06">
+  <h3 class="final-t f-titulo" id="f-06">Final da Copa do Brasil</h3>
+  <div class="final-jogo">
+    <span class="final-time"><span class="placa" style="width:72px;height:72px"><i class="esc esc-6273 " aria-hidden="true"></i></span><span>Grêmio</span></span>
+    <span class="final-x" aria-hidden="true">×</span>
+    <span class="final-time"><span class="placa" style="width:72px;height:72px"><i class="esc esc-2029 " aria-hidden="true"></i></span><span>Palmeiras</span></span>
+  </div>
+  <div class="final-rodape">
+    <p class="final-quando"><b>dom 06/12 · 17:00</b><span>Arena BRB Mané Garrincha</span></p>
+    <p class="final-falta">faltam <b>22</b> dias</p>
+  </div>
+</article>
+  </section>
+
+  <section class="painel t-res" aria-labelledby="res-t">
+    <div class="painel-cabeca"><h2 class="titulo-area" id="res-t">Resultados anteriores</h2><span class="painel-meta">44 jogos · 28/01 a 20/09</span></div>
+    <section class="mes" aria-labelledby="mv-09"><h3 class="mes-t" id="mv-09">Setembro <span>6 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="20/09, Brasileirão: Grêmio 0–0 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">20/09</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-6273 " aria-hidden="true"></i><span class="l-nome">Grêmio</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="16/09, Libertadores: LDU 3–2 Palmeiras, derrota, classificou nos pênaltis 4–3">
+  <span class="l-estado"><span class="l-hora">16/09</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-4816 " aria-hidden="true"></i><span class="l-nome">LDU</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-pen"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg>classificou nos pênaltis 4–3</span>
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="12/09, Brasileirão: Palmeiras 2–0 São Paulo, vitória">
+  <span class="l-estado"><span class="l-hora">12/09</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-2026 " aria-hidden="true"></i><span class="l-nome">São Paulo</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="09/09, Libertadores: Palmeiras 1–0 LDU, vitória">
+  <span class="l-estado"><span class="l-hora">09/09</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time perde"><i class="esc esc-4816 " aria-hidden="true"></i><span class="l-nome">LDU</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="06/09, Brasileirão: Botafogo 0–0 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">06/09</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-6086 " aria-hidden="true"></i><span class="l-nome">Botafogo</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="02/09, Copa do Brasil: Santos 0–0 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">02/09</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2674 " aria-hidden="true"></i><span class="l-nome">Santos</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mv-08"><h3 class="mes-t" id="mv-08">Agosto <span>2 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="30/08, Brasileirão: Mirassol 1–1 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">30/08</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-9169 " aria-hidden="true"></i><span class="l-nome">Mirassol</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="26/08, Copa do Brasil: Palmeiras 3–0 Santos, vitória">
+  <span class="l-estado"><span class="l-hora">26/08</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-2674 " aria-hidden="true"></i><span class="l-nome">Santos</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li></ul></section><details class="temporada-toda"><summary>Toda a temporada (36 jogos, até 23/08)</summary><section class="mes" aria-labelledby="mt-08"><h3 class="mes-t" id="mt-08">Agosto <span>7 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="23/08, Brasileirão: Palmeiras 4–1 Vasco, vitória">
+  <span class="l-estado"><span class="l-hora">23/08</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">4</b></span>
+    <span class="l-time perde"><i class="esc esc-3454 " aria-hidden="true"></i><span class="l-nome">Vasco</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="19/08, Libertadores: Cerro Porteño 0–1 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">19/08</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-2671 " aria-hidden="true"></i><span class="l-nome">Cerro Porteño</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="15/08, Brasileirão: Fluminense 3–2 Palmeiras, derrota">
+  <span class="l-estado"><span class="l-hora">15/08</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-3445 " aria-hidden="true"></i><span class="l-nome">Fluminense</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="12/08, Libertadores: Palmeiras 1–1 Cerro Porteño, empate">
+  <span class="l-estado"><span class="l-hora">12/08</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2671 " aria-hidden="true"></i><span class="l-nome">Cerro Porteño</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="09/08, Brasileirão: Palmeiras 0–0 Internacional, empate">
+  <span class="l-estado"><span class="l-hora">09/08</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-1936 " aria-hidden="true"></i><span class="l-nome">Internacional</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="05/08, Copa do Brasil: Fortaleza 3–2 Palmeiras, derrota">
+  <span class="l-estado"><span class="l-hora">05/08</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-6272 " aria-hidden="true"></i><span class="l-nome">Fortaleza</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="02/08, Copa do Brasil: Palmeiras 3–0 Fortaleza, vitória">
+  <span class="l-estado"><span class="l-hora">02/08</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc esc-6272 " aria-hidden="true"></i><span class="l-nome">Fortaleza</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-07"><h3 class="mes-t" id="mt-07">Julho <span>3 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="29/07, Brasileirão: Vitória 0–4 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">29/07</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-3457 " aria-hidden="true"></i><span class="l-nome">Vitória</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">4</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="26/07, Brasileirão: Palmeiras 1–2 Atlético-MG, derrota">
+  <span class="l-estado"><span class="l-hora">26/07</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time vence"><i class="esc esc-7632 " aria-hidden="true"></i><span class="l-nome">Atlético-MG</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="22/07, Brasileirão: Coritiba 1–3 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">22/07</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-3456 " aria-hidden="true"></i><span class="l-nome">Coritiba</span><b class="l-gols">1</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-05"><h3 class="mes-t" id="mt-05">Maio <span>9 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="31/05, Brasileirão: Palmeiras 1–0 Chapecoense, vitória">
+  <span class="l-estado"><span class="l-hora">31/05</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time perde"><i class="esc esc-9318 " aria-hidden="true"></i><span class="l-nome">Chapecoense</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="28/05, Libertadores: Palmeiras 4–1 Atlético Junior, vitória">
+  <span class="l-estado"><span class="l-hora">28/05</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">4</b></span>
+    <span class="l-time perde"><i class="esc esc-4815 " aria-hidden="true"></i><span class="l-nome">Atlético Junior</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="23/05, Brasileirão: Flamengo 0–3 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">23/05</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-819 " aria-hidden="true"></i><span class="l-nome">Flamengo</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="20/05, Libertadores: Palmeiras 0–1 Cerro Porteño, derrota">
+  <span class="l-estado"><span class="l-hora">20/05</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2671 " aria-hidden="true"></i><span class="l-nome">Cerro Porteño</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="16/05, Brasileirão: Palmeiras 1–1 Cruzeiro, empate">
+  <span class="l-estado"><span class="l-hora">16/05</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2022 " aria-hidden="true"></i><span class="l-nome">Cruzeiro</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="13/05, Copa do Brasil: Jacuipense 1–4 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">13/05</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc-vazio " aria-hidden="true"></i><span class="l-nome">Jacuipense</span><b class="l-gols">1</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">4</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="10/05, Brasileirão: Remo 1–1 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">10/05</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-4936 " aria-hidden="true"></i><span class="l-nome">Remo</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="05/05, Libertadores: Sporting Cristal 0–2 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">05/05</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-2673 " aria-hidden="true"></i><span class="l-nome">Sporting Cristal</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="02/05, Brasileirão: Palmeiras 1–1 Santos, empate">
+  <span class="l-estado"><span class="l-hora">02/05</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2674 " aria-hidden="true"></i><span class="l-nome">Santos</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-04"><h3 class="mes-t" id="mt-04">Abril <span>9 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="29/04, Libertadores: Cerro Porteño 1–1 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">29/04</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-2671 " aria-hidden="true"></i><span class="l-nome">Cerro Porteño</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="26/04, Brasileirão: Bragantino 0–1 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">26/04</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-6079 " aria-hidden="true"></i><span class="l-nome">Bragantino</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="23/04, Copa do Brasil: Palmeiras 3–0 Jacuipense, vitória">
+  <span class="l-estado"><span class="l-hora">23/04</span><span class="l-suave">Copa do Brasil</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    <span class="l-time perde"><i class="esc-vazio " aria-hidden="true"></i><span class="l-nome">Jacuipense</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="19/04, Brasileirão: Palmeiras 1–0 Athletico-PR, vitória">
+  <span class="l-estado"><span class="l-hora">19/04</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time perde"><i class="esc esc-3458 " aria-hidden="true"></i><span class="l-nome">Athletico-PR</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="16/04, Libertadores: Palmeiras 2–1 Sporting Cristal, vitória">
+  <span class="l-estado"><span class="l-hora">16/04</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-2673 " aria-hidden="true"></i><span class="l-nome">Sporting Cristal</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="12/04, Brasileirão: Corinthians 0–0 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">12/04</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-874 " aria-hidden="true"></i><span class="l-nome">Corinthians</span><b class="l-gols">0</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="08/04, Libertadores: Atlético Junior 1–1 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">08/04</span><span class="l-suave">Libertadores</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-4815 " aria-hidden="true"></i><span class="l-nome">Atlético Junior</span><b class="l-gols">1</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="05/04, Brasileirão: Bahia 1–2 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">05/04</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-9967 " aria-hidden="true"></i><span class="l-nome">Bahia</span><b class="l-gols">1</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="02/04, Brasileirão: Palmeiras 2–1 Grêmio, vitória">
+  <span class="l-estado"><span class="l-hora">02/04</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-6273 " aria-hidden="true"></i><span class="l-nome">Grêmio</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-03"><h3 class="mes-t" id="mt-03">Março <span>4 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="21/03, Brasileirão: São Paulo 0–1 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">21/03</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-2026 " aria-hidden="true"></i><span class="l-nome">São Paulo</span><b class="l-gols">0</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="18/03, Brasileirão: Palmeiras 2–1 Botafogo, vitória">
+  <span class="l-estado"><span class="l-hora">18/03</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-6086 " aria-hidden="true"></i><span class="l-nome">Botafogo</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="15/03, Brasileirão: Palmeiras 1–0 Mirassol, vitória">
+  <span class="l-estado"><span class="l-hora">15/03</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    <span class="l-time perde"><i class="esc esc-9169 " aria-hidden="true"></i><span class="l-nome">Mirassol</span><b class="l-gols">0</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="12/03, Brasileirão: Vasco 2–1 Palmeiras, derrota">
+  <span class="l-estado"><span class="l-hora">12/03</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-3454 " aria-hidden="true"></i><span class="l-nome">Vasco</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-D" aria-hidden="true">D</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-02"><h3 class="mes-t" id="mt-02">Fevereiro <span>3 jogos</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="25/02, Brasileirão: Palmeiras 2–1 Fluminense, vitória">
+  <span class="l-estado"><span class="l-hora">25/02</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    <span class="l-time perde"><i class="esc esc-3445 " aria-hidden="true"></i><span class="l-nome">Fluminense</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="12/02, Brasileirão: Internacional 1–3 Palmeiras, vitória">
+  <span class="l-estado"><span class="l-hora">12/02</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time perde"><i class="esc esc-1936 " aria-hidden="true"></i><span class="l-nome">Internacional</span><b class="l-gols">1</b></span>
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">3</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li><li><a class="linha" href="jogo.html" aria-label="04/02, Brasileirão: Palmeiras 5–1 Vitória, vitória">
+  <span class="l-estado"><span class="l-hora">04/02</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time vence"><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">5</b></span>
+    <span class="l-time perde"><i class="esc esc-3457 " aria-hidden="true"></i><span class="l-nome">Vitória</span><b class="l-gols">1</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-V" aria-hidden="true">V</span></span>
+</a></li></ul></section><section class="mes" aria-labelledby="mt-01"><h3 class="mes-t" id="mt-01">Janeiro <span>1 jogo</span></h3><ul class="lista"><li><a class="linha" href="jogo.html" aria-label="28/01, Brasileirão: Atlético-MG 2–2 Palmeiras, empate">
+  <span class="l-estado"><span class="l-hora">28/01</span><span class="l-suave">Brasileirão</span></span>
+  <span class="l-times">
+    <span class="l-time "><i class="esc esc-7632 " aria-hidden="true"></i><span class="l-nome">Atlético-MG</span><b class="l-gols">2</b></span>
+    <span class="l-time "><i class="esc esc-2029 " aria-hidden="true"></i><span class="l-nome">Palmeiras</span><b class="l-gols">2</b></span>
+    
+  </span>
+  <span class="l-lado"><span class="res-r rr-E" aria-hidden="true">E</span></span>
+</a></li></ul></section></details>
+  </section>
+</main>
+<p class="nota">Dados reais da temporada 2026 (ESPN). Hoje simulado: sábado, 14/11/2026.</p>
+</div>
+
+<footer class="dicas" aria-label="Atalhos de teclado">
+  <span class="dicas-nome">Teclado</span>
+  <ul><li><kbd class="tecla ">Esc</kbd><span>Voltar para a agenda</span></li></ul>
+</footer>
+
+<script>
+
+const semMov = navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches;
+function avancarAneis(raiz) {
+  if (semMov) return;
+  const arcos = [...(raiz || document).querySelectorAll('.anel-prog')];
+  arcos.forEach(a => { a.style.transition = 'none'; a.style.strokeDashoffset = 90; });
+  void document.body.offsetWidth;
+  requestAnimationFrame(() => arcos.forEach((a, i) => {
+    a.style.transition = ''; a.style.transitionDelay = (i * 70) + 'ms'; a.style.strokeDashoffset = a.dataset.off;
+  }));
+}
+
+/* a contagem: os dias que faltam acendem um a um no anel */
+if (!semMov) {
+  const on = [...document.querySelectorAll('.seg.seg-on')];
+  on.forEach(s => { s.style.transition = 'none'; s.classList.remove('seg-on'); });
+  void document.body.offsetWidth;
+  requestAnimationFrame(() => on.forEach((s, i) => { s.style.transition = ''; s.style.transitionDelay = (200 + i * 160) + 'ms'; s.classList.add('seg-on'); }));
+}
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && !ev.target.matches('input, textarea, select')) location.href = 'agenda.html';
+});
+</script>
+</body>
+</html>

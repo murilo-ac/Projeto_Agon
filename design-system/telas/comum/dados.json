@@ -1,0 +1,2258 @@
+{
+ "_sobre": "Dados reais da API da ESPN (a mesma que o Ágon coleta), conferidos em 14/11/2026. Horários em Brasília. ids = classes de escudo em escudos.css (esc-<id>).",
+ "agenda": {
+  "dia": "quarta-feira, 4 de novembro de 2026",
+  "jogos_por_dia": {
+   "dom 1": 2,
+   "seg 2": 1,
+   "ter 3": 11,
+   "qua 4": 14,
+   "qui 5": 37,
+   "sex 6": 1,
+   "sáb 7": 1
+  },
+  "jogos": [
+   {
+    "competicao": "Liga Europa",
+    "hora": "12:30",
+    "mandante": {
+     "nome": "Rennes",
+     "id": "169"
+    },
+    "visitante": {
+     "nome": "Olympiacos",
+     "id": "435"
+    },
+    "placar_final": [
+     0,
+     0
+    ],
+    "estadio": "Roazhon Park",
+    "cidade": "Rennes"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "14:45",
+    "mandante": {
+     "nome": "AEK Atenas",
+     "id": "887"
+    },
+    "visitante": {
+     "nome": "Real Madrid",
+     "id": "86"
+    },
+    "placar_final": [
+     2,
+     3
+    ],
+    "estadio": "OPAP Arena",
+    "cidade": "Athens"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "14:45",
+    "mandante": {
+     "nome": "Fenerbahçe",
+     "id": "436"
+    },
+    "visitante": {
+     "nome": "Liverpool",
+     "id": "364"
+    },
+    "placar_final": [
+     3,
+     2
+    ],
+    "estadio": "Şükrü Saracoğlu Stadium",
+    "cidade": "Istanbul"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "Dortmund",
+     "id": "124"
+    },
+    "visitante": {
+     "nome": "Real Betis",
+     "id": "244"
+    },
+    "placar_final": [
+     2,
+     1
+    ],
+    "estadio": "Signal Iduna Park",
+    "cidade": "Aue"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "FC Porto",
+     "id": "437"
+    },
+    "visitante": {
+     "nome": "Napoli",
+     "id": "114"
+    },
+    "placar_final": [
+     4,
+     1
+    ],
+    "estadio": "Estádio do Dragão",
+    "cidade": "Porto"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "Lens",
+     "id": "175"
+    },
+    "visitante": {
+     "nome": "Como",
+     "id": "2572"
+    },
+    "placar_final": [
+     1,
+     9
+    ],
+    "estadio": "Stade Bollaert-Delelis",
+    "cidade": "Lens"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "PSV",
+     "id": "148"
+    },
+    "visitante": {
+     "nome": "Club Brugge",
+     "id": "570"
+    },
+    "placar_final": [
+     1,
+     2
+    ],
+    "estadio": "Philips Stadion",
+    "cidade": "Eindhoven"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "RB Leipzig",
+     "id": "11420"
+    },
+    "visitante": {
+     "nome": "Manchester City",
+     "id": "382"
+    },
+    "placar_final": [
+     2,
+     3
+    ],
+    "estadio": "Red Bull Arena",
+    "cidade": "Leipzig"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "Slavia Praga",
+     "id": "494"
+    },
+    "visitante": {
+     "nome": "Arsenal",
+     "id": "359"
+    },
+    "placar_final": [
+     1,
+     2
+    ],
+    "estadio": "Fortuna Arena",
+    "cidade": "Prague"
+   },
+   {
+    "competicao": "Champions League",
+    "hora": "17:00",
+    "mandante": {
+     "nome": "Viking FK",
+     "id": "510"
+    },
+    "visitante": {
+     "nome": "Sabah",
+     "id": "21922"
+    },
+    "placar_final": [
+     4,
+     1
+    ],
+    "estadio": "Viking Stadion",
+    "cidade": "Stavanger"
+   },
+   {
+    "competicao": "Brasileirão",
+    "hora": "19:30",
+    "mandante": {
+     "nome": "Athletico-PR",
+     "id": "3458"
+    },
+    "visitante": {
+     "nome": "Vasco",
+     "id": "3454"
+    },
+    "placar_final": [
+     1,
+     3
+    ],
+    "estadio": "Arena da Baixada",
+    "cidade": "Curitiba"
+   },
+   {
+    "competicao": "Brasileirão",
+    "hora": "19:30",
+    "mandante": {
+     "nome": "Flamengo",
+     "id": "819"
+    },
+    "visitante": {
+     "nome": "Grêmio",
+     "id": "6273"
+    },
+    "placar_final": [
+     3,
+     1
+    ],
+    "estadio": "Maracanã",
+    "cidade": "Rio de Janeiro"
+   },
+   {
+    "competicao": "Brasileirão",
+    "hora": "21:30",
+    "mandante": {
+     "nome": "Botafogo",
+     "id": "6086"
+    },
+    "visitante": {
+     "nome": "Atlético-MG",
+     "id": "7632"
+    },
+    "placar_final": [
+     1,
+     0
+    ],
+    "estadio": "Nilton Santos",
+    "cidade": "Rio de Janeiro"
+   },
+   {
+    "competicao": "Brasileirão",
+    "hora": "21:30",
+    "mandante": {
+     "nome": "São Paulo",
+     "id": "2026"
+    },
+    "visitante": {
+     "nome": "Corinthians",
+     "id": "874"
+    },
+    "placar_final": [
+     0,
+     0
+    ],
+    "estadio": "Vila Belmiro",
+    "cidade": "Santos"
+   }
+  ]
+ },
+ "time": {
+  "nome": "Palmeiras",
+  "id": "2029",
+  "cor": "#417505",
+  "cor_alternativa": "#fafafc",
+  "competicoes": [
+   "Brasileirão",
+   "Copa do Brasil",
+   "Libertadores"
+  ],
+  "hoje": "sábado, 14 de novembro de 2026",
+  "jogos": [
+   {
+    "data": "28/01",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Atlético-MG",
+     "id": "7632"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena MRV",
+    "status": "encerrado",
+    "placar": [
+     2,
+     2
+    ]
+   },
+   {
+    "data": "04/02",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Vitória",
+     "id": "3457"
+    },
+    "estadio": "Arena Barueri",
+    "status": "encerrado",
+    "placar": [
+     5,
+     1
+    ]
+   },
+   {
+    "data": "12/02",
+    "dia": "qui",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Internacional",
+     "id": "1936"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio Beira-Rio",
+    "status": "encerrado",
+    "placar": [
+     1,
+     3
+    ]
+   },
+   {
+    "data": "25/02",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Fluminense",
+     "id": "3445"
+    },
+    "estadio": "Arena Barueri",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ]
+   },
+   {
+    "data": "12/03",
+    "dia": "qui",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Vasco",
+     "id": "3454"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estádio São Januário",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ]
+   },
+   {
+    "data": "15/03",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Mirassol",
+     "id": "9169"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "18/03",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Botafogo",
+     "id": "6086"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ]
+   },
+   {
+    "data": "21/03",
+    "dia": "sáb",
+    "hora": "21:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "São Paulo",
+     "id": "2026"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estádio Cícero Pompeu de Toledo",
+    "status": "encerrado",
+    "placar": [
+     0,
+     1
+    ]
+   },
+   {
+    "data": "02/04",
+    "dia": "qui",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Grêmio",
+     "id": "6273"
+    },
+    "estadio": "Arena Barueri",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ]
+   },
+   {
+    "data": "05/04",
+    "dia": "dom",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Bahia",
+     "id": "9967"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena Fonte Nova",
+    "status": "encerrado",
+    "placar": [
+     1,
+     2
+    ]
+   },
+   {
+    "data": "08/04",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Atlético Junior",
+     "id": "4815"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": null,
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "12/04",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Corinthians",
+     "id": "874"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Neo Química Arena",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "16/04",
+    "dia": "qui",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Sporting Cristal",
+     "id": "2673"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ]
+   },
+   {
+    "data": "19/04",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Athletico-PR",
+     "id": "3458"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "23/04",
+    "dia": "qui",
+    "hora": "19:30",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Jacuipense",
+     "id": "17713"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     3,
+     0
+    ]
+   },
+   {
+    "data": "26/04",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Bragantino",
+     "id": "6079"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estádio Municipal Cicero de Souza Marques",
+    "status": "encerrado",
+    "placar": [
+     0,
+     1
+    ]
+   },
+   {
+    "data": "29/04",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Cerro Porteño",
+     "id": "2671"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio ueno La Nueva Olla",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "02/05",
+    "dia": "sáb",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Santos",
+     "id": "2674"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "05/05",
+    "dia": "ter",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Sporting Cristal",
+     "id": "2673"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio Alejandro Villanueva",
+    "status": "encerrado",
+    "placar": [
+     0,
+     2
+    ]
+   },
+   {
+    "data": "10/05",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Remo",
+     "id": "4936"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Mangueirão",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "13/05",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Jacuipense",
+     "id": "17713"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estádio do Café",
+    "status": "encerrado",
+    "placar": [
+     1,
+     4
+    ]
+   },
+   {
+    "data": "16/05",
+    "dia": "sáb",
+    "hora": "21:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Cruzeiro",
+     "id": "2022"
+    },
+    "estadio": "Arena Barueri",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "20/05",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Cerro Porteño",
+     "id": "2671"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     0,
+     1
+    ]
+   },
+   {
+    "data": "23/05",
+    "dia": "sáb",
+    "hora": "21:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Flamengo",
+     "id": "819"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Maracanã",
+    "status": "encerrado",
+    "placar": [
+     0,
+     3
+    ]
+   },
+   {
+    "data": "28/05",
+    "dia": "qui",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Atlético Junior",
+     "id": "4815"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     4,
+     1
+    ]
+   },
+   {
+    "data": "31/05",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Chapecoense",
+     "id": "9318"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "22/07",
+    "dia": "qua",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Coritiba",
+     "id": "3456"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Couto Pereira",
+    "status": "encerrado",
+    "placar": [
+     1,
+     3
+    ]
+   },
+   {
+    "data": "26/07",
+    "dia": "dom",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Atlético-MG",
+     "id": "7632"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     2
+    ]
+   },
+   {
+    "data": "29/07",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Vitória",
+     "id": "3457"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio Manoel Barradas",
+    "status": "encerrado",
+    "placar": [
+     0,
+     4
+    ]
+   },
+   {
+    "data": "02/08",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Fortaleza",
+     "id": "6272"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     3,
+     0
+    ]
+   },
+   {
+    "data": "05/08",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Fortaleza",
+     "id": "6272"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena Pantanal",
+    "status": "encerrado",
+    "placar": [
+     3,
+     2
+    ]
+   },
+   {
+    "data": "09/08",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Internacional",
+     "id": "1936"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "12/08",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Cerro Porteño",
+     "id": "2671"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "15/08",
+    "dia": "sáb",
+    "hora": "16:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Fluminense",
+     "id": "3445"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Maracanã",
+    "status": "encerrado",
+    "placar": [
+     3,
+     2
+    ]
+   },
+   {
+    "data": "19/08",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Cerro Porteño",
+     "id": "2671"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio ueno La Nueva Olla",
+    "status": "encerrado",
+    "placar": [
+     0,
+     1
+    ]
+   },
+   {
+    "data": "23/08",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Vasco",
+     "id": "3454"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     4,
+     1
+    ]
+   },
+   {
+    "data": "26/08",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Santos",
+     "id": "2674"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     3,
+     0
+    ]
+   },
+   {
+    "data": "30/08",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Mirassol",
+     "id": "9169"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estadio Municipal José Maria de Campos Maia",
+    "status": "encerrado",
+    "placar": [
+     1,
+     1
+    ]
+   },
+   {
+    "data": "02/09",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Santos",
+     "id": "2674"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Vila Belmiro",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "06/09",
+    "dia": "dom",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Botafogo",
+     "id": "6086"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Nilton Santos",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "09/09",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "LDU",
+     "id": "4816"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "12/09",
+    "dia": "sáb",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "São Paulo",
+     "id": "2026"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     2,
+     0
+    ]
+   },
+   {
+    "data": "16/09",
+    "dia": "qua",
+    "hora": "19:00",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "LDU",
+     "id": "4816"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Rodrigo Paz Delgado",
+    "status": "encerrado",
+    "placar": [
+     3,
+     2
+    ],
+    "penaltis": [
+     3,
+     4
+    ],
+    "nota": "Palmeiras classificou nos pênaltis"
+   },
+   {
+    "data": "20/09",
+    "dia": "dom",
+    "hora": "11:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Grêmio",
+     "id": "6273"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena do Grêmio",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "08/10",
+    "dia": "qui",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Bahia",
+     "id": "9967"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "11/10",
+    "dia": "dom",
+    "hora": "17:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Corinthians",
+     "id": "874"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     4,
+     1
+    ]
+   },
+   {
+    "data": "14/10",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Fluminense",
+     "id": "3445"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Maracanã",
+    "status": "encerrado",
+    "placar": [
+     1,
+     2
+    ]
+   },
+   {
+    "data": "17/10",
+    "dia": "sáb",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Athletico-PR",
+     "id": "3458"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena da Baixada",
+    "status": "encerrado",
+    "placar": [
+     0,
+     2
+    ]
+   },
+   {
+    "data": "21/10",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Libertadores",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Fluminense",
+     "id": "3445"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     0,
+     1
+    ],
+    "penaltis": [
+     5,
+     3
+    ],
+    "nota": "Palmeiras classificou nos pênaltis"
+   },
+   {
+    "data": "24/10",
+    "dia": "sáb",
+    "hora": "18:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Bragantino",
+     "id": "6079"
+    },
+    "estadio": "Arena Barueri",
+    "status": "encerrado",
+    "placar": [
+     2,
+     0
+    ]
+   },
+   {
+    "data": "28/10",
+    "dia": "qua",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Santos",
+     "id": "2674"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Vila Belmiro",
+    "status": "encerrado",
+    "placar": [
+     0,
+     0
+    ]
+   },
+   {
+    "data": "01/11",
+    "dia": "dom",
+    "hora": "16:00",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Vasco",
+     "id": "3454"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     1,
+     0
+    ]
+   },
+   {
+    "data": "05/11",
+    "dia": "qui",
+    "hora": "19:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Remo",
+     "id": "4936"
+    },
+    "estadio": "Allianz Parque",
+    "status": "encerrado",
+    "placar": [
+     6,
+     1
+    ]
+   },
+   {
+    "data": "08/11",
+    "dia": "dom",
+    "hora": "17:00",
+    "competicao": "Copa do Brasil",
+    "fase": null,
+    "mandante": {
+     "nome": "Vasco",
+     "id": "3454"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Estádio São Januário",
+    "status": "encerrado",
+    "placar": [
+     2,
+     1
+    ],
+    "penaltis": [
+     4,
+     5
+    ],
+    "nota": "Palmeiras classificou nos pênaltis"
+   },
+   {
+    "data": "18/11",
+    "dia": "qua",
+    "hora": "20:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Cruzeiro",
+     "id": "2022"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Mineirão",
+    "status": "agendado"
+   },
+   {
+    "data": "21/11",
+    "dia": "sáb",
+    "hora": "16:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Flamengo",
+     "id": "819"
+    },
+    "estadio": "Allianz Parque",
+    "status": "agendado"
+   },
+   {
+    "data": "24/11",
+    "dia": "ter",
+    "hora": "18:00",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Chapecoense",
+     "id": "9318"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena Condá",
+    "status": "agendado"
+   },
+   {
+    "data": "28/11",
+    "dia": "sáb",
+    "hora": "17:00",
+    "competicao": "Libertadores",
+    "fase": "Final",
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Estudiantes",
+     "id": "8"
+    },
+    "estadio": "Estadio Centenario",
+    "status": "agendado"
+   },
+   {
+    "data": "02/12",
+    "dia": "qua",
+    "hora": "21:30",
+    "competicao": "Brasileirão",
+    "fase": null,
+    "mandante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "visitante": {
+     "nome": "Coritiba",
+     "id": "3456"
+    },
+    "estadio": "Allianz Parque",
+    "status": "agendado"
+   },
+   {
+    "data": "06/12",
+    "dia": "dom",
+    "hora": "17:00",
+    "competicao": "Copa do Brasil",
+    "fase": "Final",
+    "mandante": {
+     "nome": "Grêmio",
+     "id": "6273"
+    },
+    "visitante": {
+     "nome": "Palmeiras",
+     "id": "2029"
+    },
+    "estadio": "Arena BRB Mané Garrincha",
+    "status": "agendado"
+   }
+  ]
+ },
+ "jogo": {
+  "_sobre": "Fixture real backend/tests/fixtures/espn_summary_bra1.json. posicao_no_desenho (1-11) no 4-2-3-1 da ESPN: 1 GOL; 2 LD, 5 ZAG dir., 6 ZAG esq., 3 LE; 8 VOL dir., 4 VOL esq.; 7 meia dir., 10 meia central, 11 meia esq.; 9 ATA. Sem nota nem minutos por jogador (a ESPN não traz).",
+  "competicao": "Brasileirão",
+  "rodada": null,
+  "data": "sábado, 18 de outubro de 2026",
+  "hora": "16:00",
+  "estadio": "Maracanã",
+  "cidade": "Rio de Janeiro",
+  "status": "encerrado",
+  "mandante": {
+   "nome": "Fluminense",
+   "id": "3445",
+   "cor": "#7e0202",
+   "cor_alternativa": "#417505"
+  },
+  "visitante": {
+   "nome": "Santos",
+   "id": "2674",
+   "cor": "#000000",
+   "cor_alternativa": "#fafafc"
+  },
+  "placar": [
+   1,
+   2
+  ],
+  "estatisticas": [
+   {
+    "nome": "Posse de bola (%)",
+    "mandante": 49.9,
+    "visitante": 50.1
+   },
+   {
+    "nome": "Finalizações",
+    "mandante": 8,
+    "visitante": 17
+   },
+   {
+    "nome": "No alvo",
+    "mandante": 2,
+    "visitante": 5
+   },
+   {
+    "nome": "Bloqueadas",
+    "mandante": 3,
+    "visitante": 7
+   },
+   {
+    "nome": "Escanteios",
+    "mandante": 4,
+    "visitante": 5
+   },
+   {
+    "nome": "Passes certos",
+    "mandante": 451,
+    "visitante": 465
+   },
+   {
+    "nome": "Passes",
+    "mandante": 520,
+    "visitante": 523
+   },
+   {
+    "nome": "Cruzamentos certos",
+    "mandante": 4,
+    "visitante": 0
+   },
+   {
+    "nome": "Cruzamentos",
+    "mandante": 11,
+    "visitante": 8
+   },
+   {
+    "nome": "Desarmes certos",
+    "mandante": 14,
+    "visitante": 9
+   },
+   {
+    "nome": "Desarmes",
+    "mandante": 25,
+    "visitante": 19
+   },
+   {
+    "nome": "Interceptações",
+    "mandante": 11,
+    "visitante": 12
+   },
+   {
+    "nome": "Cortes",
+    "mandante": 20,
+    "visitante": 17
+   },
+   {
+    "nome": "Defesas",
+    "mandante": 3,
+    "visitante": 1
+   },
+   {
+    "nome": "Faltas",
+    "mandante": 18,
+    "visitante": 18
+   },
+   {
+    "nome": "Impedimentos",
+    "mandante": 0,
+    "visitante": 0
+   },
+   {
+    "nome": "Cartões amarelos",
+    "mandante": 2,
+    "visitante": 1
+   },
+   {
+    "nome": "Cartões vermelhos",
+    "mandante": 0,
+    "visitante": 0
+   }
+  ],
+  "lances": [
+   {
+    "minuto": "4'",
+    "tipo": "gol",
+    "lado": "home",
+    "jogador": "Rodrigo Castillo",
+    "assistencia": "Igor Rabello"
+   },
+   {
+    "minuto": "25'",
+    "tipo": "cartão amarelo",
+    "lado": "away",
+    "jogador": "Álvaro Barreal"
+   },
+   {
+    "minuto": "31'",
+    "tipo": "cartão amarelo",
+    "lado": "home",
+    "jogador": "Agustín Canobbio"
+   },
+   {
+    "minuto": "45'+4'",
+    "tipo": "intervalo",
+    "lado": null
+   },
+   {
+    "minuto": "49'",
+    "tipo": "gol",
+    "lado": "away",
+    "jogador": "Gabriel Barbosa",
+    "assistencia": "Rodinei"
+   },
+   {
+    "minuto": "54'",
+    "tipo": "gol de cabeça",
+    "lado": "away",
+    "jogador": "Philippe Coutinho",
+    "assistencia": "Gabriel Bontempo"
+   },
+   {
+    "minuto": "57'",
+    "tipo": "substituição",
+    "lado": "home",
+    "entra": "Hulk",
+    "sai": "Rodrigo Castillo"
+   },
+   {
+    "minuto": "57'",
+    "tipo": "substituição",
+    "lado": "home",
+    "entra": "Jefferson Savarino",
+    "sai": "Yeferson Soteldo"
+   },
+   {
+    "minuto": "57'",
+    "tipo": "substituição",
+    "lado": "home",
+    "entra": "Ganso",
+    "sai": "Luciano Acosta"
+   },
+   {
+    "minuto": "57'",
+    "tipo": "substituição",
+    "lado": "home",
+    "entra": "Wesley Natã",
+    "sai": "Agustín Canobbio"
+   },
+   {
+    "minuto": "72'",
+    "tipo": "substituição",
+    "lado": "away",
+    "entra": "Rony",
+    "sai": "Philippe Coutinho"
+   },
+   {
+    "minuto": "72'",
+    "tipo": "substituição",
+    "lado": "away",
+    "entra": "Christian Oliva",
+    "sai": "Everton"
+   },
+   {
+    "minuto": "76'",
+    "tipo": "substituição",
+    "lado": "home",
+    "entra": "Kevin Serna",
+    "sai": "Nonato"
+   },
+   {
+    "minuto": "83'",
+    "tipo": "substituição",
+    "lado": "away",
+    "entra": "João Alencar",
+    "sai": "Lucas Verissimo"
+   },
+   {
+    "minuto": "87'",
+    "tipo": "substituição",
+    "lado": "away",
+    "entra": "Rafael Gonzaga",
+    "sai": "Álvaro Barreal"
+   },
+   {
+    "minuto": "87'",
+    "tipo": "substituição",
+    "lado": "away",
+    "entra": "Benjamín Rollheiser",
+    "sai": "Neymar"
+   },
+   {
+    "minuto": "90'+5'",
+    "tipo": "cartão amarelo",
+    "lado": "home",
+    "jogador": "Jefferson Savarino"
+   },
+   {
+    "minuto": "90'+10'",
+    "tipo": "fim",
+    "lado": null
+   }
+  ],
+  "escalacoes": {
+   "home": {
+    "formacao": "4-2-3-1",
+    "jogadores": [
+     {
+      "numero": "1",
+      "nome": "Fábio",
+      "posicao": "GOL",
+      "titular": true,
+      "posicao_no_desenho": 1,
+      "entrou": false,
+      "saiu": false,
+      "defesas": 3
+     },
+     {
+      "numero": "21",
+      "nome": "Igor Rabello",
+      "posicao": "ZAG",
+      "titular": true,
+      "posicao_no_desenho": 6,
+      "entrou": false,
+      "saiu": false,
+      "assistencias": 1,
+      "faltas": 1
+     },
+     {
+      "numero": "4",
+      "nome": "Ignácio",
+      "posicao": "ZAG",
+      "titular": true,
+      "posicao_no_desenho": 5,
+      "entrou": false,
+      "saiu": false,
+      "faltas": 3
+     },
+     {
+      "numero": "6",
+      "nome": "René",
+      "posicao": "LE",
+      "titular": true,
+      "posicao_no_desenho": 3,
+      "entrou": false,
+      "saiu": false,
+      "faltas": 2
+     },
+     {
+      "numero": "2",
+      "nome": "Samuel Xavier",
+      "posicao": "LD",
+      "titular": true,
+      "posicao_no_desenho": 2,
+      "entrou": false,
+      "saiu": false,
+      "finalizacoes": 2
+     },
+     {
+      "numero": "32",
+      "nome": "Luciano Acosta",
+      "posicao": "MEI",
+      "titular": true,
+      "posicao_no_desenho": 10,
+      "entrou": false,
+      "saiu": true
+     },
+     {
+      "numero": "16",
+      "nome": "Nonato",
+      "posicao": "VOL",
+      "titular": true,
+      "posicao_no_desenho": 4,
+      "entrou": false,
+      "saiu": true,
+      "faltas": 3
+     },
+     {
+      "numero": "35",
+      "nome": "Hércules",
+      "posicao": "VOL",
+      "titular": true,
+      "posicao_no_desenho": 8,
+      "entrou": false,
+      "saiu": false,
+      "faltas": 1
+     },
+     {
+      "numero": "19",
+      "nome": "Rodrigo Castillo",
+      "posicao": "ATA",
+      "titular": true,
+      "posicao_no_desenho": 9,
+      "entrou": false,
+      "saiu": true,
+      "gols": 1,
+      "finalizacoes": 1,
+      "no_alvo": 1,
+      "faltas": 1
+     },
+     {
+      "numero": "30",
+      "nome": "Yeferson Soteldo",
+      "posicao": "PE",
+      "titular": true,
+      "posicao_no_desenho": 11,
+      "entrou": false,
+      "saiu": true
+     },
+     {
+      "numero": "17",
+      "nome": "Agustín Canobbio",
+      "posicao": "PD",
+      "titular": true,
+      "posicao_no_desenho": 7,
+      "entrou": false,
+      "saiu": true,
+      "amarelos": 1,
+      "finalizacoes": 2,
+      "faltas": 1
+     },
+     {
+      "numero": "3",
+      "nome": "Thiago Silva",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "27",
+      "nome": "Marcelo Pitaluga",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "11",
+      "nome": "Jefferson Savarino",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "amarelos": 1,
+      "finalizacoes": 1,
+      "no_alvo": 1,
+      "faltas": 2
+     },
+     {
+      "numero": "7",
+      "nome": "Hulk",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "finalizacoes": 2
+     },
+     {
+      "numero": "41",
+      "nome": "Ruan Sales",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "29",
+      "nome": "Julian Millan",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "22",
+      "nome": "Juan Freytes",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "90",
+      "nome": "Kevin Serna",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false
+     },
+     {
+      "numero": "23",
+      "nome": "Guga",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "94",
+      "nome": "Otávio",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "34",
+      "nome": "Wesley Natã",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "faltas": 3
+     },
+     {
+      "numero": "10",
+      "nome": "Ganso",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "faltas": 1
+     }
+    ]
+   },
+   "away": {
+    "formacao": "4-2-3-1",
+    "jogadores": [
+     {
+      "numero": "1",
+      "nome": "Diogenes",
+      "posicao": "GOL",
+      "titular": true,
+      "posicao_no_desenho": 1,
+      "entrou": false,
+      "saiu": false,
+      "defesas": 1
+     },
+     {
+      "numero": "14",
+      "nome": "Luan Peres",
+      "posicao": "ZAG",
+      "titular": true,
+      "posicao_no_desenho": 6,
+      "entrou": false,
+      "saiu": false,
+      "faltas": 1
+     },
+     {
+      "numero": "4",
+      "nome": "Lucas Verissimo",
+      "posicao": "ZAG",
+      "titular": true,
+      "posicao_no_desenho": 5,
+      "entrou": false,
+      "saiu": true
+     },
+     {
+      "numero": "22",
+      "nome": "Álvaro Barreal",
+      "posicao": "LE",
+      "titular": true,
+      "posicao_no_desenho": 3,
+      "entrou": false,
+      "saiu": true,
+      "amarelos": 1,
+      "finalizacoes": 1,
+      "faltas": 1
+     },
+     {
+      "numero": "23",
+      "nome": "Rodinei",
+      "posicao": "LD",
+      "titular": true,
+      "posicao_no_desenho": 2,
+      "entrou": false,
+      "saiu": false,
+      "assistencias": 1,
+      "faltas": 6
+     },
+     {
+      "numero": "10",
+      "nome": "Neymar",
+      "posicao": "MEI",
+      "titular": true,
+      "posicao_no_desenho": 10,
+      "entrou": false,
+      "saiu": true,
+      "finalizacoes": 3,
+      "no_alvo": 1,
+      "faltas": 3
+     },
+     {
+      "numero": "48",
+      "nome": "Gustavo Henrique",
+      "posicao": "VOL",
+      "titular": true,
+      "posicao_no_desenho": 4,
+      "entrou": false,
+      "saiu": false,
+      "faltas": 1
+     },
+     {
+      "numero": "8",
+      "nome": "Gabriel Bontempo",
+      "posicao": "VOL",
+      "titular": true,
+      "posicao_no_desenho": 8,
+      "entrou": false,
+      "saiu": false,
+      "assistencias": 1,
+      "faltas": 1
+     },
+     {
+      "numero": "9",
+      "nome": "Gabriel Barbosa",
+      "posicao": "ATA",
+      "titular": true,
+      "posicao_no_desenho": 9,
+      "entrou": false,
+      "saiu": false,
+      "gols": 1,
+      "finalizacoes": 4,
+      "no_alvo": 1
+     },
+     {
+      "numero": "7",
+      "nome": "Everton",
+      "posicao": "PE",
+      "titular": true,
+      "posicao_no_desenho": 11,
+      "entrou": false,
+      "saiu": true,
+      "finalizacoes": 4,
+      "faltas": 2
+     },
+     {
+      "numero": "11",
+      "nome": "Philippe Coutinho",
+      "posicao": "PD",
+      "titular": true,
+      "posicao_no_desenho": 7,
+      "entrou": false,
+      "saiu": true,
+      "gols": 1,
+      "finalizacoes": 1,
+      "no_alvo": 1,
+      "faltas": 2
+     },
+     {
+      "numero": "38",
+      "nome": "Rafael Gonzaga",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false
+     },
+     {
+      "numero": "5",
+      "nome": "João Schmidt",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "42",
+      "nome": "João Alencar",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false
+     },
+     {
+      "numero": "25",
+      "nome": "Gabriel Menino",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "30",
+      "nome": "Miguel Terceros",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "16",
+      "nome": "Thaciano",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "34",
+      "nome": "João Paulo",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "32",
+      "nome": "Benjamín Rollheiser",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "finalizacoes": 2,
+      "no_alvo": 1
+     },
+     {
+      "numero": "26",
+      "nome": "João Ananias",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "18",
+      "nome": "Igor",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": false,
+      "saiu": false
+     },
+     {
+      "numero": "28",
+      "nome": "Christian Oliva",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "finalizacoes": 1
+     },
+     {
+      "numero": "33",
+      "nome": "Rony",
+      "posicao": "RES",
+      "titular": false,
+      "posicao_no_desenho": null,
+      "entrou": true,
+      "saiu": false,
+      "finalizacoes": 1,
+      "no_alvo": 1,
+      "faltas": 1
+     }
+    ]
+   }
+  },
+  "ao_vivo_simulado": {
+   "_sobre": "Estado ao vivo SIMULADO para o mockup, coerente com os lances reais até o minuto (gols aos 4' e 49').",
+   "minuto": "51'",
+   "placar": [
+    1,
+    1
+   ],
+   "periodo": "2º tempo"
+  }
+ }
+}
