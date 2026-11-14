@@ -6,7 +6,13 @@ import httpx
 import pytest
 
 from app.providers.base import ProviderError, RateLimitError, TransientError
-from app.providers.espn import EspnProvider, map_status, parse_scoreboard, parse_summary
+from app.providers.espn import (
+    EspnProvider,
+    map_decided_in,
+    map_status,
+    parse_scoreboard,
+    parse_summary,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -99,6 +105,89 @@ def test_parse_summary():
     assert castillo.stats["starter"] is True
     assert castillo.stats["subbedOut"] is True
     assert castillo.stats["totalGoals"] == 1
+    assert castillo.stats["formationPlace"] == 9
+
+
+def test_parse_summary_escalacao():
+    detail = parse_summary(load("espn_summary_bra1.json"), "soccer/bra.1")
+    assert [p.formation for p in detail.event.participants] == ["4-2-3-1", "4-2-3-1"]
+
+    titulares = [p for p in detail.player_stats if p.stats["starter"]]
+    assert len(titulares) == 22
+    assert sorted(p.stats["formationPlace"] for p in titulares if p.team_external_id == "3445") == list(
+        range(1, 12)
+    )
+    # reservas vêm com formationPlace "0" da ESPN
+    assert all(p.stats["formationPlace"] is None for p in detail.player_stats if not p.stats["starter"])
+
+
+def test_jogo_de_liga_sem_mata_mata():
+    santos = parse_scoreboard(load("espn_scoreboard_bra1.json"), "soccer")[0]
+    assert [(p.team.name, p.is_winner) for p in santos.participants] == [
+        ("Fluminense", False),
+        ("Santos", True),
+    ]
+    assert [p.advanced for p in santos.participants] == [None, None]  # liga não tem mata-mata
+    assert santos.decided_in is None and santos.leg is None
+
+
+def test_lances_tem_codigo():
+    scoreboard = parse_scoreboard(load("espn_scoreboard_bra1.json"), "soccer")
+    codigos = {lance["codigo"] for ev in scoreboard for lance in ev.extra["lances"]}
+    # o scoreboard não traz o código; ele deriva do texto e bate com o do summary
+    assert {"goal", "goal---header", "goal---volley", "penalty---scored", "yellow-card"} <= codigos
+
+    summary = parse_summary(load("espn_summary_bra1.json"), "soccer/bra.1")
+    codigos = {lance["codigo"] for lance in summary.event.extra["lances"]}
+    assert {"kickoff", "goal", "goal---header", "substitution", "yellow-card"} <= codigos
+
+
+# --- mata-mata com pênaltis (Copa do Brasil 2025, volta das oitavas: Flamengo 1x0, Atlético nos pênaltis)
+
+
+def test_parse_scoreboard_com_penaltis():
+    (jogo,) = parse_scoreboard(load("espn_scoreboard_copa_penaltis.json"), "soccer")
+    assert jogo.status == "final"
+    assert jogo.decided_in == "penalties"
+    assert jogo.leg == 2
+    assert jogo.competition.type == "cup"
+
+    cam, fla = jogo.participants
+    assert (cam.team.name, cam.side, cam.score) == ("Atlético-MG", "home", 0)
+    assert (fla.team.name, fla.side, fla.score) == ("Flamengo", "away", 1)
+    # o Flamengo ganhou no tempo normal, mas o vencedor do jogo é quem venceu nos pênaltis
+    assert (cam.is_winner, fla.is_winner) == (True, False)
+    assert (cam.advanced, fla.advanced) == (True, False)
+    assert (cam.shootout_score, fla.shootout_score) == (4, 3)
+    assert (cam.aggregate_score, fla.aggregate_score) == (1, 1)
+
+
+def test_parse_summary_com_penaltis():
+    detail = parse_summary(load("espn_summary_copa_penaltis.json"), "soccer/bra.copa_do_brazil")
+    ev = detail.event
+    assert ev.decided_in == "penalties"
+    assert ev.leg == 2
+
+    cam, fla = ev.participants
+    assert (cam.is_winner, cam.advanced, cam.shootout_score) == (True, True, 4)
+    assert (fla.is_winner, fla.advanced, fla.shootout_score) == (False, False, 3)
+    assert (cam.formation, fla.formation) == ("4-3-3", "4-2-3-1")
+
+    assert ev.extra["penaltis"] == {"home": 4, "away": 3}
+
+
+@pytest.mark.parametrize(
+    ("type_", "esperado"),
+    [
+        ({"name": "STATUS_FULL_TIME", "state": "post"}, None),
+        ({"name": "STATUS_FINAL_PEN", "state": "post"}, "penalties"),
+        ({"name": "STATUS_FINAL_AET", "state": "post"}, "extra_time"),
+        ({"name": "STATUS_SCHEDULED", "state": "pre"}, None),
+        ({"name": "STATUS_POSTPONED", "state": "post"}, None),
+    ],
+)
+def test_map_decided_in(type_, esperado):
+    assert map_decided_in({"type": type_}) == esperado
 
 
 # --- pênaltis ----------------------------------------------------------------------------------

@@ -120,6 +120,37 @@ def test_calendario_depois_do_detalhe_preserva_estatisticas_e_lances(session):
     assert event.details_synced_at == AGORA
 
 
+def test_mata_mata_grava_penaltis_agregado_e_formacao(session):
+    detail = parse_summary(load("espn_summary_copa_penaltis.json"), "soccer/bra.copa_do_brazil")
+    event = ingest.upsert_event_detail(session, "espn", detail, AGORA)
+
+    assert (event.leg, event.decided_in) == (2, "penalties")
+    cam, fla = event.participants
+    assert (cam.score, cam.is_winner, cam.advanced, cam.shootout_score, cam.aggregate_score) == (
+        0, True, True, 4, 1,
+    )
+    assert (fla.score, fla.is_winner, fla.advanced, fla.shootout_score, fla.aggregate_score) == (
+        1, False, False, 3, 1,
+    )
+    assert (cam.formation, fla.formation) == ("4-3-3", "4-2-3-1")
+    assert event.extra["penaltis"] == {"home": 4, "away": 3}
+
+
+def test_calendario_depois_do_detalhe_preserva_penaltis(session):
+    ingest.upsert_event_detail(
+        session,
+        "espn",
+        parse_summary(load("espn_summary_copa_penaltis.json"), "soccer/bra.copa_do_brazil"),
+        AGORA,
+    )
+    (ev,) = parse_scoreboard(load("espn_scoreboard_copa_penaltis.json"), "soccer")
+    event = ingest.upsert_event(session, "espn", ev)
+
+    assert event.extra["penaltis"] == {"home": 4, "away": 3}
+    assert event.participants[0].formation == "4-3-3"  # nem a formação
+    assert event.participants[0].shootout_score == 4
+
+
 def test_detalhe_de_jogo_nao_encerrado_nao_marca_como_sincronizado(session):
     detail = parse_summary(load("espn_summary_bra1.json"), "soccer/bra.1")
     detail.event.status = "live"

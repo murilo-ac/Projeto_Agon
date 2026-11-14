@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from sqlalchemy import select
+from sqlalchemy import case, func, or_, select
 from sqlalchemy.orm import Session, joinedload, selectinload
 
 from app.models import (
@@ -13,6 +13,7 @@ from app.models import (
     PlayerEventStats,
     Season,
     Sport,
+    SyncRun,
     Team,
     TeamPlayer,
 )
@@ -74,6 +75,27 @@ def get_team(session: Session, team_id: int) -> Team | None:
     return session.get(Team, team_id)
 
 
+def search_teams(session: Session, text: str, limit: int = 10) -> list[Team]:
+    """Times cujo nome (ou nome curto) contém o texto, sem diferenciar acento e caixa.
+
+    Os que começam pelo texto vêm primeiro.
+    """
+    escaped = text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+    name = func.unaccent(Team.name)
+    short = func.unaccent(func.coalesce(Team.short_name, ""))
+    contains = func.unaccent(f"%{escaped}%")
+    stmt = (
+        select(Team)
+        .where(or_(name.ilike(contains, escape="\\"), short.ilike(contains, escape="\\")))
+        .order_by(
+            case((name.ilike(func.unaccent(f"{escaped}%"), escape="\\"), 0), else_=1),
+            Team.name,
+        )
+        .limit(limit)
+    )
+    return list(session.scalars(stmt))
+
+
 def list_events_by_team(
     session: Session,
     team_id: int,
@@ -88,3 +110,17 @@ def list_events_by_team(
         stmt = stmt.where(Event.status == status)
     order = (Event.start_time.desc(), Event.id.desc()) if descending else (Event.start_time, Event.id)
     return list(session.scalars(stmt.order_by(*order).limit(limit)).unique())
+
+
+def last_sync_by_job(session: Session) -> dict[str, datetime]:
+    """Fim da última execução de cada job que gravou dados (`success` ou `partial`)."""
+    stmt = (
+        select(SyncRun.job, func.max(SyncRun.finished_at))
+        .where(SyncRun.status.in_(("success", "partial")))
+        .group_by(SyncRun.job)
+    )
+    return {job: finished for job, finished in session.execute(stmt) if finished is not None}
+
+
+def first_event_time(session: Session) -> datetime | None:
+    return session.scalar(select(func.min(Event.start_time)))

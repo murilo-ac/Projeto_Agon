@@ -1,6 +1,7 @@
 import json
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 from fastapi.testclient import TestClient
@@ -8,7 +9,7 @@ from sqlalchemy import select
 
 from app.core.db import get_session
 from app.main_api import app
-from app.models import Team
+from app.models import SyncRun, Team
 from app.providers.espn import parse_scoreboard, parse_summary
 from app.repositories import ingest
 
@@ -132,6 +133,33 @@ def test_detalhe_do_jogo(client):
     assert home["team"]["id"] == castillo["team_id"]
 
 
+def test_detalhe_traz_formacao_e_codigo_dos_lances(client):
+    jogo = client.get(f"/api/events/{event_id(client)}").json()
+    assert [p["formation"] for p in jogo["participants"]] == ["4-2-3-1", "4-2-3-1"]
+    assert all(lance["codigo"] for lance in jogo["lances"])
+    assert jogo["penaltis"] is None
+    assert (jogo["leg"], jogo["decided_in"]) == (None, None)
+
+
+def test_jogo_decidido_nos_penaltis(client, session):
+    ingest.upsert_event_detail(
+        session,
+        "espn",
+        parse_summary(load("espn_summary_copa_penaltis.json"), "soccer/bra.copa_do_brazil"),
+        AGORA,
+    )
+    session.flush()
+    (resumo,) = client.get("/api/events", params={"date": "2025-08-06"}).json()
+    assert (resumo["leg"], resumo["decided_in"]) == (2, "penalties")
+    cam, fla = resumo["participants"]
+    assert (cam["score"], cam["is_winner"], cam["advanced"], cam["shootout_score"]) == (0, True, True, 4)
+    assert (fla["score"], fla["is_winner"], fla["advanced"], fla["shootout_score"]) == (1, False, False, 3)
+    assert cam["aggregate_score"] == fla["aggregate_score"] == 1
+
+    jogo = client.get(f"/api/events/{resumo['id']}").json()
+    assert jogo["penaltis"] == {"home": 4, "away": 3}
+
+
 def test_detalhe_de_jogo_sem_detalhe_coletado(client):
     resp = client.get(f"/api/events/{event_id(client, 'Grêmio')}")
     assert resp.status_code == 200
@@ -176,6 +204,33 @@ def test_jogos_do_time(client, session):
     assert "Fluminense" in [p["team"]["name"] for p in jogos[0]["participants"]]
 
 
+def test_busca_de_times(client):
+    assert [t["name"] for t in client.get("/api/teams", params={"q": "flumi"}).json()] == ["Fluminense"]
+    # acento e caixa não importam, nos dois sentidos
+    assert [t["name"] for t in client.get("/api/teams", params={"q": "GREMIO"}).json()] == ["Grêmio"]
+    assert [t["name"] for t in client.get("/api/teams", params={"q": "cruzéiro"}).json()] == ["Cruzeiro"]
+    assert client.get("/api/teams", params={"q": "xyz"}).json() == []
+
+
+def test_busca_de_times_prioriza_quem_comeca_pelo_texto(client, session):
+    santos = session.scalars(select(Team).where(Team.name == "Santos")).one()
+    session.add(Team(sport_id=santos.sport_id, name="Clube Santista"))
+    session.flush()
+    nomes = [t["name"] for t in client.get("/api/teams", params={"q": "sant"}).json()]
+    assert nomes == ["Santos", "Clube Santista"]
+    assert len(client.get("/api/teams", params={"q": "sant", "limit": 1}).json()) == 1
+
+
+@pytest.mark.parametrize("params", [{}, {"q": "a"}, {"q": "fl", "limit": 0}])
+def test_busca_de_times_parametros_invalidos(client, params):
+    assert client.get("/api/teams", params=params).status_code == 422
+
+
+def test_busca_de_times_trata_curingas_como_texto(client):
+    assert client.get("/api/teams", params={"q": "%%"}).json() == []
+    assert client.get("/api/teams", params={"q": "__"}).json() == []
+
+
 def test_jogos_do_time_com_filtros(client, session):
     tid = team_id(session, "Fluminense")
     base = f"/api/teams/{tid}/events"
@@ -184,3 +239,38 @@ def test_jogos_do_time_com_filtros(client, session):
     assert client.get(base, params={"status": "invalido"}).status_code == 422
     assert client.get(base, params={"limit": 0}).status_code == 422
     assert client.get(base, params={"order": "asc", "limit": 1}).status_code == 200
+
+
+# --- status --------------------------------------------------------------------------------------
+
+
+def test_status_sem_coletas(client):
+    resp = client.get("/api/status")
+    assert resp.status_code == 200
+    status = resp.json()
+    hoje = datetime.now(ZoneInfo("America/Sao_Paulo")).date()
+    assert status["last_sync_at"] is None
+    assert status["jobs"] == {}
+    assert status["dates"]["first"] == "2026-10-18"  # o jogo mais antigo do banco
+    assert status["dates"]["last"] == (hoje + timedelta(days=7)).isoformat()
+
+
+def test_status_usa_a_ultima_coleta_que_gravou_dados(client, session):
+    def run(job, status, finished):
+        session.add(SyncRun(job=job, provider="espn", status=status, finished_at=finished))
+
+    run("calendar", "success", datetime(2026, 10, 27, 8, 0, tzinfo=UTC))
+    run("calendar", "failed", datetime(2026, 10, 27, 9, 0, tzinfo=UTC))
+    run("postgame", "partial", datetime(2026, 10, 27, 10, 0, tzinfo=UTC))
+    run("postgame", "rate_limited", datetime(2026, 10, 27, 11, 0, tzinfo=UTC))
+    session.flush()
+
+    status = client.get("/api/status").json()
+    assert status["jobs"] == {"calendar": "2026-10-27T08:00:00Z", "postgame": "2026-10-27T10:00:00Z"}
+    assert status["last_sync_at"] == "2026-10-27T10:00:00Z"
+
+
+def test_status_respeita_o_fuso(client):
+    # o jogo das 19:00 UTC do dia 18 já é dia 19 em Tóquio
+    assert client.get("/api/status", params={"tz": "Asia/Tokyo"}).json()["dates"]["first"] == "2026-10-19"
+    assert client.get("/api/status", params={"tz": "Marte/Olimpo"}).status_code == 422

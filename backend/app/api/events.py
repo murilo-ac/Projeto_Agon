@@ -8,12 +8,18 @@ from app.api.mappers import event_summary_fields, to_summary
 from app.core.config import get_settings
 from app.core.db import get_session
 from app.repositories import queries
-from app.schemas.events import EventDetailOut, EventSummary, Lance, ParticipantDetail, PlayerStatsOut
+from app.schemas.events import (
+    EventDetailOut,
+    EventSummary,
+    Lance,
+    ParticipantDetail,
+    PlayerStatsOut,
+)
 
 router = APIRouter(prefix="/events", tags=["jogos"])
 
 
-def _zone(name: str | None) -> ZoneInfo:
+def resolve_zone(name: str | None) -> ZoneInfo:
     try:
         return ZoneInfo(name or get_settings().worker_timezone)
     except (ZoneInfoNotFoundError, ValueError) as exc:
@@ -29,7 +35,7 @@ def list_events(
     session: Session = Depends(get_session),
 ):
     """Agenda do dia: jogos que começam entre 00:00 e 24:00 no fuso informado."""
-    zone = _zone(tz)
+    zone = resolve_zone(tz)
     day = day or datetime.now(zone).date()
     start = datetime.combine(day, time.min, tzinfo=zone)
     end = datetime.combine(day + timedelta(days=1), time.min, tzinfo=zone)
@@ -63,5 +69,6 @@ def get_event(event_id: int, session: Session = Depends(get_session)):
             ParticipantDetail.model_validate(p, from_attributes=True) for p in event.participants
         ],
         lances=[Lance(**lance) for lance in (event.extra or {}).get("lances", [])],
+        penaltis=(event.extra or {}).get("penaltis"),
         players=players,
     )

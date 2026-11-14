@@ -8,6 +8,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Integer,
+    SmallInteger,
     String,
     UniqueConstraint,
     text,
@@ -27,6 +28,7 @@ class Event(TimestampMixin, Base):
         CheckConstraint(
             "status IN ('scheduled', 'live', 'final', 'postponed', 'canceled')", name="status"
         ),
+        CheckConstraint("decided_in IN ('extra_time', 'penalties')", name="decided_in"),
         Index("ix_events_start_time", "start_time"),
         Index("ix_events_season_id_start_time", "season_id", "start_time"),
     )
@@ -39,6 +41,8 @@ class Event(TimestampMixin, Base):
     round: Mapped[str | None] = mapped_column(String(60))
     venue_name: Mapped[str | None] = mapped_column(String(160))
     venue_city: Mapped[str | None] = mapped_column(String(100))
+    leg: Mapped[int | None] = mapped_column(SmallInteger)  # ida (1) ou volta (2)
+    decided_in: Mapped[str | None] = mapped_column(String(20))  # extra_time, penalties
     extra: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
     # preenchido quando o detalhe (estatísticas) do jogo encerrado foi coletado
     details_synced_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
@@ -77,7 +81,12 @@ class EventParticipant(Base):
     side: Mapped[str | None] = mapped_column(String(10))  # home, away ou nulo
     position: Mapped[int | None] = mapped_column(Integer)
     score: Mapped[int | None] = mapped_column(Integer)
+    # venceu a partida pelo placar; pênaltis e agregado não contam
     is_winner: Mapped[bool | None] = mapped_column(Boolean)
+    shootout_score: Mapped[int | None] = mapped_column(Integer)
+    aggregate_score: Mapped[int | None] = mapped_column(Integer)
+    advanced: Mapped[bool | None] = mapped_column(Boolean)  # avançou no mata-mata
+    formation: Mapped[str | None] = mapped_column(String(20))
     stats: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
 
     event: Mapped[Event] = relationship(back_populates="participants")

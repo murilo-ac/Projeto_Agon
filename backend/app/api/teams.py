@@ -12,6 +12,16 @@ from app.schemas.events import EventSummary
 router = APIRouter(prefix="/teams", tags=["times"])
 
 
+@router.get("", response_model=list[TeamOut])
+def search_teams(
+    q: str = Query(..., min_length=2, max_length=60, description="Parte do nome; acento é ignorado."),
+    limit: int = Query(10, ge=1, le=50),
+    session: Session = Depends(get_session),
+):
+    """Busca de times pelo nome. Os que começam pelo texto vêm primeiro."""
+    return queries.search_teams(session, q.strip(), limit)
+
+
 @router.get("/{team_id}", response_model=TeamOut)
 def get_team(team_id: int, session: Session = Depends(get_session)):
     team = queries.get_team(session, team_id)

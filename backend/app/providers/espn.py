@@ -63,6 +63,14 @@ def _parse_datetime(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
+def _int(value: Any) -> int | None:
+    """Converte "3", 3.0 ou 3 em 3; vazio ou não numérico vira None."""
+    try:
+        return int(float(value))
+    except (TypeError, ValueError):
+        return None
+
+
 def map_status(status: dict[str, Any]) -> str:
     type_ = status.get("type", {})
     name = type_.get("name", "")
@@ -71,6 +79,18 @@ def map_status(status: dict[str, Any]) -> str:
     if any(word in name for word in ("CANCELED", "CANCELLED", "ABANDONED")):
         return "canceled"
     return {"pre": "scheduled", "in": "live", "post": "final"}.get(type_.get("state"), "scheduled")
+
+
+def map_decided_in(status: dict[str, Any]) -> str | None:
+    """Jogo encerrado na prorrogação ou nos pênaltis (ex.: STATUS_FINAL_PEN, STATUS_FINAL_AET)."""
+    if map_status(status) != "final":
+        return None
+    name = status.get("type", {}).get("name", "")
+    if "PEN" in name:
+        return "penalties"
+    if "AET" in name or "EXTRA" in name:
+        return "extra_time"
+    return None
 
 
 def _team(team: dict[str, Any]) -> TeamData:
@@ -98,8 +118,12 @@ def _lance(item: dict[str, Any], lados: dict[str, str]) -> dict[str, Any]:
         for a in (item.get("athletesInvolved") or [p.get("athlete", {}) for p in item.get("participants", [])])
         if a.get("displayName")
     ]
+    type_ = item.get("type", {})
+    text = type_.get("text")
     return {
-        "tipo": item.get("type", {}).get("text"),
+        "tipo": text,
+        # o summary traz o código ("goal---volley"); o scoreboard só o texto, de onde ele deriva
+        "codigo": type_.get("type") or (text.lower().replace(" ", "-") if text else None),
         "minuto": item.get("clock", {}).get("displayValue") or None,
         "lado": lados.get(str((item.get("team") or {}).get("id"))),
         "jogadores": players,
@@ -194,8 +218,11 @@ def _participants(
             ParticipantData(
                 team=_team(comp["team"]),
                 side=comp.get("homeAway"),
-                score=int(score) if score not in (None, "") else None,
+                score=_int(score),
                 is_winner=comp.get("homeAway") == vencedor if final else None,
+                shootout_score=_int(comp.get("shootoutScore")),
+                aggregate_score=_int(comp.get("aggregateScore")),
+                advanced=comp.get("advance") if final else None,
                 stats=_stats(comp.get("statistics")) if with_stats else {},
             )
         )
@@ -213,7 +240,8 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
     events = []
     for ev in payload.get("events", []):
         comp = ev["competitions"][0]
-        status = map_status(ev.get("status") or comp.get("status") or {})
+        raw_status = ev.get("status") or comp.get("status") or {}
+        status = map_status(raw_status)
         year = (ev.get("season") or {}).get("year") or league_year
         venue = comp.get("venue") or ev.get("venue") or {}
         extra: dict[str, Any] = {}
@@ -232,6 +260,8 @@ def parse_scoreboard(payload: dict[str, Any], sport_path: str) -> list[EventData
                 participants=_participants(comp.get("competitors", []), status, True, _notas(comp)),
                 venue_name=venue.get("fullName"),
                 venue_city=(venue.get("address") or {}).get("city"),
+                leg=(comp.get("leg") or {}).get("value"),
+                decided_in=map_decided_in(raw_status),
                 extra=extra,
             )
         )
@@ -251,13 +281,15 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
     box_stats = {
         t["team"]["id"]: _stats(t.get("statistics")) for t in payload.get("boxscore", {}).get("teams", [])
     }
+    formations = {str(r["team"]["id"]): r.get("formation") for r in payload.get("rosters", [])}
     for part in participants:
         part.stats = box_stats.get(part.team.external_id, {})
+        part.formation = formations.get(part.team.external_id)
 
     venue = payload.get("gameInfo", {}).get("venue") or {}
     extra: dict[str, Any] = {}
+    lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
     if payload.get("keyEvents"):
-        lados = {str(c["team"]["id"]): c["homeAway"] for c in comp.get("competitors", [])}
         extra["lances"] = [_lance(k, lados) for k in payload["keyEvents"]]
     if pen := _penaltis(comp.get("competitors", [])):
         extra["penaltis"] = pen
@@ -270,6 +302,8 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
         participants=participants,
         venue_name=venue.get("fullName"),
         venue_city=(venue.get("address") or {}).get("city"),
+        leg=(comp.get("leg") or {}).get("value"),
+        decided_in=map_decided_in(comp.get("status") or {}),
         extra=extra,
     )
 
@@ -280,10 +314,13 @@ def parse_summary(payload: dict[str, Any], liga: str) -> EventDetail:
             athlete = entry["athlete"]
             jersey = entry.get("jersey")
             stats = _stats(entry.get("stats"))
+            place = _int(entry.get("formationPlace"))
             stats.update(
                 starter=bool(entry.get("starter")),
                 subbedIn=bool(entry.get("subbedIn")),
                 subbedOut=bool(entry.get("subbedOut")),
+                # posição de 1 a 11 no desenho da formação; reservas vêm sem
+                formationPlace=place or None,
             )
             player_stats.append(
                 PlayerStatData(

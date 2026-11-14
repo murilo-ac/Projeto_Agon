@@ -56,7 +56,12 @@ class ParticipantData:
     team: TeamData
     side: str | None
     score: int | None = None
+    # venceu a partida pelo placar; pênaltis e agregado não contam
     is_winner: bool | None = None
+    shootout_score: int | None = None
+    aggregate_score: int | None = None
+    advanced: bool | None = None  # avançou no mata-mata
+    formation: str | None = None  # ex.: "4-2-3-1"
     stats: dict[str, Any] = field(default_factory=dict)
 
 
@@ -71,6 +76,8 @@ class EventData:
     venue_name: str | None = None
     venue_city: str | None = None
     round: str | None = None
+    leg: int | None = None  # jogo de ida (1) ou volta (2)
+    decided_in: str | None = None  # extra_time, penalties ou nulo
     extra: dict[str, Any] = field(default_factory=dict)
 
 

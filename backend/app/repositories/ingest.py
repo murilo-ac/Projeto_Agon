@@ -120,10 +120,10 @@ def _upsert_participant(
         part = EventParticipant(event_id=event.id, team_id=team.id, stats={})
         session.add(part)
     part.side = data.side
-    if data.score is not None:
-        part.score = data.score
-    if data.is_winner is not None:
-        part.is_winner = data.is_winner
+    for key in ("score", "is_winner", "shootout_score", "aggregate_score", "advanced", "formation"):
+        value = getattr(data, key)
+        if value is not None:
+            setattr(part, key, value)
     if data.stats:
         part.stats = data.stats
     return part
@@ -146,6 +146,8 @@ def upsert_event(session: Session, provider: str, data: EventData) -> Event:
             "round": data.round,
             "venue_name": data.venue_name,
             "venue_city": data.venue_city,
+            "leg": data.leg,
+            "decided_in": data.decided_in,
         },
     )
     if data.extra:

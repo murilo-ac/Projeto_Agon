@@ -10,6 +10,8 @@ def event_summary_fields(event: Event) -> dict:
         "start_time": event.start_time,
         "status": event.status,
         "round": event.round,
+        "leg": event.leg,
+        "decided_in": event.decided_in,
         "venue_name": event.venue_name,
         "venue_city": event.venue_city,
         "sport": competition.sport.slug,
