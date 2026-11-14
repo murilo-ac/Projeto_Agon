@@ -47,6 +47,8 @@ services:
 
   frontend:
     build: ./frontend
+    environment:
+      FRONTEND_ALLOWED_HOSTS: ${FRONTEND_ALLOWED_HOSTS:-}
     volumes:
       - ./frontend:/app
       - /app/node_modules
